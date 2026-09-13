@@ -34,7 +34,7 @@ export default function SchemeCard({ scheme }) {
   return (
     <Link
       to={`/schemes/${scheme.id}`}
-      className="group block bg-offwhite-0 rounded-xl shadow-sm hover:shadow-md border border-navy-100 p-6 transition-all duration-200"
+      className="scheme-card group block bg-offwhite-0 rounded-xl shadow-sm border border-navy-100 p-6"
     >
       <div className="flex items-start gap-4">
         <div className="w-14 h-14 rounded-xl bg-navy-900 text-offwhite-0 flex items-center justify-center shrink-0 group-hover:bg-navy-700 transition-colors duration-200">

@@ -80,4 +80,74 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-navy-700);
+  border-radius: 3px;
+}
+
+/* ============================================
+   Scheme Card — Hover Animations
+   ============================================ */
+
+.scheme-card {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+              border-color 0.35s ease;
+  will-change: transform, box-shadow;
+}
+
+/* Gold accent bar on the left — starts hidden */
+.scheme-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  background: var(--color-accent-gold);
+  border-radius: 0 3px 3px 0;
+  transition: height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+              top 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.scheme-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 12px 32px -8px rgba(10, 38, 71, 0.18),
+              0 4px 12px -4px rgba(10, 38, 71, 0.08);
+  border-color: var(--color-navy-700);
+}
+
+/* Gold accent bar slides in on hover */
+.scheme-card:hover::before {
+  height: 60%;
+  top: 20%;
+}
+
+/* Subtle bottom glow */
+.scheme-card::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 10%;
+  right: 10%;
+  height: 8px;
+  background: radial-gradient(ellipse at center, rgba(10, 38, 71, 0.12) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.scheme-card:hover::after {
+  opacity: 1;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .scheme-card,
+  .scheme-card::before,
+  .scheme-card::after {
+    transition: none;
+  }
+  .scheme-card:hover {
+    transform: none;
+  }
 }

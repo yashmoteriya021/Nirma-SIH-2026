@@ -165,7 +165,7 @@ export default function Home() {
               2: { value: '28', icon: '🗺️' },
             }[i];
             return (
-              <div key={i} className="bg-offwhite-0 rounded-xl border border-navy-100 p-8 text-center shadow-sm">
+              <div key={i} className="scheme-card bg-offwhite-0 rounded-xl border border-navy-100 p-8 text-center shadow-sm cursor-default">
                 <p className="text-4xl mb-2">{stat.icon}</p>
                 <p className="text-3xl font-bold text-navy-900 mb-1">{stat.value}</p>
                 <p className="text-navy-700 text-sm">{t(`home.impact.stats.${i}.label`)}</p>
