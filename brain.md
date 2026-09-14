@@ -36,7 +36,12 @@
 | **Styling** | Tailwind CSS v4 (`@theme` in `index.css`) |
 | **i18n** | React Context API (`LanguageContext`) + `localStorage` |
 | **Build** | Vite 8 |
-| **Backend** | Node.js + Express 5 |
+| **Backend** | Node.js + Express 5 + MongoDB + Mongoose |
+| **Database** | MongoDB (Mongoose ODM, 2dsphere geospatial index) |
+| **Auth** | JWT (jsonwebtoken) + OTP (mock/real SMS) |
+| **Security** | helmet, cors, express-rate-limit, bcrypt |
+| **Validation** | express-validator |
+| **Logging** | morgan (dev only) |
 | **CORS** | `cors` package |
 | **Config** | `dotenv` |
 | **Fonts** | Inter / Poppins (EN), Noto Sans Devanagari (HI) via Google Fonts |
@@ -84,21 +89,49 @@ d:\SIH\
 │           ├── Login.jsx           ← OTP + email tabs
 │           └── SchemeDetails.jsx   ← Dynamic route, 8 tabs
 │
-└── backend/                        ← Express API
+└── backend/                        ← Express + MongoDB API
     ├── package.json
-    ├── server.js                   ← Entry point + middleware
-    ├── .env                        ← PORT, CORS, JWT config
-    ├── config/
-    │   └── index.js                ← Config loader (dotenv)
-    ├── middleware/
-    │   └── errorHandler.js         ← Global error + 404 handlers
-    ├── routes/
-    │   ├── schemes.js              ← GET /api/schemes, POST /recommend
-    │   ├── partners.js             ← GET /api/partners (with filters)
-    │   └── auth.js                 ← OTP + email login
-    └── data/
-        ├── schemes.json            ← Canonical scheme data
-        └── partners.json           ← Canonical partner data
+    ├── server.js                   ← Entry point (connects DB, starts Express)
+    ├── .env                        ← PORT, CORS, JWT, MongoDB, OTP config
+    ├── .env.example                ← Template for env vars
+    ├── README.md                   ← Setup + endpoint reference
+    └── src/
+        ├── app.js                  ← Express app (helmet, cors, routes, error handling)
+        ├── config/
+        │   ├── env.js              ← Centralized config loader (dotenv)
+        │   └── db.js               ← MongoDB/Mongoose connection
+        ├── models/
+        │   ├── Scheme.js           ← Scheme schema (text index)
+        │   ├── ChannelPartner.js   ← Partner schema (2dsphere index)
+        │   ├── User.js             ← User schema (bcrypt hashing)
+        │   ├── Otp.js              ← OTP schema (TTL auto-cleanup)
+        │   └── Application.js      ← Application tracking schema
+        ├── controllers/
+        │   ├── auth.controller.js
+        │   ├── scheme.controller.js
+        │   ├── partner.controller.js
+        │   ├── calculator.controller.js
+        │   └── stats.controller.js
+        ├── routes/
+        │   ├── auth.routes.js
+        │   ├── scheme.routes.js
+        │   ├── partner.routes.js
+        │   ├── calculator.routes.js
+        │   └── stats.routes.js
+        ├── middleware/
+        │   ├── auth.middleware.js       ← JWT verification
+        │   ├── error.middleware.js      ← Centralized error handler
+        │   ├── validate.middleware.js   ← express-validator chains
+        │   └── rateLimiter.middleware.js ← OTP abuse prevention
+        ├── services/
+        │   ├── otp.service.js           ← Mock/real SMS abstraction
+        │   ├── emi.service.js           ← Reducing-balance EMI formula
+        │   └── recommendation.service.js ← Rule-based scheme matcher
+        ├── utils/
+        │   ├── asyncHandler.js
+        │   └── apiResponse.js
+        └── seed/
+            └── seed.js              ← Populates mock schemes + partners
 ```
 
 ---
@@ -116,15 +149,27 @@ Valid `:schemeId` values: `micro-finance`, `term-loan`, `education-loan`
 
 ### Backend API Endpoints
 ```
-GET    /api/health               → Health check
-GET    /api/schemes              → All schemes (filters: ?category, ?maxAmount, ?incomeLimit)
-GET    /api/schemes/:id          → Single scheme
-POST   /api/schemes/recommend    → Rule-based recommender { purpose, estimatedCost, annualIncome }
-GET    /api/partners             → All partners (filters: ?scheme, ?type, ?city, ?lat&lng)
-GET    /api/partners/:id         → Single partner
-POST   /api/auth/send-otp        → Send OTP { phone }
-POST   /api/auth/verify-otp      → Verify OTP { phone, otp }
-POST   /api/auth/login           → Email login { email, password }
+GET    /api/health                          → Uptime check
+POST   /api/auth/send-otp                   → Send OTP { mobile_number } (rate-limited 3/hr)
+POST   /api/auth/verify-otp                 → Verify OTP { mobile_number, otp_code } → JWT
+POST   /api/auth/register                   → Register { full_name, mobile_number, email?, password? }
+POST   /api/auth/login                      → Email login { email, password }
+GET    /api/auth/me                         → Current user profile (JWT required)
+GET    /api/schemes?lang=en&category=business → List schemes (optional filters)
+GET    /api/schemes/search?q=education&lang=en → Text search on name + descriptions
+GET    /api/schemes/:scheme_id?lang=hi       → Single scheme
+POST   /api/schemes/recommend               → Rule engine { category, project_cost, annual_income }
+GET    /api/partners?type=SCA&scheme_id=mcf_01 → Filtered partner list
+GET    /api/partners/nearby?lat=&lng=&radius_km=10&scheme_id= → Geospatial search
+GET    /api/partners/:partner_id            → Single partner
+POST   /api/calculator/emi                  → EMI calculator { principal, annual_rate_pct, tenure_years, moratorium_months? }
+GET    /api/stats                           → Aggregate platform statistics
+```
+
+### Response Envelope
+```json
+{ "success": true,  "data": { ... }, "message": "..." }
+{ "success": false, "error": { "code": "ERROR_CODE", "message": "..." } }
 ```
 
 ### Dev Proxy
@@ -260,6 +305,7 @@ App.jsx
 # Terminal 1 — Backend API (port 5000)
 cd d:\SIH\backend
 npm install
+npm run seed          # Populate MongoDB with mock data (run once)
 npm run dev
 
 # Terminal 2 — Frontend (port 5173, proxies /api → :5000)
@@ -267,6 +313,8 @@ cd d:\SIH\frontend
 npm install
 npm run dev
 ```
+
+**Prerequisites**: MongoDB must be running on `localhost:27017` (or update `MONGODB_URI` in `.env`).
 
 - **Frontend**: http://localhost:5173
 - **Backend API**: http://localhost:5000

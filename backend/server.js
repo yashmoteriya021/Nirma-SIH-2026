@@ -1,69 +1,47 @@
-import express from 'express';
-import cors from 'cors';
-import config from './config/index.js';
-import schemesRouter from './routes/schemes.js';
-import partnersRouter from './routes/partners.js';
-import authRouter from './routes/auth.js';
-import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
+import app from './src/app.js';
+import config from './src/config/env.js';
+import connectDB from './src/config/db.js';
+import { seedDatabase } from './src/seed/seed.js';
 
-const app = express();
+const startServer = async () => {
+  // Connect to MongoDB (falls back to in-memory if local MongoDB isn't running)
+  await connectDB();
 
-// ─── Middleware ──────────────────────────────────────────────
-app.use(cors({
-  origin: config.corsOrigin,
-  credentials: true,
-}));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  // Auto-seed if database is empty (useful for in-memory mode)
+  await seedDatabase();
 
-// Request logger (development only)
-if (config.nodeEnv === 'development') {
-  app.use((req, res, next) => {
-    console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.path}`);
-    next();
+  // Start Express server
+  app.listen(config.port, () => {
+    console.log(`
+  ┌─────────────────────────────────────────────┐
+  │  SchemeSetu API Server                      │
+  │  Environment: ${config.nodeEnv.padEnd(29)}│
+  │  Port:        ${String(config.port).padEnd(29)}│
+  │  CORS:        ${config.corsOrigin[0].padEnd(29)}│
+  │  OTP Mock:    ${String(config.otp.mockMode).padEnd(29)}│
+  │                                             │
+  │  Endpoints:                                 │
+  │    GET  /api/health                         │
+  │    POST /api/auth/send-otp                  │
+  │    POST /api/auth/verify-otp                │
+  │    POST /api/auth/register                  │
+  │    POST /api/auth/login                     │
+  │    GET  /api/auth/me                        │
+  │    GET  /api/schemes                        │
+  │    GET  /api/schemes/search                 │
+  │    GET  /api/schemes/:scheme_id             │
+  │    POST /api/schemes/recommend              │
+  │    GET  /api/partners                       │
+  │    GET  /api/partners/nearby                │
+  │    GET  /api/partners/:partner_id           │
+  │    POST /api/calculator/emi                 │
+  │    GET  /api/stats                          │
+  └─────────────────────────────────────────────┘
+    `);
   });
-}
+};
 
-// ─── Health Check ───────────────────────────────────────────
-app.get('/api/health', (req, res) => {
-  res.json({
-    success: true,
-    message: 'SchemeSetu API is running',
-    environment: config.nodeEnv,
-    timestamp: new Date().toISOString(),
-  });
+startServer().catch((err) => {
+  console.error('❌ Failed to start server:', err.message);
+  process.exit(1);
 });
-
-// ─── API Routes ─────────────────────────────────────────────
-app.use('/api/schemes', schemesRouter);
-app.use('/api/partners', partnersRouter);
-app.use('/api/auth', authRouter);
-
-// ─── Error Handling ─────────────────────────────────────────
-app.use(notFoundHandler);
-app.use(errorHandler);
-
-// ─── Start Server ───────────────────────────────────────────
-app.listen(config.port, () => {
-  console.log(`
-  ┌─────────────────────────────────────────┐
-  │  SchemeSetu API Server                  │
-  │  Environment: ${config.nodeEnv.padEnd(25)}│
-  │  Port:        ${String(config.port).padEnd(25)}│
-  │  CORS:        ${config.corsOrigin[0].padEnd(25)}│
-  │                                         │
-  │  Endpoints:                             │
-  │    GET  /api/health                     │
-  │    GET  /api/schemes                    │
-  │    GET  /api/schemes/:id                │
-  │    POST /api/schemes/recommend          │
-  │    GET  /api/partners                   │
-  │    GET  /api/partners/:id               │
-  │    POST /api/auth/send-otp              │
-  │    POST /api/auth/verify-otp            │
-  │    POST /api/auth/login                 │
-  └─────────────────────────────────────────┘
-  `);
-});
-
-export default app;
