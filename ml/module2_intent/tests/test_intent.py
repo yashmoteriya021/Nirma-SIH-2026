@@ -188,3 +188,112 @@ class TestLLMExtractor:
         assert result["purpose"] == "other"  # Invalid → default
         assert result["estimated_cost"] is None  # Can't parse → None
         assert result["beneficiary"] == "self"  # Invalid → default
+
+
+class TestOfflineExtractorRobustness:
+    """Word-boundary matching and year handling."""
+
+    def test_year_is_not_a_cost(self):
+        result = extract_intent_offline("I want to start a business in 2026 with 50000")
+        assert result["estimated_cost"] == 50000
+
+    def test_year_alone_gives_no_cost(self):
+        result = extract_intent_offline("I want to start a shop in 2026")
+        assert result["estimated_cost"] is None
+
+    def test_currency_prefixed_four_digit_amount_is_a_cost(self):
+        result = extract_intent_offline("Need Rs 2000 for tools")
+        assert result["estimated_cost"] == 2000
+
+    def test_substring_does_not_match_auto(self):
+        result = extract_intent_offline("I need an automatic machine")
+        assert result["purpose"] != "vehicle_livelihood"
+
+    def test_duplicate_keywords_do_not_inflate_confidence(self):
+        result = extract_intent_offline("auto chahiye")
+        # single distinct keyword → purpose filled but at the weak threshold only
+        assert result["purpose"] == "vehicle_livelihood"
+
+    def test_inflection_tolerance(self):
+        result = extract_intent_offline("I am expanding my dairy, need 3 lakh")
+        assert result["purpose"] in ("business_expansion", "agriculture_allied")
+        assert result["estimated_cost"] == 300000
+
+    def test_expansion_beats_start_on_tie(self):
+        result = extract_intent_offline("I started a tailoring unit and want to expand it, need 2 lakh")
+        assert result["purpose"] == "business_expansion"
+
+    def test_profile_prefills_student_education_for_self(self):
+        result = extract_intent_offline(
+            "I want to do B.Tech, need 4 lakh", profile={"education_status": "12th_pass"}
+        )
+        assert result["purpose"] == "education"
+        assert result["student_education_status"] == "12th_pass"
+
+
+class TestSlotMachineFollowUps:
+    def test_vague_purpose_triggers_question(self):
+        from module2_intent.llm_extractor import LLMConfig
+
+        session = SlotFillingSession(llm_config=LLMConfig(provider="none"))
+        result = session.process_input("mujhe 80 hazar chahiye")
+        assert result["complete"] is False
+        assert "loan for" in result["follow_up_question"]
+
+    def test_dependent_education_asks_student_level_and_overrides_self(self):
+        from module2_intent.llm_extractor import LLMConfig
+
+        session = SlotFillingSession(
+            profile={"education_status": "10th_pass"},
+            llm_config=LLMConfig(provider="none"),
+        )
+        session.process_input("mujhe 80 hazar chahiye")
+        result = session.process_input("beti ki padhai ke liye")
+        assert result["complete"] is False
+        assert "student" in result["follow_up_question"].lower()
+        result = session.process_input("12th pass")
+        assert result["complete"] is True
+        assert result["intent"]["beneficiary"] == "dependent"
+        assert result["intent"]["student_education_status"] == "12th_pass"
+
+    def test_llm_config_from_env_openrouter(self, monkeypatch):
+        from module2_intent.llm_extractor import LLMConfig
+
+        monkeypatch.delenv("LLM_PROVIDER", raising=False)
+        monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+        monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+        monkeypatch.setenv("OPENROUTER_API_KEY", "sk-test")
+        cfg = LLMConfig.from_env()
+        assert cfg.provider == "openrouter"
+        assert cfg.enabled
+        assert cfg.base_url == "https://openrouter.ai/api/v1"
+
+    def test_llm_failure_falls_back_to_offline(self, monkeypatch):
+        from module2_intent import llm_extractor
+        from module2_intent.llm_extractor import LLMConfig, extract_intent_llm
+
+        def boom(cfg, system, user):
+            raise RuntimeError("network down")
+
+        monkeypatch.setattr(llm_extractor, "_call_openai_compatible", boom)
+        cfg = LLMConfig(provider="openai", api_key="sk-x", model="gpt-4o-mini")
+        result = extract_intent_llm("silai ki dukaan, 80 hazar", config=cfg)
+        assert result["extraction_method"] == "offline_rules"
+        assert "network down" in result["llm_error"]
+        assert result["estimated_cost"] == 80000
+
+    def test_llm_success_path_with_mock(self, monkeypatch):
+        from module2_intent import llm_extractor
+        from module2_intent.llm_extractor import LLMConfig, extract_intent_llm
+
+        def fake(cfg, system, user):
+            assert "Category=SC" in system or "category=SC" in system
+            return '```json\n{"purpose":"business_start","project_type":"kirana store","estimated_cost":500000,"cost_confidence":"high","beneficiary":"self","loan_type_guess":"term_loan","urgency":"flexible"}\n```'
+
+        monkeypatch.setattr(llm_extractor, "_call_anthropic", fake)
+        cfg = LLMConfig(provider="anthropic", api_key="k", model="claude-sonnet-5")
+        result = extract_intent_llm("kirana kholna hai", profile={"category": "SC"}, config=cfg)
+        assert result["extraction_method"] == "llm"
+        assert result["llm_provider"] == "anthropic"
+        assert result["estimated_cost"] == 500000
+        assert "purpose" in result["slots_filled"]

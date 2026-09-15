@@ -252,3 +252,23 @@ class TestHelpers:
         assert get_coords_from_pin("400001") == (19.076, 72.878)  # Mumbai
         assert get_coords_from_pin(None) is None
         assert get_coords_from_pin("999999") is None  # Unknown prefix
+
+
+class TestRadiusVsHealth:
+    def test_far_away_healthy_partners_reported_as_out_of_range(self):
+        """Kerala PIN: healthy MCF partners exist but are hundreds of km away."""
+        from module4_partners.partner_ranker import rank_partners
+
+        result = rank_partners(scheme_id="NSFDC_MCF", user_pin_code="682001")
+        assert result["status"] == "no_partners_in_range"
+        assert result["nearest_beyond_radius"]
+        assert "km" in result["message"]
+
+    def test_all_prefixes_resolve(self):
+        from module4_partners.partner_ranker import PIN_PREFIX_CENTROIDS, get_coords_from_pin
+
+        for prefix in PIN_PREFIX_CENTROIDS:
+            assert get_coords_from_pin(prefix + "0001") is not None
+        assert get_coords_from_pin("380001") is not None  # Gujarat was missing before
+        assert get_coords_from_pin("700001") is not None  # Kolkata
+        assert get_coords_from_pin("990001") is None      # not a real prefix

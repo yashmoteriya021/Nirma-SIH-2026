@@ -39,12 +39,22 @@
     },
     "gender": {
       "type": "string",
-      "enum": ["male", "female", "other"],
+      "enum": [
+        "male",
+        "female",
+        "other"
+      ],
       "description": "Gender of the applicant"
     },
     "category": {
       "type": "string",
-      "enum": ["SC", "OBC", "SafaiKaramchari", "ManualScavenger", "WastePicker"],
+      "enum": [
+        "SC",
+        "OBC",
+        "SafaiKaramchari",
+        "ManualScavenger",
+        "WastePicker"
+      ],
       "description": "Social category. SC = Scheduled Caste, OBC = Other Backward Class. SafaiKaramchari/ManualScavenger/WastePicker are NSKFDC-eligible categories."
     },
     "domicile_state": {
@@ -104,7 +114,12 @@
     },
     "marital_status": {
       "type": "string",
-      "enum": ["single", "married", "widowed", "divorced"],
+      "enum": [
+        "single",
+        "married",
+        "widowed",
+        "divorced"
+      ],
       "description": "Marital status of the applicant"
     },
     "is_single_woman": {
@@ -113,7 +128,10 @@
     },
     "verification_status": {
       "type": "string",
-      "enum": ["verified", "self_reported"],
+      "enum": [
+        "verified",
+        "self_reported"
+      ],
       "description": "Whether the profile was verified via DigiLocker or self-reported manually. Downstream modules use this to assess confidence."
     },
     "needs_reverification": {
@@ -128,13 +146,25 @@
     },
     "verification_source": {
       "type": "string",
-      "enum": ["digilocker", "manual", "none"],
+      "enum": [
+        "digilocker",
+        "manual",
+        "none"
+      ],
       "default": "none",
       "description": "Source of profile verification"
     },
     "reverification_reason": {
       "type": "string",
       "description": "Human-readable reason if needs_reverification is true (e.g., 'Income certificate issued on 2024-03-15 is older than 1 financial year')"
+    },
+    "caste_certificate_issue_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "description": "Issue date of the caste/OBC-NCL certificate. Required for OBC (annual validity, Indian FY); ignored for SC and Safai Karamchari categories (lifetime validity)."
     }
   },
   "additionalProperties": false

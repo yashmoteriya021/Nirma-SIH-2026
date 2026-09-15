@@ -7,12 +7,21 @@ freeform text (including code-mixed Hindi/English).
 The LLM is constrained to return structured JSON only — it never generates
 scheme recommendations (that's Module 3's job).
 
-Provider-agnostic: works with OpenAI, Gemini (via compatible endpoint),
-or local Ollama.
+Provider-agnostic. Configure via environment (or an `LLMConfig`):
+
+    LLM_PROVIDER = openai | openrouter | anthropic | ollama | none   (default: auto)
+    LLM_API_KEY  = key for the chosen provider
+    LLM_BASE_URL = override endpoint (OpenAI-compatible providers only)
+    LLM_MODEL    = model name
+
+"auto" picks openrouter/openai/anthropic if their conventional key env var
+(OPENROUTER_API_KEY / OPENAI_API_KEY / ANTHROPIC_API_KEY) is set, else none.
+With no provider available every call falls back to the offline extractor.
 """
 
 import json
 import os
+from dataclasses import dataclass
 from typing import Any
 
 
@@ -30,6 +39,7 @@ The user may write in Hindi, English, or a mix of both (Hinglish/code-mixed). Ex
 5. **beneficiary**: "self" if for themselves, "dependent" if for son/daughter/spouse
 6. **loan_type_guess**: "micro_finance" (small ≤₹1.4L), "term_loan" (₹1.4L-₹50L), "education_loan", or "unknown"
 7. **urgency**: "immediate", "within_3_months", or "flexible"
+8. **student_education_status**: Only for education purpose — the STUDENT's highest completed level: one of below_8th, 8th_pass, 10th_pass, 12th_pass, graduate, post_graduate, professional. null if not stated.
 
 Respond ONLY with valid JSON matching this exact structure:
 {
@@ -39,7 +49,8 @@ Respond ONLY with valid JSON matching this exact structure:
   "cost_confidence": "high|medium|low",
   "beneficiary": "self|dependent",
   "loan_type_guess": "micro_finance|term_loan|education_loan|unknown",
-  "urgency": "immediate|within_3_months|flexible"
+  "urgency": "immediate|within_3_months|flexible",
+  "student_education_status": "below_8th|8th_pass|10th_pass|12th_pass|graduate|post_graduate|professional|null"
 }
 
 User's message: """
@@ -54,6 +65,10 @@ VALID_CONFIDENCES = {"high", "medium", "low"}
 VALID_BENEFICIARIES = {"self", "dependent"}
 VALID_LOAN_TYPES = {"micro_finance", "term_loan", "education_loan", "unknown"}
 VALID_URGENCIES = {"immediate", "within_3_months", "flexible"}
+VALID_EDUCATION = {
+    "below_8th", "8th_pass", "10th_pass", "12th_pass",
+    "graduate", "post_graduate", "professional",
+}
 
 
 def _validate_llm_output(data: dict) -> dict:
@@ -97,99 +112,153 @@ def _validate_llm_output(data: dict) -> dict:
     urg = data.get("urgency", "flexible")
     validated["urgency"] = urg if urg in VALID_URGENCIES else "flexible"
 
+    # Student education (optional)
+    edu = data.get("student_education_status")
+    validated["student_education_status"] = edu if edu in VALID_EDUCATION else None
+
     return validated
 
 
-def extract_intent_llm(
-    user_text: str,
-    profile: dict | None = None,
-    api_key: str | None = None,
-    base_url: str | None = None,
-    model: str = "gpt-4o-mini",
-) -> dict[str, Any]:
-    """
-    Extract structured intent slots using an LLM.
+# ---------------------------------------------------------------------------
+# Provider configuration
+# ---------------------------------------------------------------------------
 
-    Args:
-        user_text: The user's freeform description.
-        profile: Optional verified profile from Module 1 (for context).
-        api_key: API key (defaults to OPENAI_API_KEY env var).
-        base_url: Custom base URL for compatible APIs (e.g., Ollama).
-        model: Model name to use.
+OPENAI_COMPATIBLE = {"openai", "openrouter", "ollama"}
+SUPPORTED_PROVIDERS = OPENAI_COMPATIBLE | {"anthropic", "none"}
 
-    Returns:
-        ExtractedIntent dict matching intent_schema.json.
-    """
-    api_key = api_key or os.environ.get("OPENAI_API_KEY")
+_DEFAULT_BASE_URLS = {
+    "openrouter": "https://openrouter.ai/api/v1",
+    "ollama": "http://localhost:11434/v1",
+}
+_DEFAULT_MODELS = {
+    "openai": "gpt-4o-mini",
+    "openrouter": "openai/gpt-4o-mini",
+    "ollama": "llama3.1",
+    "anthropic": "claude-sonnet-5",
+}
+_KEY_ENV_VARS = {
+    "openai": "OPENAI_API_KEY",
+    "openrouter": "OPENROUTER_API_KEY",
+    "anthropic": "ANTHROPIC_API_KEY",
+}
 
-    if not api_key:
-        # Fall back to offline extractor if no API key available
-        from module2_intent.offline_extractor import extract_intent_offline
-        result = extract_intent_offline(user_text, profile)
-        result["extraction_method"] = "offline_rules"
-        return result
 
-    try:
-        from openai import OpenAI
+@dataclass
+class LLMConfig:
+    provider: str = "none"
+    api_key: str | None = None
+    base_url: str | None = None
+    model: str | None = None
 
-        client_kwargs = {"api_key": api_key}
-        if base_url:
-            client_kwargs["base_url"] = base_url
+    @property
+    def enabled(self) -> bool:
+        if self.provider == "none":
+            return False
+        if self.provider == "ollama":
+            return True  # local, no key needed
+        return bool(self.api_key)
 
-        client = OpenAI(**client_kwargs)
+    @classmethod
+    def from_env(cls) -> "LLMConfig":
+        provider = os.environ.get("LLM_PROVIDER", "auto").strip().lower()
+        api_key = os.environ.get("LLM_API_KEY") or None
+        base_url = os.environ.get("LLM_BASE_URL") or None
+        model = os.environ.get("LLM_MODEL") or None
 
-        # Add profile context if available
-        context = ""
-        if profile:
-            context = (
-                f"\n\nContext from verified profile: "
-                f"Category={profile.get('category')}, "
-                f"Income=₹{profile.get('annual_family_income', 'unknown')}, "
-                f"Gender={profile.get('gender')}, "
-                f"State={profile.get('domicile_state')}, "
-                f"Education={profile.get('education_status')}"
-            )
+        if provider == "auto":
+            provider = "none"
+            for candidate in ("openrouter", "openai", "anthropic"):
+                if os.environ.get(_KEY_ENV_VARS[candidate]):
+                    provider = candidate
+                    break
 
-        response = client.chat.completions.create(
-            model=model,
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a JSON-only extraction assistant. Never output anything except valid JSON.",
-                },
-                {
-                    "role": "user",
-                    "content": EXTRACTION_PROMPT + user_text + context,
-                },
-            ],
-            temperature=0.1,  # Low temperature for deterministic extraction
-            max_tokens=500,
-            response_format={"type": "json_object"},
+        if provider not in SUPPORTED_PROVIDERS:
+            provider = "none"
+
+        if api_key is None and provider in _KEY_ENV_VARS:
+            api_key = os.environ.get(_KEY_ENV_VARS[provider]) or None
+
+        return cls(
+            provider=provider,
+            api_key=api_key,
+            base_url=base_url or _DEFAULT_BASE_URLS.get(provider),
+            model=model or _DEFAULT_MODELS.get(provider),
         )
 
-        raw_output = response.choices[0].message.content
-        parsed = json.loads(raw_output)
-        validated = _validate_llm_output(parsed)
 
-    except Exception as e:
-        # On any LLM failure, fall back to offline
-        from module2_intent.offline_extractor import extract_intent_offline
-        result = extract_intent_offline(user_text, profile)
-        result["extraction_method"] = "offline_rules"
-        result["_llm_error"] = str(e)
-        return result
+def _profile_context(profile: dict | None) -> str:
+    if not profile:
+        return ""
+    return (
+        " The applicant's verified profile (do not ask for these again): "
+        f"category={profile.get('category')}, "
+        f"annual_family_income=₹{profile.get('annual_family_income', 'unknown')}, "
+        f"gender={profile.get('gender')}, "
+        f"domicile_state={profile.get('domicile_state')}, "
+        f"education_status={profile.get('education_status')}."
+    )
 
-    # Build slots tracking
+
+def _call_openai_compatible(cfg: LLMConfig, system: str, user: str) -> str:
+    from openai import OpenAI
+
+    kwargs: dict[str, Any] = {"api_key": cfg.api_key or "ollama"}
+    if cfg.base_url:
+        kwargs["base_url"] = cfg.base_url
+    client = OpenAI(**kwargs)
+
+    response = client.chat.completions.create(
+        model=cfg.model,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        temperature=0.1,
+        max_tokens=500,
+        response_format={"type": "json_object"},
+    )
+    return response.choices[0].message.content or ""
+
+
+def _call_anthropic(cfg: LLMConfig, system: str, user: str) -> str:
+    from anthropic import Anthropic
+
+    client = Anthropic(api_key=cfg.api_key)
+    response = client.messages.create(
+        model=cfg.model,
+        max_tokens=500,
+        temperature=0.1,
+        system=system,
+        messages=[{"role": "user", "content": user}],
+    )
+    return "".join(block.text for block in response.content if getattr(block, "type", "") == "text")
+
+
+def _extract_json(raw: str) -> dict:
+    """Parse the model output, tolerating ```json fences or surrounding prose."""
+    raw = raw.strip()
+    if raw.startswith("```"):
+        raw = raw.strip("`")
+        if raw.lower().startswith("json"):
+            raw = raw[4:]
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        start, end = raw.find("{"), raw.rfind("}")
+        if start == -1 or end == -1:
+            raise
+        return json.loads(raw[start:end + 1])
+
+
+def _finalize(validated: dict, user_text: str) -> dict:
     slots_filled = []
     slots_missing = []
-
     for slot in ["purpose", "project_type", "estimated_cost", "beneficiary", "urgency"]:
-        if validated.get(slot) is not None:
+        if validated.get(slot) is not None and not (slot == "purpose" and validated[slot] == "other"):
             slots_filled.append(slot)
         else:
             slots_missing.append(slot)
 
-    # Build confirmation summary
     cost_str = f"₹{validated['estimated_cost']:,.0f}" if validated["estimated_cost"] else "an unspecified amount"
     project_str = validated.get("project_type") or validated["purpose"]
     confirmation = f"So you want {cost_str} for {project_str}, correct?"
@@ -202,3 +271,59 @@ def extract_intent_llm(
         "raw_input": user_text,
         "confirmation_summary": confirmation,
     }
+
+
+def extract_intent_llm(
+    user_text: str,
+    profile: dict | None = None,
+    config: LLMConfig | None = None,
+    # Legacy keyword args kept for backward compatibility with older callers.
+    api_key: str | None = None,
+    base_url: str | None = None,
+    model: str | None = None,
+) -> dict[str, Any]:
+    """
+    Extract structured intent slots using an LLM.
+
+    Falls back to the offline rule-based extractor when no provider is
+    configured or when the call fails for any reason (network, bad JSON, …).
+    The returned dict always reports how it was produced in `extraction_method`.
+    """
+    cfg = config or LLMConfig.from_env()
+    if api_key or base_url or model:
+        cfg = LLMConfig(
+            provider=cfg.provider if cfg.provider != "none" else "openai",
+            api_key=api_key or cfg.api_key,
+            base_url=base_url or cfg.base_url,
+            model=model or cfg.model,
+        )
+
+    from module2_intent.offline_extractor import extract_intent_offline
+
+    if not cfg.enabled:
+        result = extract_intent_offline(user_text, profile)
+        result["extraction_method"] = "offline_rules"
+        return result
+
+    system = (
+        "You are a JSON-only extraction assistant. Never output anything except valid JSON."
+        + _profile_context(profile)
+    )
+    user = EXTRACTION_PROMPT + user_text
+
+    try:
+        if cfg.provider == "anthropic":
+            raw_output = _call_anthropic(cfg, system, user)
+        else:
+            raw_output = _call_openai_compatible(cfg, system, user)
+        validated = _validate_llm_output(_extract_json(raw_output))
+    except Exception as e:
+        result = extract_intent_offline(user_text, profile)
+        result["extraction_method"] = "offline_rules"
+        result["llm_error"] = f"{cfg.provider}: {e}"
+        return result
+
+    result = _finalize(validated, user_text)
+    result["llm_provider"] = cfg.provider
+    result["llm_model"] = cfg.model
+    return result

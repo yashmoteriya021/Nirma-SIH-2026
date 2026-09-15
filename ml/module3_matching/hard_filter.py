@@ -187,8 +187,14 @@ def check_existing_loan(profile: dict, scheme: dict) -> FilterResult:
         )
 
 
-def check_education_requirement(profile: dict, scheme: dict) -> FilterResult:
-    """Check if profile meets scheme's education requirement."""
+def check_education_requirement(profile: dict, scheme: dict, intent: dict | None = None) -> FilterResult:
+    """
+    Check the scheme's minimum education requirement.
+
+    The requirement applies to whoever will study: the applicant when the loan
+    is for themselves, or the dependent student when `intent.beneficiary` is
+    "dependent" (their level comes from `intent.student_education_status`).
+    """
     requirement = scheme.get("education_requirement")
 
     if requirement is None:
@@ -203,21 +209,37 @@ def check_education_requirement(profile: dict, scheme: dict) -> FilterResult:
         "graduate", "post_graduate", "professional",
     ]
 
-    profile_edu = profile.get("education_status", "below_8th")
-    required_idx = education_levels.index(requirement) if requirement in education_levels else 0
-    profile_idx = education_levels.index(profile_edu) if profile_edu in education_levels else 0
+    intent = intent or {}
+    if intent.get("beneficiary") == "dependent":
+        who = "Student's education"
+        edu = intent.get("student_education_status")
+        if edu is None:
+            return FilterResult(
+                passed=True,
+                rule="education_requirement",
+                detail=(
+                    f"Student's education level not provided — scheme requires '{requirement}'; "
+                    "will be verified by the channel partner"
+                ),
+            )
+    else:
+        who = "Education"
+        edu = profile.get("education_status", "below_8th")
 
-    if profile_idx >= required_idx:
+    required_idx = education_levels.index(requirement) if requirement in education_levels else 0
+    edu_idx = education_levels.index(edu) if edu in education_levels else 0
+
+    if edu_idx >= required_idx:
         return FilterResult(
             passed=True,
             rule="education_requirement",
-            detail=f"Education '{profile_edu}' meets minimum requirement '{requirement}'",
+            detail=f"{who} '{edu}' meets minimum requirement '{requirement}'",
         )
     else:
         return FilterResult(
             passed=False,
             rule="education_requirement",
-            detail=f"Education '{profile_edu}' does not meet minimum '{requirement}' required for this scheme",
+            detail=f"{who} '{edu}' does not meet minimum '{requirement}' required for this scheme",
         )
 
 
@@ -233,7 +255,7 @@ def filter_scheme(profile: dict, intent: dict, scheme: dict) -> SchemeFilterResu
         check_project_cost_band(intent, scheme),
         check_gender_restriction(profile, scheme),
         check_existing_loan(profile, scheme),
-        check_education_requirement(profile, scheme),
+        check_education_requirement(profile, scheme, intent),
     ]
 
     failing = [c for c in checks if not c.passed]

@@ -80,6 +80,10 @@ PURPOSE_KEYWORDS: dict[str, list[str]] = {
     ],
 }
 
+# Remove duplicates that appear in both the English and Hinglish sub-lists
+# (e.g. "auto", "dairy") so a single word can't count as two hits.
+PURPOSE_KEYWORDS = {k: list(dict.fromkeys(w.lower() for w in v)) for k, v in PURPOSE_KEYWORDS.items()}
+
 # Project type keywords → descriptive project type
 PROJECT_TYPE_KEYWORDS: dict[str, list[str]] = {
     "tailoring shop": ["tailoring", "tailor", "silai", "sewing", "darzi", "सिलाई", "दर्जी"],
@@ -136,42 +140,104 @@ FLEXIBLE_KEYWORDS = [
 ]
 
 
+# Characters that form a "word" for boundary purposes: ASCII word chars plus the
+# full Devanagari block (letters, vowel signs, nukta, virama).
+_WORD_CHAR = r"[\wऀ-ॿ]"
+
+# Light English inflection tolerance so "start" matches "started"/"starting",
+# "expand" matches "expanding", "study" matches "studies".
+_SUFFIX = r"(?:s|es|ed|ing|ies|ly)?"
+
+# Years (as bare numbers) must never be read as a loan amount.
+_YEAR_MIN, _YEAR_MAX = 1900, 2100
+
+# Currency markers that make a 4-digit number an amount, not a year.
+_CURRENCY_PREFIX = re.compile(r"(?:₹|rs\.?|inr|rupees?|rupaye|रुपये|रु\.?)\s*$", re.IGNORECASE)
+
+_KEYWORD_RE_CACHE: dict[str, re.Pattern] = {}
+
+
 def _normalize_text(text: str) -> str:
     """Lowercase and normalize whitespace."""
     return re.sub(r"\s+", " ", text.lower().strip())
 
 
+def _keyword_pattern(keyword: str) -> re.Pattern:
+    """
+    Compile a whole-word pattern for a keyword (cached).
+
+    Multi-word keywords ("new shop", "no rush") are matched as a phrase with
+    flexible whitespace; single words get suffix tolerance. Both are anchored
+    on word boundaries so "auto" no longer matches "automatic" and "course"
+    no longer matches "of course I need fees" via substring.
+    """
+    kw = keyword.lower().strip()
+    pat = _KEYWORD_RE_CACHE.get(kw)
+    if pat is None:
+        if " " in kw:
+            body = r"\s+".join(re.escape(part) for part in kw.split())
+        else:
+            body = re.escape(kw) + _SUFFIX
+        pat = re.compile(rf"(?<!{_WORD_CHAR}){body}(?!{_WORD_CHAR})")
+        _KEYWORD_RE_CACHE[kw] = pat
+    return pat
+
+
+def _matched_keywords(text_lower: str, keywords: list[str]) -> set[str]:
+    """Return the set of distinct keywords found as whole words in the text."""
+    found: set[str] = set()
+    for kw in keywords:
+        if _keyword_pattern(kw).search(text_lower):
+            found.add(kw.lower())
+    return found
+
+
 def _extract_purpose(text: str) -> tuple[str, float]:
     """
     Detect purpose from keywords. Returns (purpose, confidence).
-    Confidence: 0.9 if strong match, 0.5 if weak/ambiguous.
+    Confidence: 0.9 if >=2 distinct keywords, 0.6 if one, 0.3 if none.
+    Ties are broken by the more specific purpose (project-specific categories
+    beat the generic business_start/expansion buckets).
     """
     text_lower = _normalize_text(text)
     scores: dict[str, int] = {}
 
     for purpose, keywords in PURPOSE_KEYWORDS.items():
-        count = sum(1 for kw in keywords if kw.lower() in text_lower)
+        count = len(_matched_keywords(text_lower, keywords))
         if count > 0:
             scores[purpose] = count
 
     if not scores:
         return "other", 0.3
 
-    best = max(scores, key=scores.get)
+    # Tie-break: specific livelihood categories > expansion > start. "start" is
+    # a very common verb ("I started a shop and want to expand"), so it is the
+    # weakest signal when counts are equal.
+    tie_rank = {"business_start": 0, "business_expansion": 1}
+    best = max(scores, key=lambda k: (scores[k], tie_rank.get(k, 2)))
     confidence = 0.9 if scores[best] >= 2 else 0.6
     return best, confidence
 
 
 def _extract_project_type(text: str) -> tuple[str | None, float]:
-    """Detect specific project type from keywords."""
+    """Detect specific project type from keywords (whole-word match)."""
     text_lower = _normalize_text(text)
 
     for project, keywords in PROJECT_TYPE_KEYWORDS.items():
-        for kw in keywords:
-            if kw.lower() in text_lower:
-                return project, 0.8
+        if _matched_keywords(text_lower, keywords):
+            return project, 0.8
 
     return None, 0.0
+
+
+def _looks_like_year(text_lower: str, match: re.Match, value: float) -> bool:
+    """A bare 4-digit number in 1900-2100 is a year unless a currency marker precedes it."""
+    if not (_YEAR_MIN <= value <= _YEAR_MAX):
+        return False
+    if value != int(value):
+        return False
+    before = text_lower[max(0, match.start() - 12):match.start()]
+    return not _CURRENCY_PREFIX.search(before)
 
 
 def _extract_cost(text: str) -> tuple[float | None, str]:
@@ -182,35 +248,29 @@ def _extract_cost(text: str) -> tuple[float | None, str]:
     text_lower = _normalize_text(text)
 
     for pattern in COST_PATTERNS:
-        match = re.search(pattern, text_lower, re.IGNORECASE)
-        if match:
+        for match in re.finditer(pattern, text_lower, re.IGNORECASE):
             raw = match.group(1).replace(",", "")
             try:
                 value = float(raw)
             except ValueError:
                 continue
 
-            # Check context for multiplier
-            after_match = text_lower[match.end():match.end() + 20]
-            before_match = text_lower[max(0, match.start() - 5):match.start()]
             full_match = text_lower[match.start():match.end() + 20]
 
             if any(w in full_match for w in ["lakh", "lac", "लाख"]):
-                value *= 100000
-                return value, "high"
-            elif any(w in full_match for w in ["hazar", "hazaar", "hajar", "thousand", "हज़ार", "हजार"]):
-                value *= 1000
-                return value, "high"
-            elif any(w in full_match for w in ["crore", "करोड़"]):
-                value *= 10000000
-                return value, "high"
-            elif value < 100:
+                return value * 100000, "high"
+            if any(w in full_match for w in ["hazar", "hazaar", "hajar", "thousand", "हज़ार", "हजार"]):
+                return value * 1000, "high"
+            if any(w in full_match for w in ["crore", "करोड़"]):
+                return value * 10000000, "high"
+            if value < 100:
                 # Probably in lakhs (e.g., "1.4" in context)
                 if any(w in text_lower for w in ["lakh", "lac", "लाख"]):
-                    value *= 100000
-                    return value, "medium"
-            elif value >= 1000:
-                # Direct amount
+                    return value * 100000, "medium"
+                continue
+            if value >= 1000:
+                if _looks_like_year(text_lower, match, value):
+                    continue
                 return value, "high"
 
     return None, "low"
@@ -220,9 +280,8 @@ def _extract_beneficiary(text: str) -> tuple[str, float]:
     """Detect if loan is for self or dependent."""
     text_lower = _normalize_text(text)
 
-    for kw in DEPENDENT_KEYWORDS:
-        if kw.lower() in text_lower:
-            return "dependent", 0.8
+    if _matched_keywords(text_lower, DEPENDENT_KEYWORDS):
+        return "dependent", 0.8
 
     return "self", 0.7
 
@@ -231,13 +290,11 @@ def _extract_urgency(text: str) -> tuple[str, float]:
     """Detect urgency level."""
     text_lower = _normalize_text(text)
 
-    for kw in IMMEDIATE_KEYWORDS:
-        if kw.lower() in text_lower:
-            return "immediate", 0.8
+    if _matched_keywords(text_lower, IMMEDIATE_KEYWORDS):
+        return "immediate", 0.8
 
-    for kw in FLEXIBLE_KEYWORDS:
-        if kw.lower() in text_lower:
-            return "flexible", 0.8
+    if _matched_keywords(text_lower, FLEXIBLE_KEYWORDS):
+        return "flexible", 0.8
 
     return "within_3_months", 0.5
 
@@ -249,7 +306,7 @@ def _extract_loan_type(text: str, estimated_cost: float | None) -> str:
     """
     text_lower = _normalize_text(text)
 
-    if any(w in text_lower for w in ["education", "padhai", "college", "पढ़ाई", "शिक्षा"]):
+    if _matched_keywords(text_lower, ["education", "padhai", "college", "पढ़ाई", "शिक्षा"]):
         return "education_loan"
 
     if estimated_cost is not None:
@@ -321,6 +378,13 @@ def extract_intent_offline(
     # Loan type guess
     loan_type_guess = _extract_loan_type(user_text, estimated_cost)
 
+    # Pre-fill from the verified profile: when the applicant is the student,
+    # the education requirement applies to their own recorded education level,
+    # so the intent engine must not re-ask for it.
+    student_education_status = None
+    if purpose == "education" and beneficiary == "self" and profile:
+        student_education_status = profile.get("education_status")
+
     # Build confirmation summary
     cost_str = f"₹{estimated_cost:,.0f}" if estimated_cost else "an unspecified amount"
     project_str = project_type or purpose
@@ -334,6 +398,7 @@ def extract_intent_offline(
         "beneficiary": beneficiary,
         "loan_type_guess": loan_type_guess,
         "urgency": urgency,
+        "student_education_status": student_education_status,
         "slots_filled": slots_filled,
         "slots_missing": slots_missing,
         "extraction_method": "offline_rules",

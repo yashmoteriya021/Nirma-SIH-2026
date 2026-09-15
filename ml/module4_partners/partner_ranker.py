@@ -51,40 +51,83 @@ def load_partner_dataset() -> list[dict]:
 # Simplified mapping: first 2 digits of PIN code → approximate state centroid
 # This is a documented assumption — real implementation would use a full PIN-to-coords DB.
 PIN_PREFIX_CENTROIDS = {
+    # Zone 1: Delhi, Haryana, Punjab, HP, J&K, Ladakh, Chandigarh
     "11": (28.614, 77.209),   # Delhi
-    "20": (26.449, 80.332),   # UP (Kanpur area)
-    "21": (25.431, 81.846),   # UP (Prayagraj area)
-    "22": (26.847, 80.947),   # UP (Lucknow area)
-    "23": (26.847, 80.947),   # UP
-    "24": (26.449, 80.332),   # UP
-    "25": (28.614, 77.209),   # UP/Delhi border
-    "26": (26.760, 83.365),   # UP (Gorakhpur area)
-    "27": (27.176, 78.008),   # UP (Agra area)
-    "28": (27.176, 78.008),   # UP
+    "12": (28.459, 77.029),   # Haryana (Gurugram/Faridabad)
+    "13": (29.968, 76.878),   # Haryana (Kurukshetra/Ambala)
+    "14": (30.901, 75.857),   # Punjab (Ludhiana)
+    "15": (30.210, 74.945),   # Punjab (Bathinda)
+    "16": (30.733, 76.779),   # Chandigarh
+    "17": (31.104, 77.173),   # Himachal Pradesh (Shimla)
+    "18": (32.727, 74.857),   # Jammu
+    "19": (34.084, 74.797),   # Kashmir / Ladakh
+    # Zone 2: Uttar Pradesh, Uttarakhand
+    "20": (28.984, 77.706),   # UP west (Meerut)
+    "21": (25.431, 81.846),   # UP (Prayagraj)
+    "22": (26.847, 80.947),   # UP (Lucknow)
+    "23": (25.318, 82.974),   # UP (Varanasi)
+    "24": (30.317, 78.032),   # Uttarakhand (Dehradun)
+    "25": (28.669, 77.454),   # UP (Ghaziabad/NCR)
+    "26": (29.408, 79.464),   # Uttarakhand (Nainital) / UP (Bareilly)
+    "27": (26.760, 83.365),   # UP (Gorakhpur)
+    "28": (27.176, 78.008),   # UP (Agra/Aligarh)
+    # Zone 3: Rajasthan, Gujarat, Daman & Diu, DNH
     "30": (26.912, 75.787),   # Rajasthan (Jaipur)
-    "31": (26.912, 75.787),   # Rajasthan
-    "32": (26.912, 75.787),   # Rajasthan
-    "33": (24.585, 73.712),   # Rajasthan (south)
-    "34": (26.293, 73.017),   # Rajasthan (Jodhpur)
+    "31": (27.892, 78.076),   # Rajasthan (Alwar/Bharatpur)
+    "32": (25.213, 75.864),   # Rajasthan (Kota)
+    "33": (24.585, 73.712),   # Rajasthan (Udaipur)
+    "34": (26.293, 73.017),   # Rajasthan (Jodhpur/Bikaner)
+    "36": (22.309, 73.181),   # Gujarat (Vadodara)
+    "37": (23.022, 72.571),   # Gujarat (Ahmedabad)
+    "38": (23.022, 72.571),   # Gujarat (Ahmedabad/Gandhinagar)
+    "39": (21.170, 72.831),   # Gujarat (Surat) / Daman
+    # Zone 4: Maharashtra, Goa, Madhya Pradesh, Chhattisgarh
     "40": (19.076, 72.878),   # Maharashtra (Mumbai)
     "41": (18.521, 73.855),   # Maharashtra (Pune)
     "42": (20.001, 73.790),   # Maharashtra (Nashik)
-    "43": (19.876, 75.343),   # Maharashtra
+    "43": (19.876, 75.343),   # Maharashtra (Aurangabad)
     "44": (21.146, 79.089),   # Maharashtra (Nagpur/Vidarbha)
-    "50": (17.385, 78.487),   # Telangana/AP
-    "51": (17.385, 78.487),   # AP
-    "52": (17.385, 78.487),   # AP
+    "45": (23.259, 77.413),   # Madhya Pradesh (Bhopal)
+    "46": (22.720, 75.858),   # Madhya Pradesh (Indore)
+    "47": (24.585, 80.834),   # Madhya Pradesh (Satna/Rewa)
+    "48": (23.181, 79.986),   # Madhya Pradesh (Jabalpur)
+    "49": (21.251, 81.630),   # Chhattisgarh (Raipur)
+    # Zone 5: Telangana, Andhra Pradesh, Karnataka
+    "50": (17.385, 78.487),   # Telangana (Hyderabad)
+    "51": (16.506, 80.648),   # Andhra Pradesh (Vijayawada)
+    "52": (16.506, 80.648),   # Andhra Pradesh (Guntur/Nellore)
+    "53": (17.687, 83.219),   # Andhra Pradesh (Visakhapatnam)
     "56": (12.971, 77.597),   # Karnataka (Bengaluru)
     "57": (12.296, 76.639),   # Karnataka (Mysuru)
-    "58": (15.349, 75.137),   # Karnataka (North)
+    "58": (15.349, 75.137),   # Karnataka (Hubballi)
+    "59": (17.329, 76.834),   # Karnataka (Kalaburagi)
+    # Zone 6: Tamil Nadu, Kerala, Puducherry, Lakshadweep
     "60": (13.061, 80.270),   # Tamil Nadu (Chennai)
-    "62": (10.790, 78.705),   # Tamil Nadu (Trichy)
+    "61": (10.790, 78.705),   # Tamil Nadu (Trichy)
+    "62": (10.790, 78.705),   # Tamil Nadu (Trichy/Madurai)
     "63": (11.651, 78.159),   # Tamil Nadu (Salem)
     "64": (11.005, 76.956),   # Tamil Nadu (Coimbatore)
+    "67": (11.259, 75.780),   # Kerala (Kozhikode)
+    "68": (9.939, 76.267),    # Kerala (Kochi)
+    "69": (8.524, 76.937),    # Kerala (Thiruvananthapuram)
+    # Zone 7: West Bengal, Odisha, NE states, Sikkim, A&N
+    "70": (22.573, 88.364),   # West Bengal (Kolkata)
+    "71": (22.573, 88.364),   # West Bengal (Howrah/Hooghly)
+    "72": (23.251, 87.850),   # West Bengal (Bardhaman)
+    "73": (26.727, 88.396),   # West Bengal (Siliguri)
+    "74": (22.573, 88.364),   # West Bengal (24 Parganas) / A&N
+    "75": (20.296, 85.825),   # Odisha (Bhubaneswar)
+    "76": (21.500, 84.000),   # Odisha (Sambalpur)
+    "77": (20.296, 85.825),   # Odisha (Cuttack)
+    "78": (26.145, 91.736),   # Assam (Guwahati)
+    "79": (25.579, 91.893),   # Meghalaya / NE states
+    # Zone 8: Bihar, Jharkhand
     "80": (25.612, 85.145),   # Bihar (Patna)
+    "81": (25.245, 86.985),   # Bihar (Bhagalpur)
     "82": (24.796, 84.999),   # Bihar (Gaya)
-    "84": (26.121, 85.379),   # Bihar (North)
-    "85": (26.121, 85.379),   # Bihar
+    "83": (23.344, 85.310),   # Jharkhand (Ranchi)
+    "84": (26.121, 85.379),   # Bihar (Muzaffarpur)
+    "85": (26.121, 85.379),   # Bihar (Darbhanga)
 }
 
 
@@ -257,13 +300,21 @@ def rank_partners(
 
     # Stage 2: Calculate distances and rank
     ranked = []
+    beyond_radius = []
     for partner, filter_result in eligible:
         distance = haversine_distance(
             user_lat, user_lon,
             partner["latitude"], partner["longitude"],
         )
 
-        if distance <= max_distance_km:
+        if distance > max_distance_km:
+            beyond_radius.append({
+                "partner_id": partner["partner_id"],
+                "name": partner["name"],
+                "state": partner["state"],
+                "distance_km": round(distance, 1),
+            })
+        else:
             ranked.append({
                 "partner_id": partner["partner_id"],
                 "name": partner["name"],
@@ -282,6 +333,26 @@ def rank_partners(
 
     # Sort by distance
     ranked.sort(key=lambda x: x["distance_km"])
+    beyond_radius.sort(key=lambda x: x["distance_km"])
+
+    # Healthy partners exist, just too far away — say so instead of blaming capacity
+    if not ranked and beyond_radius:
+        nearest = beyond_radius[0]
+        return {
+            "status": "no_partners_in_range",
+            "message": (
+                f"No healthy partner processes '{scheme_id}' within {max_distance_km:.0f} km. "
+                f"The nearest one is {nearest['name']} at {nearest['distance_km']} km. "
+                f"Expand the search radius or contact your State Channelizing Agency."
+            ),
+            "total_eligible": 0,
+            "total_filtered_out": len(filtered_out),
+            "scheme_id": scheme_id,
+            "ranked_partners": [],
+            "nearest_beyond_radius": beyond_radius[:3],
+            "filtered_out": filtered_out[:5],
+            "location_used": {"latitude": user_lat, "longitude": user_lon, "source": "pin_code" if user_pin_code else "gps"},
+        }
 
     # Handle all-partners-over-threshold case
     if not ranked and filtered_out:
@@ -306,19 +377,21 @@ def rank_partners(
         return {
             "status": "no_eligible_partners",
             "message": (
-                f"No partners within {max_distance_km}km meet the eligibility criteria "
-                f"for scheme '{scheme_id}'. The nearest partners were filtered out due to "
-                f"high NPA (>{npa_threshold}%), capacity issues (>{utilization_threshold}%), "
-                f"or they don't process this scheme. Consider expanding your search radius "
-                f"or contacting the nearest SCA for alternative routing."
+                f"No partners meet the eligibility criteria for scheme '{scheme_id}'. "
+                f"Partners were filtered out due to high NPA (>{npa_threshold}%), "
+                f"capacity issues (>{utilization_threshold}%), inactivity, or because they "
+                f"don't process this scheme. Contact the nearest SCA for alternative routing."
             ),
+            "total_eligible": 0,
+            "total_filtered_out": len(filtered_out),
+            "scheme_id": scheme_id,
             "ranked_partners": [],
             "filtered_out": nearest_filtered[:5],
             "location_used": {"latitude": user_lat, "longitude": user_lon, "source": "pin_code" if user_pin_code else "gps"},
         }
 
     return {
-        "status": "partners_found",
+        "status": "partners_found" if ranked else "no_eligible_partners",
         "total_eligible": len(ranked),
         "total_filtered_out": len(filtered_out),
         "scheme_id": scheme_id,

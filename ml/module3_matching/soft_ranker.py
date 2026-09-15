@@ -21,12 +21,15 @@ from typing import Any
 # in research_notes_matching.md and assumptions.md.
 
 DEFAULT_WEIGHTS = {
-    "purpose_alignment": 0.35,   # Most important: does the scheme fit the need?
-    "cost_band_fit": 0.25,       # Second: is the cost in the sweet spot of the band?
-    "interest_rate": 0.20,       # Third: lower rate = better deal for the citizen
-    "gender_special": 0.10,      # Bonus for women-specific benefits
-    "verification_confidence": 0.10,  # Slight bonus for verified profiles
+    "purpose_alignment": 0.45,   # Most important: does the scheme fit the need?
+    "cost_band_fit": 0.30,       # Second: is the cost in the sweet spot of the band?
+    "interest_rate": 0.25,       # Third: lower effective rate = better deal for the citizen
 }
+# Note: gender benefits and verification confidence are NOT ranking weights.
+# They are constant for a given applicant across every scheme, so they could
+# never change the order — only inflate every score equally. The women's
+# rebate does affect ranking through the *effective* interest rate, and both
+# facts are still surfaced in the explanation (see `profile_notes`).
 
 # Interest rate range for normalization (researched min/max across all schemes)
 MIN_INTEREST_RATE = 4.0   # Education loans
@@ -91,12 +94,37 @@ def _score_cost_band_fit(intent: dict, scheme: dict) -> float:
     return max(0.5, 1.0 - 0.5 * distance_from_center)
 
 
-def _score_interest_rate(scheme: dict) -> float:
+def effective_interest_rate(profile: dict, intent: dict, scheme: dict) -> float:
     """
-    Score based on interest rate. Lower = better for the citizen.
-    Normalized to [0, 1] range based on researched min/max.
+    The rate this applicant would actually pay:
+      - tiered schemes use the tier matching the requested amount
+        (lowest tier when the amount is unknown),
+      - women's rebate is subtracted where the scheme offers one.
     """
     rate = scheme.get("interest_rate", MAX_INTEREST_RATE)
+    tiers = scheme.get("interest_rate_tiers") or []
+    cost = intent.get("estimated_cost")
+    if tiers:
+        ordered = sorted(tiers, key=lambda t: t["max_amount"])
+        rate = ordered[0]["rate"]
+        if cost is not None:
+            for tier in ordered:
+                if cost <= tier["max_amount"]:
+                    rate = tier["rate"]
+                    break
+            else:
+                rate = ordered[-1]["rate"]
+    if profile.get("gender") == "female" and rate >= 0:
+        rate = max(rate - scheme.get("interest_rebate_women", 0) or 0, 0)
+    return rate
+
+
+def _score_interest_rate(profile: dict, intent: dict, scheme: dict) -> float:
+    """
+    Score based on the applicant's effective interest rate. Lower = better.
+    Normalized to [0, 1] range based on researched min/max.
+    """
+    rate = effective_interest_rate(profile, intent, scheme)
 
     # VISVAS is special — negative rate means subvention
     if rate < 0:
@@ -111,38 +139,24 @@ def _score_interest_rate(scheme: dict) -> float:
     return (MAX_INTEREST_RATE - rate) / (MAX_INTEREST_RATE - MIN_INTEREST_RATE)
 
 
-def _score_gender_special(profile: dict, scheme: dict) -> float:
+def _profile_notes(profile: dict, scheme: dict) -> list[str]:
     """
-    Bonus score if the applicant qualifies for gender-specific benefits.
+    Applicant-level facts worth showing next to the score. These do not
+    influence ranking (see note on DEFAULT_WEIGHTS).
     """
-    gender = profile.get("gender")
-    rebate = scheme.get("interest_rebate_women", 0)
-    restriction = scheme.get("gender_restriction")
+    notes = []
+    if profile.get("gender") == "female":
+        if scheme.get("gender_restriction") in ("female", "female_single"):
+            notes.append("Scheme is designed specifically for women")
+        elif scheme.get("interest_rebate_women", 0) > 0:
+            notes.append(f"Women get a {scheme['interest_rebate_women']}% interest rebate on this scheme")
 
-    if gender == "female":
-        score = 0.5  # Base bonus for being female (many schemes give rebates)
-        if rebate > 0:
-            score += 0.3  # Additional bonus for actual rebate
-        if restriction in ("female", "female_single"):
-            score += 0.2  # Scheme specifically designed for women
-        return min(score, 1.0)
-
-    return 0.3  # Neutral for non-female applicants
-
-
-def _score_verification_confidence(profile: dict) -> float:
-    """Score based on verification status."""
     status = profile.get("verification_status")
-    needs_reverification = profile.get("needs_reverification", False)
-
-    if status == "verified" and not needs_reverification:
-        return 1.0
-    elif status == "verified" and needs_reverification:
-        return 0.6
+    if status == "verified" and profile.get("needs_reverification"):
+        notes.append("Verified profile but a certificate needs renewal before applying")
     elif status == "self_reported":
-        return 0.4
-    else:
-        return 0.2
+        notes.append("Self-reported profile — documents will be verified by the channel partner")
+    return notes
 
 
 def compute_scheme_score(
@@ -175,16 +189,8 @@ def compute_scheme_score(
             "weight": w["cost_band_fit"],
         },
         "interest_rate": {
-            "score": _score_interest_rate(scheme),
+            "score": _score_interest_rate(profile, intent, scheme),
             "weight": w["interest_rate"],
-        },
-        "gender_special": {
-            "score": _score_gender_special(profile, scheme),
-            "weight": w["gender_special"],
-        },
-        "verification_confidence": {
-            "score": _score_verification_confidence(profile),
-            "weight": w["verification_confidence"],
         },
     }
 
@@ -196,6 +202,8 @@ def compute_scheme_score(
         "scheme_id": scheme["scheme_id"],
         "total_score": round(total_score, 4),
         "factors": factors,
+        "effective_interest_rate": effective_interest_rate(profile, intent, scheme),
+        "profile_notes": _profile_notes(profile, scheme),
     }
 
 

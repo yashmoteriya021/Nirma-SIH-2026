@@ -339,3 +339,89 @@ class TestExplainer:
             considerations = explanation["explanation"]["considerations"]
             has_verification_note = any("self-reported" in c.lower() for c in considerations)
             assert has_verification_note
+
+
+class TestKnowledgeBaseIntegrity:
+    def test_frontend_ids_exist_in_frontend_data(self):
+        """Every non-null frontend_id must be a real scheme page id."""
+        import json
+        import os
+
+        from module3_matching.hard_filter import load_scheme_kb
+
+        fe_path = os.path.join(
+            os.path.dirname(__file__), "..", "..", "..", "frontend", "src", "data", "schemes.json"
+        )
+        if not os.path.exists(fe_path):
+            import pytest
+            pytest.skip("frontend data not present")
+        fe_ids = {s["id"] for s in json.load(open(fe_path))["schemes"]}
+        for scheme in load_scheme_kb():
+            assert "frontend_id" in scheme, scheme["scheme_id"]
+            if scheme["frontend_id"] is not None:
+                assert scheme["frontend_id"] in fe_ids, scheme["scheme_id"]
+
+
+class TestRankerBehaviour:
+    def _profile(self, **kw):
+        base = {
+            "category": "OBC", "gender": "male", "annual_family_income": 250000,
+            "education_status": "10th_pass", "existing_loan_flag": False,
+            "verification_status": "verified", "needs_reverification": False,
+        }
+        base.update(kw)
+        return base
+
+    def test_tiered_rate_uses_requested_amount(self):
+        from module3_matching.hard_filter import load_scheme_kb
+        from module3_matching.soft_ranker import effective_interest_rate
+
+        gl = next(s for s in load_scheme_kb() if s["scheme_id"] == "NBCFDC_GL")
+        assert effective_interest_rate(self._profile(), {"estimated_cost": 400000}, gl) == 6.0
+        assert effective_interest_rate(self._profile(), {"estimated_cost": 800000}, gl) == 7.0
+        assert effective_interest_rate(self._profile(), {"estimated_cost": 1400000}, gl) == 8.0
+        assert effective_interest_rate(self._profile(), {"estimated_cost": None}, gl) == 6.0
+
+    def test_women_rebate_lowers_effective_rate(self):
+        from module3_matching.hard_filter import load_scheme_kb
+        from module3_matching.soft_ranker import effective_interest_rate
+
+        mcf = next(s for s in load_scheme_kb() if s["scheme_id"] == "NSFDC_MCF")
+        male = effective_interest_rate(self._profile(category="SC"), {"estimated_cost": 80000}, mcf)
+        female = effective_interest_rate(self._profile(category="SC", gender="female"), {"estimated_cost": 80000}, mcf)
+        assert female == male - mcf["interest_rebate_women"]
+
+    def test_weights_sum_to_one_and_exclude_constant_factors(self):
+        from module3_matching.soft_ranker import DEFAULT_WEIGHTS
+
+        assert abs(sum(DEFAULT_WEIGHTS.values()) - 1.0) < 1e-9
+        assert "gender_special" not in DEFAULT_WEIGHTS
+        assert "verification_confidence" not in DEFAULT_WEIGHTS
+
+
+class TestDependentEducation:
+    def test_student_level_used_for_dependent(self):
+        from module3_matching.hard_filter import check_education_requirement, load_scheme_kb
+
+        els = next(s for s in load_scheme_kb() if s["scheme_id"] == "NSFDC_ELS")
+        parent = {"education_status": "below_8th"}
+        ok = check_education_requirement(parent, els, {"beneficiary": "dependent", "student_education_status": "12th_pass"})
+        assert ok.passed
+        bad = check_education_requirement(parent, els, {"beneficiary": "dependent", "student_education_status": "8th_pass"})
+        assert not bad.passed
+        assert "Student" in bad.detail
+
+    def test_unknown_student_level_passes_with_caveat(self):
+        from module3_matching.hard_filter import check_education_requirement, load_scheme_kb
+
+        els = next(s for s in load_scheme_kb() if s["scheme_id"] == "NSFDC_ELS")
+        res = check_education_requirement({"education_status": "below_8th"}, els, {"beneficiary": "dependent"})
+        assert res.passed
+        assert "not provided" in res.detail
+
+    def test_self_still_uses_applicant_level(self):
+        from module3_matching.hard_filter import check_education_requirement, load_scheme_kb
+
+        els = next(s for s in load_scheme_kb() if s["scheme_id"] == "NSFDC_ELS")
+        res = check_education_requirement({"education_status": "below_8th"}, els, {"beneficiary": "self"})
+        assert not res.passed

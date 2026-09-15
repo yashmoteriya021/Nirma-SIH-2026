@@ -125,12 +125,26 @@ def generate_scheme_explanation(
         for cond in scheme["special_conditions"][:2]:  # Top 2 conditions
             considerations.append(cond)
 
+    # Tiered schemes: tell the user which tier their amount falls in
+    if scheme.get("interest_rate_tiers") and score_result.get("effective_interest_rate") is not None:
+        considerations.append(
+            f"Interest is tiered by loan amount; at your requested amount the rate is "
+            f"{score_result['effective_interest_rate']}% p.a."
+        )
+
+    considerations.extend(score_result.get("profile_notes", []))
+
     return {
         "scheme_id": scheme["scheme_id"],
+        "frontend_id": scheme.get("frontend_id"),
         "scheme_name": scheme["name"],
         "corporation": scheme["corporation"],
         "rank": rank,
         "score": score_result["total_score"],
+        "score_factors": {
+            k: {"score": round(v["score"], 3), "weight": v["weight"]}
+            for k, v in score_result.get("factors", {}).items()
+        },
         "explanation": {
             "eligible_because": eligible_because,
             "advantages": advantages,
@@ -139,7 +153,10 @@ def generate_scheme_explanation(
         "scheme_details": {
             "loan_ceiling": loan_ceiling,
             "interest_rate": rate,
-            "effective_rate": rate - rebate if gender == "female" and rebate > 0 else rate,
+            "effective_rate": score_result.get(
+                "effective_interest_rate",
+                rate - rebate if gender == "female" and rebate > 0 else rate,
+            ),
             "loan_percentage": loan_pct,
             "repayment_years": scheme.get("repayment_years", 0),
             "moratorium_months": moratorium,

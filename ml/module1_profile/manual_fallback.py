@@ -57,6 +57,7 @@ def validate_and_build_profile(
     marital_status: str = "single",
     consent_given: bool = True,
     check_date: date | None = None,
+    caste_certificate_issue_date: str | None = None,
 ) -> dict:
     """
     Validate user-provided inputs and build a self-reported profile.
@@ -175,6 +176,7 @@ def validate_and_build_profile(
     staleness = check_all_staleness(
         category=category,
         income_cert_issue_date=income_certificate_issue_date,
+        caste_cert_issue_date=caste_certificate_issue_date,
         check_date=check_date,
     )
 
@@ -188,6 +190,7 @@ def validate_and_build_profile(
         "domicile_state": domicile_state,
         "annual_family_income": float(annual_family_income),
         "income_certificate_issue_date": income_certificate_issue_date,
+        "caste_certificate_issue_date": caste_certificate_issue_date,
         "education_status": education_status,
         "disability_status": disability_status,
         "existing_loan_flag": existing_loan_flag,

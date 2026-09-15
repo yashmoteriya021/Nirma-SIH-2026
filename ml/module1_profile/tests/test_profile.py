@@ -220,3 +220,47 @@ class TestStaleness:
             check_date=date(2026, 9, 14),
         )
         assert result.needs_reverification is False
+
+
+class TestCasteCertificatePassThrough:
+    """Regression: OBC profiles were always flagged because the caste
+    certificate date never reached the staleness check."""
+
+    def test_obc_digilocker_with_fresh_cert_not_flagged(self):
+        profile = build_verified_profile("AUTH_CODE_PRIYA", check_date=date(2026, 9, 14))
+        assert profile["category"] == "OBC"
+        assert profile["needs_reverification"] is False
+        assert profile["reverification_reason"] is None
+
+    def test_obc_manual_with_expired_cert_flagged(self):
+        from module1_profile.manual_fallback import validate_and_build_profile
+
+        profile = validate_and_build_profile(
+            full_name="Test OBC",
+            dob="1990-01-01",
+            gender="male",
+            category="OBC",
+            domicile_state="MH",
+            annual_family_income=200000,
+            income_certificate_issue_date="2026-06-01",
+            caste_certificate_issue_date="2025-04-01",
+            check_date=date(2026, 9, 14),
+        )
+        assert profile["needs_reverification"] is True
+        assert "OBC" in profile["reverification_reason"]
+
+    def test_obc_manual_without_cert_date_flagged_with_reason(self):
+        from module1_profile.manual_fallback import validate_and_build_profile
+
+        profile = validate_and_build_profile(
+            full_name="Test OBC",
+            dob="1990-01-01",
+            gender="male",
+            category="OBC",
+            domicile_state="MH",
+            annual_family_income=200000,
+            income_certificate_issue_date="2026-06-01",
+            check_date=date(2026, 9, 14),
+        )
+        assert profile["needs_reverification"] is True
+        assert "missing" in profile["reverification_reason"].lower()

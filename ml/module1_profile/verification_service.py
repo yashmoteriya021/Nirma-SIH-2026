@@ -51,6 +51,7 @@ _MOCK_USERS: dict[str, dict[str, Any]] = {
         "domicile_state": "MH",
         "annual_family_income": 480000,
         "income_certificate_issue_date": "2026-06-01",
+        "caste_certificate_issue_date": "2026-05-15",
         "education_status": "graduate",
         "disability_status": {"has_disability": False},
         "existing_loan_flag": False,
@@ -233,6 +234,7 @@ def build_verified_profile(
     staleness = check_all_staleness(
         category=profile_data["category"],
         income_cert_issue_date=profile_data["income_certificate_issue_date"],
+        caste_cert_issue_date=profile_data.get("caste_certificate_issue_date"),
         check_date=check_date,
     )
 

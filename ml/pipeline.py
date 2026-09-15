@@ -27,6 +27,8 @@ class SchemeMatchingPipeline:
     """End-to-end scheme matching pipeline."""
 
     def __init__(self, use_llm: bool = True):
+        # use_llm only matters when an LLM provider is configured via env
+        # (LLM_PROVIDER / *_API_KEY); otherwise every path uses offline rules.
         self.use_llm = use_llm
         self.current_profile = None
         self.current_intent = None
@@ -35,13 +37,16 @@ class SchemeMatchingPipeline:
         """
         Module 1: Authenticate and build verified profile.
         """
-        # Map demo user_id to a mock auth code, defaulting to RAMESH for demo
+        # Map demo user_id to a mock auth code. Unknown IDs are an error —
+        # silently matching a stranger to a demo citizen would be a real bug.
         auth_code_map = {
             "user_123_sc": "AUTH_CODE_RAMESH",
             "user_456_obc": "AUTH_CODE_PRIYA",
             "user_789_safai": "AUTH_CODE_SURESH",
         }
-        auth_code = auth_code_map.get(user_id, "AUTH_CODE_RAMESH")
+        if user_id not in auth_code_map:
+            raise ValueError(f"Unknown demo user_id '{user_id}'. Known: {sorted(auth_code_map)}")
+        auth_code = auth_code_map[user_id]
         
         # Complete the full DigiLocker mock flow (auth -> token exchange -> fetch docs -> staleness check)
         profile = build_verified_profile(auth_code)
@@ -164,7 +169,7 @@ class SchemeMatchingPipeline:
 
 def run_demo():
     """Run a sample demo of the pipeline."""
-    pipeline = SchemeMatchingPipeline(use_llm=False)  # False to ensure it runs offline without API keys
+    pipeline = SchemeMatchingPipeline(use_llm=False)  # slot machine path; uses LLM only if configured
 
     result = pipeline.run_full_flow(
         user_id="user_123_sc",
