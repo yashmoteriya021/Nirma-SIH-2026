@@ -45,13 +45,7 @@ export const verifyOtpHandler = asyncHandler(async (req, res) => {
  * Registers a new user with full details.
  */
 export const register = asyncHandler(async (req, res) => {
-  const { firstName, lastName, mobile, email, password } = req.body;
-
-  if (!req.file) {
-    return errorResponse(res, 'MISSING_FILE', 'SC Caste Certificate is required.', 400);
-  }
-
-  const certificate_url = `/uploads/certificates/${req.file.filename}`;
+  const { firstName, lastName, mobile, email, password, scNumber } = req.body;
 
   // Check if mobile number already exists
   const existingUser = await User.findOne({ mobile_number: mobile });
@@ -73,7 +67,7 @@ export const register = asyncHandler(async (req, res) => {
     mobile_number: mobile,
     email: email,
     password_hash: password,
-    certificate_url,
+    sc_certificate_number: scNumber,
     is_email_verified: true,
     is_verified: true,
   });

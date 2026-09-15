@@ -3,7 +3,6 @@ import { sendOtp, verifyOtpHandler, register, login, getMe } from '../controller
 import { sendOtpValidation, verifyOtpValidation, registerValidation, loginValidation } from '../middleware/validate.middleware.js';
 import { otpLimiter, authLimiter } from '../middleware/rateLimiter.middleware.js';
 import authMiddleware from '../middleware/auth.middleware.js';
-import upload from '../config/multer.js';
 
 const router = Router();
 
@@ -12,7 +11,7 @@ router.post('/send-otp', otpLimiter, sendOtpValidation, sendOtp);
 router.post('/verify-otp', otpLimiter, verifyOtpValidation, verifyOtpHandler);
 
 // Registration
-router.post('/register', upload.single('certificate'), registerValidation, register);
+router.post('/register', registerValidation, register);
 
 // Email/password login (secondary flow)
 router.post('/login', authLimiter, loginValidation, login);

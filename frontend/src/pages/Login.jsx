@@ -1,21 +1,46 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import LanguageToggle from '../components/LanguageToggle';
 
 export default function Login() {
   const { t } = useLang();
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState('');
 
-  function handleEmailLogin(e) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function handleEmailLogin(e) {
     e.preventDefault();
     if (!email || !password) return;
-    // Mock — always succeed for demo
-    alert('Login successful! (Demo)');
+    
+    setIsLoading(true);
+    setEmailError('');
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      
+      if (res.ok) {
+        login(data.data.token, data.data.user);
+        navigate('/', { replace: true });
+      } else {
+        setEmailError(data.error?.message || 'Login failed');
+      }
+    } catch (err) {
+      setEmailError('Network error. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -92,10 +117,10 @@ export default function Login() {
 
             <button
               type="submit"
-              disabled={!email || !password}
+              disabled={!email || !password || isLoading}
               className="w-full py-3 bg-navy-900 text-offwhite-0 font-medium text-sm rounded-xl hover:bg-navy-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 min-h-[44px]"
             >
-              {t('login.loginBtn')}
+              {isLoading ? 'Logging in...' : t('login.loginBtn')}
             </button>
           </form>
 

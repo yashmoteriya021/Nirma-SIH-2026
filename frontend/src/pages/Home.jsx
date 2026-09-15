@@ -1,4 +1,5 @@
 import { useLang } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import SchemeRecommender from '../components/SchemeRecommender';
 import SchemeCard from '../components/SchemeCard';
 import StatChip from '../components/StatChip';
@@ -7,6 +8,7 @@ import schemesData from '../data/schemes.json';
 
 export default function Home() {
   const { t } = useLang();
+  const { user } = useAuth();
   const schemes = schemesData.schemes;
 
   const faqItems = [
@@ -62,6 +64,40 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ===== Profile Section (Logged In Only) ===== */}
+      {user && (
+        <section className="bg-accent-gold/10 border-b border-accent-gold/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="bg-offwhite-0 rounded-2xl shadow-sm border border-navy-100 p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-navy-900 text-accent-gold font-bold text-2xl flex items-center justify-center shrink-0">
+                  {user.first_name?.[0]?.toUpperCase()}
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-navy-900">
+                    Welcome back, {user.first_name} {user.last_name}!
+                  </h2>
+                  <p className="text-navy-700 text-sm mt-1">
+                    You are successfully logged in to SchemeSetu.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                <div className="bg-offwhite-50 rounded-xl p-4 border border-navy-50 flex-1 md:flex-none md:min-w-[200px]">
+                  <p className="text-xs text-navy-700 uppercase tracking-wider font-semibold mb-1">SC Certificate Number</p>
+                  <p className="font-mono text-navy-900 font-medium">{user.sc_certificate_number}</p>
+                </div>
+                <div className="bg-offwhite-50 rounded-xl p-4 border border-navy-50 flex-1 md:flex-none md:min-w-[200px]">
+                  <p className="text-xs text-navy-700 uppercase tracking-wider font-semibold mb-1">Email Address</p>
+                  <p className="text-navy-900 font-medium">{user.email}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ===== 2. Trust Strip ===== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">

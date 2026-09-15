@@ -58,6 +58,10 @@ export const registerValidation = [
   body('password')
     .notEmpty().withMessage('Password is required')
     .isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  body('scNumber')
+    .trim()
+    .notEmpty().withMessage('SC Certificate Number is required')
+    .matches(/^SC/i).withMessage('SC Certificate Number must start with "SC"'),
   validate,
 ];
 

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   mobile_number: { type: String, required: true, unique: true },
   email:         { type: String, required: true, unique: true },
   password_hash: { type: String, required: true },
-  certificate_url: { type: String, required: true },
+  sc_certificate_number: { type: String, required: true },
   preferred_language: { type: String, enum: ['en', 'hi', 'gu'], default: 'en' },
   is_verified:   { type: Boolean, default: false }, // Overall verification
   is_email_verified: { type: Boolean, default: false },

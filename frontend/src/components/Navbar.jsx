@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import LanguageToggle from './LanguageToggle';
 import SearchBar from './SearchBar';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useLang();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -36,12 +38,34 @@ export default function Navbar() {
           {/* Desktop right actions */}
           <div className="hidden md:flex items-center gap-3">
             <LanguageToggle />
-            <button
-              onClick={() => navigate('/login')}
-              className="px-5 py-2 bg-offwhite-0 text-navy-900 font-medium text-sm rounded-xl hover:bg-navy-100 transition-colors duration-200 min-h-[44px]"
-            >
-              {t('navbar.login')}
-            </button>
+            {user ? (
+              <div className="flex items-center gap-4 ml-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-accent-gold text-navy-900 font-bold flex items-center justify-center">
+                    {user.first_name?.[0]?.toUpperCase()}
+                  </div>
+                  <span className="text-offwhite-0 font-medium text-sm hidden lg:block">
+                    {user.first_name}
+                  </span>
+                </div>
+                <button
+                  onClick={() => {
+                    logout();
+                    navigate('/');
+                  }}
+                  className="text-navy-100 hover:text-accent-gold font-medium text-sm transition-colors duration-200"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => navigate('/login')}
+                className="px-5 py-2 bg-offwhite-0 text-navy-900 font-medium text-sm rounded-xl hover:bg-navy-100 transition-colors duration-200 min-h-[44px]"
+              >
+                {t('navbar.login')}
+              </button>
+            )}
           </div>
 
           {/* Mobile hamburger */}
@@ -73,12 +97,25 @@ export default function Navbar() {
             <SearchBar onClose={() => setMobileOpen(false)} />
             <div className="flex items-center justify-between gap-3 pt-2">
               <LanguageToggle />
-              <button
-                onClick={() => { navigate('/login'); setMobileOpen(false); }}
-                className="px-5 py-2 bg-offwhite-0 text-navy-900 font-medium text-sm rounded-xl hover:bg-navy-100 transition-colors duration-200 min-h-[44px]"
-              >
-                {t('navbar.login')}
-              </button>
+              {user ? (
+                <button
+                  onClick={() => {
+                    logout();
+                    setMobileOpen(false);
+                    navigate('/');
+                  }}
+                  className="px-5 py-2 border border-offwhite-0 text-offwhite-0 font-medium text-sm rounded-xl hover:bg-navy-700 transition-colors duration-200 min-h-[44px]"
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  onClick={() => { navigate('/login'); setMobileOpen(false); }}
+                  className="px-5 py-2 bg-offwhite-0 text-navy-900 font-medium text-sm rounded-xl hover:bg-navy-100 transition-colors duration-200 min-h-[44px]"
+                >
+                  {t('navbar.login')}
+                </button>
+              )}
             </div>
             <div className="flex flex-col gap-1 pt-1">
               <Link

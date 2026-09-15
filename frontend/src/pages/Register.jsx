@@ -17,7 +17,7 @@ export default function Register() {
     mobile: '',
     password: '',
     confirmPassword: '',
-    certificate: null,
+    scNumber: '',
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -51,12 +51,8 @@ export default function Register() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === 'certificate' && files) {
-      setFormData((prev) => ({ ...prev, certificate: files[0] }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleVerifyEmail = async () => {
@@ -117,7 +113,7 @@ export default function Register() {
     }
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (!emailVerified) {
       alert('Please verify email first.');
@@ -127,7 +123,36 @@ export default function Register() {
       alert(t('register.passwordMismatch'));
       return;
     }
-    alert('Registration successful! (Demo)');
+    if (!formData.scNumber.toUpperCase().startsWith('SC')) {
+      alert('SC Certificate Number must start with "SC" (e.g. SC123456).');
+      return;
+    }
+    
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          mobile: formData.mobile,
+          email: formData.email,
+          password: formData.password,
+          scNumber: formData.scNumber
+        })
+      });
+
+      const data = await res.json();
+      
+      if (res.ok) {
+        alert('Registration successful! Please log in.');
+        navigate('/login', { replace: true });
+      } else {
+        alert(data.error?.message || 'Registration failed');
+      }
+    } catch (err) {
+      alert('Network error. Please try again.');
+    }
   };
 
   const handleLoginClick = (e) => {
@@ -246,17 +271,18 @@ export default function Register() {
             </div>
 
             <div>
-              <label htmlFor="certificate" className="block text-sm font-medium text-ink-900 mb-1.5">
-                {t('register.certificate')}
+              <label htmlFor="scNumber" className="block text-sm font-medium text-ink-900 mb-1.5">
+                {t('register.certificate')} (Number)
               </label>
               <input
-                id="certificate"
-                name="certificate"
-                type="file"
-                accept=".pdf,.jpg,.jpeg,.png"
+                id="scNumber"
+                name="scNumber"
+                type="text"
+                placeholder="e.g. SC123456"
+                value={formData.scNumber}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 rounded-xl border border-navy-100 bg-offwhite-0 text-ink-900 text-sm focus:border-accent-gold focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-navy-50 file:text-navy-700 hover:file:bg-navy-100"
+                className="w-full px-4 py-3 rounded-xl border border-navy-100 bg-offwhite-0 text-ink-900 text-sm focus:border-accent-gold focus:outline-none min-h-[44px]"
               />
             </div>
 
