@@ -9,22 +9,7 @@ export default function SchemesList() {
   const [schemes, setSchemes] = useState(schemesData.schemes);
   const [filter, setFilter] = useState('All');
 
-  useEffect(() => {
-    const fetchSchemes = async () => {
-      try {
-        const res = await fetch('http://localhost:5000/api/schemes');
-        if (res.ok) {
-          const data = await res.json();
-          if (data.data && data.data.schemes && data.data.schemes.length > 0) {
-            setSchemes(data.data.schemes);
-          }
-        }
-      } catch (err) {
-        console.log('Using local scheme data as fallback.');
-      }
-    };
-    fetchSchemes();
-  }, []);
+
 
   // Get unique categories for the filter
   const categories = useMemo(() => {

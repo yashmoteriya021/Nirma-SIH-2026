@@ -14,22 +14,7 @@ export default function Home() {
   
   const [schemes, setSchemes] = useState(schemesData.schemes);
 
-  useEffect(() => {
-    const fetchSchemes = async () => {
-      try {
-        const res = await fetch('http://localhost:5000/api/schemes');
-        if (res.ok) {
-          const data = await res.json();
-          if (data.data && data.data.schemes && data.data.schemes.length > 0) {
-            setSchemes(data.data.schemes);
-          }
-        }
-      } catch (err) {
-        console.log('Using local scheme data as fallback. DB connection might be down.');
-      }
-    };
-    fetchSchemes();
-  }, []);
+
 
   const faqItems = [
     { q: t('home.faq.items.0.q'), a: t('home.faq.items.0.a') },

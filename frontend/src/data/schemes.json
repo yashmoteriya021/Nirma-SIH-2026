@@ -1885,6 +1885,1131 @@
           }
         ]
       }
+    },
+    {
+      "id": "food-processing",
+      "name": {
+        "en": "Food Processing & Packaging",
+        "hi": "खाद्य प्रसंस्करण और पैकेजिंग"
+      },
+      "category": {
+        "en": "Manufacturing",
+        "hi": "विनिर्माण"
+      },
+      "description": {
+        "en": "Loans to setup small scale food processing, packaging, and preservation units.",
+        "hi": "छोटे पैमाने पर खाद्य प्रसंस्करण, पैकेजिंग और संरक्षण इकाइयां स्थापित करने के लिए ऋण।"
+      },
+      "maxAmount": 2000000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 7
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "FSSAI License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "FSSAI लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "FSSAI Registration",
+          "Project Report",
+          "Aadhaar"
+        ],
+        "hi": [
+          "FSSAI पंजीकरण",
+          "परियोजना रिपोर्ट",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Plan",
+          "Inspection",
+          "Approval"
+        ],
+        "hi": [
+          "योजना जमा करें",
+          "निरीक्षण",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are cold storages included?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या कोल्ड स्टोरेज शामिल हैं?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "beauty-wellness",
+      "name": {
+        "en": "Salon & Wellness Clinic",
+        "hi": "सैलून और वेलनेस क्लिनिक"
+      },
+      "category": {
+        "en": "Services",
+        "hi": "सेवाएं"
+      },
+      "description": {
+        "en": "Setup cost for beauty parlors, wellness spas, and grooming centers.",
+        "hi": "ब्यूटी पार्लर, वेलनेस स्पा और ग्रूमिंग सेंटर के लिए सेटअप लागत।"
+      },
+      "maxAmount": 300000,
+      "interestRate": {
+        "min": 6,
+        "max": 8
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 400000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Certification in beauty/wellness"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "सौंदर्य/वेलनेस में प्रमाणन"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Training Certificate",
+          "Rent Agreement",
+          "SC Certificate"
+        ],
+        "hi": [
+          "प्रशिक्षण प्रमाण पत्र",
+          "किराया समझौता",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply at Bank",
+          "Premise Check",
+          "Disbursement"
+        ],
+        "hi": [
+          "बैंक में आवेदन करें",
+          "परिसर की जांच",
+          "संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is equipment covered?",
+            "a": "Yes, chairs, machines, etc."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या उपकरण शामिल हैं?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "handicraft-export",
+      "name": {
+        "en": "Handicraft Export Support",
+        "hi": "हस्तशिल्प निर्यात सहायता"
+      },
+      "category": {
+        "en": "Export",
+        "hi": "निर्यात"
+      },
+      "description": {
+        "en": "Funding for artisans scaling up for international markets.",
+        "hi": "अंतरराष्ट्रीय बाजारों के लिए हस्तशिल्पियों के लिए फंडिंग।"
+      },
+      "maxAmount": 1000000,
+      "interestRate": {
+        "min": 5,
+        "max": 6.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 72,
+      "incomeLimit": 800000,
+      "eligibility": {
+        "en": [
+          "SC Artisan",
+          "IEC Code"
+        ],
+        "hi": [
+          "SC कारीगर",
+          "IEC कोड"
+        ]
+      },
+      "documents": {
+        "en": [
+          "IEC Code",
+          "Export Orders",
+          "SC Certificate"
+        ],
+        "hi": [
+          "IEC कोड",
+          "निर्यात आदेश",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Orders",
+          "Verification",
+          "Credit Release"
+        ],
+        "hi": [
+          "आदेश जमा करें",
+          "सत्यापन",
+          "क्रेडिट जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Do I need prior export experience?",
+            "a": "No"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मुझे पूर्व निर्यात अनुभव की आवश्यकता है?",
+            "a": "नहीं"
+          }
+        ]
+      }
+    },
+    {
+      "id": "electric-vehicle",
+      "name": {
+        "en": "EV Fleet Business",
+        "hi": "ईवी फ्लीट व्यवसाय"
+      },
+      "category": {
+        "en": "Transport",
+        "hi": "परिवहन"
+      },
+      "description": {
+        "en": "Loans for purchasing electric rickshaws, cabs, or delivery vehicles.",
+        "hi": "इलेक्ट्रिक रिक्शा, कैब या डिलीवरी वाहन खरीदने के लिए ऋण।"
+      },
+      "maxAmount": 800000,
+      "interestRate": {
+        "min": 4.5,
+        "max": 6
+      },
+      "fundingPercent": 95,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Commercial EV License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वाणिज्यिक EV लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Driving License",
+          "Dealer Quote",
+          "SC Certificate"
+        ],
+        "hi": [
+          "ड्राइविंग लाइसेंस",
+          "डीलर कोट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quote",
+          "Bank Pays Dealer",
+          "Registration"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "बैंक डीलर को भुगतान करता है",
+          "पंजीकरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are batteries covered?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या बैटरी शामिल हैं?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "solar-installation",
+      "name": {
+        "en": "Solar Panel Installation Biz",
+        "hi": "सौर पैनल स्थापना व्यवसाय"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "हरित ऊर्जा"
+      },
+      "description": {
+        "en": "Start a business installing and maintaining solar panels.",
+        "hi": "सौर पैनल स्थापित करने और बनाए रखने का व्यवसाय शुरू करें।"
+      },
+      "maxAmount": 1500000,
+      "interestRate": {
+        "min": 5,
+        "max": 6.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        9
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Technical Knowledge/Degree"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "तकनीकी ज्ञान/डिग्री"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Tech Certificate",
+          "Business Plan",
+          "Aadhaar"
+        ],
+        "hi": [
+          "तकनीकी प्रमाण पत्र",
+          "व्यवसाय योजना",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Plan",
+          "Approval",
+          "Fund Release"
+        ],
+        "hi": [
+          "योजना जमा करें",
+          "स्वीकृति",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy inventory?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं इन्वेंट्री खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cloud-kitchen",
+      "name": {
+        "en": "Cloud Kitchen Setup",
+        "hi": "क्लाउड किचन सेटअप"
+      },
+      "category": {
+        "en": "Food & Beverage",
+        "hi": "खाद्य और पेय"
+      },
+      "description": {
+        "en": "Setup cost for delivery-only restaurant business models.",
+        "hi": "केवल डिलीवरी वाले रेस्तरां व्यवसाय मॉडल के लिए सेटअप लागत।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 48,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "FSSAI License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "FSSAI लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "FSSAI",
+          "Premise Lease",
+          "SC Certificate"
+        ],
+        "hi": [
+          "FSSAI",
+          "परिसर पट्टा",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Lease",
+          "Inspection",
+          "Disbursement"
+        ],
+        "hi": [
+          "पट्टा जमा करें",
+          "निरीक्षण",
+          "संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are delivery tie-ups required?",
+            "a": "Yes, Swiggy/Zomato MOUs help."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या डिलीवरी टाई-अप आवश्यक हैं?",
+            "a": "हाँ, मदद करते हैं।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "apparel-manufacturing",
+      "name": {
+        "en": "Garment Manufacturing Unit",
+        "hi": "कपड़ा निर्माण इकाई"
+      },
+      "category": {
+        "en": "Manufacturing",
+        "hi": "विनिर्माण"
+      },
+      "description": {
+        "en": "Buy industrial sewing machines and raw materials for garment production.",
+        "hi": "कपड़ा उत्पादन के लिए औद्योगिक सिलाई मशीन और कच्चा माल खरीदें।"
+      },
+      "maxAmount": 1200000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 72,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Experience in Textiles"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वस्त्र में अनुभव"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Experience Proof",
+          "Machinery Quote",
+          "Aadhaar"
+        ],
+        "hi": [
+          "अनुभव प्रमाण",
+          "मशीनरी कोट",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quote",
+          "Approval",
+          "Machine Purchase"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "स्वीकृति",
+          "मशीन खरीद"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is working capital included?",
+            "a": "Yes, 20% working capital."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या कार्यशील पूंजी शामिल है?",
+            "a": "हाँ, 20%।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "it-services",
+      "name": {
+        "en": "IT/BPO Service Center",
+        "hi": "आईटी/बीपीओ सेवा केंद्र"
+      },
+      "category": {
+        "en": "IT Services",
+        "hi": "आईटी सेवाएं"
+      },
+      "description": {
+        "en": "Setup rural BPOs, cyber cafes, or small IT consultancies.",
+        "hi": "ग्रामीण बीपीओ, साइबर कैफे या छोटी आईटी परामर्श स्थापित करें।"
+      },
+      "maxAmount": 800000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Computer Science Degree/Diploma"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "कंप्यूटर विज्ञान डिग्री/डिप्लोमा"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Degree",
+          "Project Report",
+          "SC Certificate"
+        ],
+        "hi": [
+          "डिग्री",
+          "परियोजना रिपोर्ट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Plan",
+          "Verification",
+          "Hardware Purchase"
+        ],
+        "hi": [
+          "योजना जमा करें",
+          "सत्यापन",
+          "हार्डवेयर खरीद"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy servers?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं सर्वर खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tourism-agency",
+      "name": {
+        "en": "Travel & Tourism Agency",
+        "hi": "यात्रा और पर्यटन एजेंसी"
+      },
+      "category": {
+        "en": "Services",
+        "hi": "सेवाएं"
+      },
+      "description": {
+        "en": "Funding for ticketing agencies, tour operators, and homestays.",
+        "hi": "टिकटिंग एजेंसियों, टूर ऑपरेटरों और होमस्टे के लिए फंडिंग।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        0,
+        3
+      ],
+      "tenureMonths": 48,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Tourism Registration"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "पर्यटन पंजीकरण"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Tourism License",
+          "Business Plan",
+          "SC Certificate"
+        ],
+        "hi": [
+          "पर्यटन लाइसेंस",
+          "व्यवसाय योजना",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply at Bank",
+          "Approval",
+          "Fund Release"
+        ],
+        "hi": [
+          "बैंक में आवेदन",
+          "स्वीकृति",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are homestays covered?",
+            "a": "Yes, setup costs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या होमस्टे शामिल हैं?",
+            "a": "हाँ, सेटअप लागत।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "waste-management",
+      "name": {
+        "en": "Waste Recycling Plant",
+        "hi": "कचरा पुनर्चक्रण संयंत्र"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "हरित ऊर्जा"
+      },
+      "description": {
+        "en": "Setup small scale plastic or e-waste recycling plants.",
+        "hi": "छोटे पैमाने पर प्लास्टिक या ई-कचरा पुनर्चक्रण संयंत्र स्थापित करें।"
+      },
+      "maxAmount": 2500000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 7
+      },
+      "fundingPercent": 80,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 800000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Pollution Control Board Clearance"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "प्रदूषण नियंत्रण बोर्ड क्लीयरेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "PCB Clearance",
+          "Project Report",
+          "Aadhaar"
+        ],
+        "hi": [
+          "PCB क्लीयरेंस",
+          "परियोजना रिपोर्ट",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit PCB Cert",
+          "Technical Review",
+          "Sanction"
+        ],
+        "hi": [
+          "PCB प्रमाण पत्र जमा करें",
+          "तकनीकी समीक्षा",
+          "मंजूरी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is e-waste included?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या ई-कचरा शामिल है?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "construction-equipment",
+      "name": {
+        "en": "Heavy Construction Machinery",
+        "hi": "भारी निर्माण मशीनरी"
+      },
+      "category": {
+        "en": "Infrastructure",
+        "hi": "बुनियादी ढांचा"
+      },
+      "description": {
+        "en": "Loans for purchasing JCBs, cranes, and concrete mixers for contract work.",
+        "hi": "अनुबंध के काम के लिए जेसीबी, क्रेन और कंक्रीट मिक्सर खरीदने के लिए ऋण।"
+      },
+      "maxAmount": 4000000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 7.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 1000000,
+      "eligibility": {
+        "en": [
+          "SC Contractor",
+          "Existing Contracts"
+        ],
+        "hi": [
+          "SC ठेकेदार",
+          "मौजूदा अनुबंध"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Contract Copies",
+          "Machinery Quote",
+          "SC Certificate"
+        ],
+        "hi": [
+          "अनुबंध प्रतियां",
+          "मशीनरी कोट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quotes",
+          "Bank Pays Dealer",
+          "Machinery Handover"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "बैंक डीलर को भुगतान करता है",
+          "मशीनरी हैंडओवर"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy a JCB?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं जेसीबी खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mobile-repair",
+      "name": {
+        "en": "Electronics Repair Hub",
+        "hi": "इलेक्ट्रॉनिक्स मरम्मत हब"
+      },
+      "category": {
+        "en": "Retail",
+        "hi": "खुदरा"
+      },
+      "description": {
+        "en": "Micro-loans to setup mobile and laptop repair shops.",
+        "hi": "मोबाइल और लैपटॉप मरम्मत की दुकानें स्थापित करने के लिए माइक्रो-लोन।"
+      },
+      "maxAmount": 100000,
+      "interestRate": {
+        "min": 5,
+        "max": 7
+      },
+      "fundingPercent": 95,
+      "moratoriumMonths": [
+        0,
+        3
+      ],
+      "tenureMonths": 36,
+      "incomeLimit": 300000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Repairing Skills"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "मरम्मत कौशल"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Skill Certificate",
+          "SC Certificate",
+          "Aadhaar"
+        ],
+        "hi": [
+          "कौशल प्रमाण पत्र",
+          "जाति प्रमाण पत्र",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply at Bank",
+          "Instant Approval",
+          "Fund Release"
+        ],
+        "hi": [
+          "बैंक में आवेदन",
+          "तत्काल स्वीकृति",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Do I need a shop?",
+            "a": "Yes, rented or owned."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मुझे दुकान चाहिए?",
+            "a": "हाँ, किराए पर या खुद की।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organic-store",
+      "name": {
+        "en": "Organic Food Retail Store",
+        "hi": "जैविक खाद्य खुदरा स्टोर"
+      },
+      "category": {
+        "en": "Retail",
+        "hi": "खुदरा"
+      },
+      "description": {
+        "en": "Open retail outlets exclusively selling certified organic produce.",
+        "hi": "विशेष रूप से प्रमाणित जैविक उपज बेचने वाले खुदरा आउटलेट खोलें।"
+      },
+      "maxAmount": 600000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "FSSAI License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "FSSAI लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Store Lease",
+          "FSSAI",
+          "SC Certificate"
+        ],
+        "hi": [
+          "स्टोर पट्टा",
+          "FSSAI",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Lease",
+          "Inspection",
+          "Fund Release"
+        ],
+        "hi": [
+          "पट्टा जमा करें",
+          "निरीक्षण",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy franchise?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं फ्रैंचाइज़ी खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fitness-center",
+      "name": {
+        "en": "Gym & Fitness Center",
+        "hi": "जिम और फिटनेस सेंटर"
+      },
+      "category": {
+        "en": "Services",
+        "hi": "सेवाएं"
+      },
+      "description": {
+        "en": "Setup costs for commercial gyms, yoga studios, and fitness centers.",
+        "hi": "वाणिज्यिक जिम, योग स्टूडियो और फिटनेस सेंटर के लिए सेटअप लागत।"
+      },
+      "maxAmount": 1500000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 80,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 72,
+      "incomeLimit": 700000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Fitness Trainer Cert"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "फिटनेस ट्रेनर प्रमाणपत्र"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Trainer Cert",
+          "Equipment Quote",
+          "SC Certificate"
+        ],
+        "hi": [
+          "ट्रेनर प्रमाणपत्र",
+          "उपकरण कोट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quote",
+          "Bank Approval",
+          "Payment to Equipment Vendor"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "बैंक स्वीकृति",
+          "उपकरण विक्रेता को भुगतान"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is rent covered?",
+            "a": "Advance deposit is covered."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या किराया शामिल है?",
+            "a": "अग्रिम जमा शामिल है।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dairy-processing",
+      "name": {
+        "en": "Milk Processing & Packaging",
+        "hi": "दूध प्रसंस्करण और पैकेजिंग"
+      },
+      "category": {
+        "en": "Agriculture",
+        "hi": "कृषि"
+      },
+      "description": {
+        "en": "Setup milk chillers, pasteurization units, and dairy product packaging.",
+        "hi": "मिल्क चिलर, पाश्चुरीकरण इकाइयां और डेयरी उत्पाद पैकेजिंग स्थापित करें।"
+      },
+      "maxAmount": 2000000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 7
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        9
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Dairy Farmer",
+          "Existing Dairy Business"
+        ],
+        "hi": [
+          "SC डेयरी किसान",
+          "मौजूदा डेयरी व्यवसाय"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Business Proof",
+          "Machinery Quote",
+          "SC Certificate"
+        ],
+        "hi": [
+          "व्यवसाय प्रमाण",
+          "मशीनरी कोट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quote",
+          "Inspection",
+          "Fund Release"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "निरीक्षण",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy delivery vans?",
+            "a": "Yes, refrigerated vans included."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं डिलीवरी वैन खरीद सकता हूँ?",
+            "a": "हाँ, प्रशीतित वैन शामिल हैं।"
+          }
+        ]
+      }
     }
   ]
 }
