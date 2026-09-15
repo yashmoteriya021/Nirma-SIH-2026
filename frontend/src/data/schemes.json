@@ -1,0 +1,3015 @@
+{
+  "schemes": [
+    {
+      "id": "micro-finance",
+      "name": {
+        "en": "Micro Finance Scheme",
+        "hi": "सूक्ष्म वित्त योजना"
+      },
+      "category": {
+        "en": "Micro Finance",
+        "hi": "सूक्ष्म वित्त"
+      },
+      "description": {
+        "en": "Small loans for SC entrepreneurs to start or expand micro-enterprises.",
+        "hi": "छोटे उद्यमों को शुरू करने या विस्तार करने के लिए अनुसूचित जाति के उद्यमियों के लिए छोटे ऋण।"
+      },
+      "maxAmount": 140000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 36,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Annual income < ₹5L",
+          "Age 18-55"
+        ],
+        "hi": [
+          "अनुसूचित जाति",
+          "आय < ₹5L",
+          "आयु 18-55"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Visit partner",
+          "Submit form",
+          "Approval"
+        ],
+        "hi": [
+          "पार्टनर के पास जाएं",
+          "फॉर्म जमा करें",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Max loan?",
+            "a": "1.4 Lakh"
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम ऋण?",
+            "a": "1.4 लाख"
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-loan",
+      "name": {
+        "en": "Term Loan Scheme",
+        "hi": "सावधि ऋण योजना"
+      },
+      "category": {
+        "en": "Term Loan",
+        "hi": "सावधि ऋण"
+      },
+      "description": {
+        "en": "Larger loans for setting up or expanding small and medium enterprises.",
+        "hi": "छोटे और मध्यम उद्यमों की स्थापना या विस्तार के लिए बड़े ऋण।"
+      },
+      "maxAmount": 5000000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Annual income < ₹5L",
+          "Business Plan"
+        ],
+        "hi": [
+          "अनुसूचित जाति",
+          "आय < ₹5L",
+          "व्यवसाय योजना"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Project Report",
+          "Aadhaar"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "परियोजना रिपोर्ट",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply via Bank",
+          "Verification",
+          "Disbursement"
+        ],
+        "hi": [
+          "बैंक के माध्यम से आवेदन",
+          "सत्यापन",
+          "संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Max loan?",
+            "a": "50 Lakh"
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम ऋण?",
+            "a": "50 लाख"
+          }
+        ]
+      }
+    },
+    {
+      "id": "education-loan",
+      "name": {
+        "en": "Education Loan Scheme",
+        "hi": "शिक्षा ऋण योजना"
+      },
+      "category": {
+        "en": "Education",
+        "hi": "शिक्षा"
+      },
+      "description": {
+        "en": "Education loans for SC students pursuing higher education.",
+        "hi": "उच्च शिक्षा प्राप्त करने वाले छात्रों के लिए शिक्षा ऋण।"
+      },
+      "maxAmount": 1000000,
+      "interestRate": {
+        "min": 4,
+        "max": 6.5
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Annual income < ₹5L",
+          "Admission Letter"
+        ],
+        "hi": [
+          "अनुसूचित जाति",
+          "आय < ₹5L",
+          "प्रवेश पत्र"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Admission Letter",
+          "Fee Structure"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "प्रवेश पत्र",
+          "शुल्क विवरण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit documents to Bank",
+          "Approval",
+          "Fee paid to College"
+        ],
+        "hi": [
+          "बैंक में दस्तावेज जमा करें",
+          "स्वीकृति",
+          "कॉलेज को शुल्क"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Interest rate?",
+            "a": "4% to 6.5%"
+          }
+        ],
+        "hi": [
+          {
+            "q": "ब्याज दर?",
+            "a": "4% से 6.5%"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mahila-samridhi",
+      "name": {
+        "en": "Mahila Samridhi Yojana",
+        "hi": "महिला समृद्धि योजना"
+      },
+      "category": {
+        "en": "Women Entrepreneurship",
+        "hi": "महिला उद्यमिता"
+      },
+      "description": {
+        "en": "Special micro-finance scheme exclusively for SC women entrepreneurs.",
+        "hi": "विशेष रूप से अनुसूचित जाति की महिला उद्यमियों के लिए सूक्ष्म वित्त योजना।"
+      },
+      "maxAmount": 140000,
+      "interestRate": {
+        "min": 4,
+        "max": 4
+      },
+      "fundingPercent": 95,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 36,
+      "incomeLimit": 300000,
+      "eligibility": {
+        "en": [
+          "SC Women",
+          "Age 18+",
+          "Small Business"
+        ],
+        "hi": [
+          "SC महिलाएं",
+          "आयु 18+",
+          "छोटा व्यवसाय"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply via SCA",
+          "Verification",
+          "Disbursement"
+        ],
+        "hi": [
+          "SCA के माध्यम से आवेदन",
+          "सत्यापन",
+          "संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Interest rate?",
+            "a": "Fixed 4%"
+          }
+        ],
+        "hi": [
+          {
+            "q": "ब्याज दर?",
+            "a": "4% निश्चित"
+          }
+        ]
+      }
+    },
+    {
+      "id": "agriculture-loan",
+      "name": {
+        "en": "Agricultural Equipment Loan",
+        "hi": "कृषि उपकरण ऋण"
+      },
+      "category": {
+        "en": "Agriculture",
+        "hi": "कृषि"
+      },
+      "description": {
+        "en": "Loans for purchasing tractors, harvesters, and other agricultural equipment.",
+        "hi": "ट्रैक्टर, हार्वेस्टर और अन्य कृषि उपकरण खरीदने के लिए ऋण।"
+      },
+      "maxAmount": 1500000,
+      "interestRate": {
+        "min": 5,
+        "max": 7
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Farmer",
+          "Land Ownership",
+          "Age 18+"
+        ],
+        "hi": [
+          "SC किसान",
+          "भूमि स्वामित्व",
+          "आयु 18+"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Land Records",
+          "Equipment Quotation"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "भूमि रिकॉर्ड",
+          "उपकरण कोटेशन"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quotation",
+          "Bank Approval",
+          "Direct payment to dealer"
+        ],
+        "hi": [
+          "कोटेशन जमा करें",
+          "बैंक स्वीकृति",
+          "डीलर को भुगतान"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy a tractor?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं ट्रैक्टर खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tech-startup",
+      "name": {
+        "en": "Tech Startup Funding",
+        "hi": "टेक स्टार्टअप फंडिंग"
+      },
+      "category": {
+        "en": "Tech Startup",
+        "hi": "टेक स्टार्टअप"
+      },
+      "description": {
+        "en": "Seed funding for innovative technology startups founded by SC youth.",
+        "hi": "SC युवाओं द्वारा स्थापित नवीन प्रौद्योगिकी स्टार्टअप के लिए सीड फंडिंग।"
+      },
+      "maxAmount": 3000000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 80,
+      "moratoriumMonths": [
+        12,
+        18
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 800000,
+      "eligibility": {
+        "en": [
+          "SC Founder (min 51% equity)",
+          "Registered Startup",
+          "Innovative Product"
+        ],
+        "hi": [
+          "SC संस्थापक",
+          "पंजीकृत स्टार्टअप",
+          "नवीन उत्पाद"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Company Registration",
+          "Pitch Deck",
+          "SC Certificate"
+        ],
+        "hi": [
+          "कंपनी पंजीकरण",
+          "पिच डेक",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Pitch",
+          "Evaluation Committee",
+          "Funding"
+        ],
+        "hi": [
+          "पिच जमा करें",
+          "मूल्यांकन समिति",
+          "फंडिंग"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Max Funding?",
+            "a": "30 Lakh"
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम फंडिंग?",
+            "a": "30 लाख"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vocational-training",
+      "name": {
+        "en": "Vocational Training Loan",
+        "hi": "व्यावसायिक प्रशिक्षण ऋण"
+      },
+      "category": {
+        "en": "Vocational",
+        "hi": "व्यावसायिक"
+      },
+      "description": {
+        "en": "Loans for skill development courses and vocational training programs.",
+        "hi": "कौशल विकास पाठ्यक्रमों और व्यावसायिक प्रशिक्षण के लिए ऋण।"
+      },
+      "maxAmount": 200000,
+      "interestRate": {
+        "min": 4,
+        "max": 5
+      },
+      "fundingPercent": 95,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 36,
+      "incomeLimit": 300000,
+      "eligibility": {
+        "en": [
+          "SC Candidate",
+          "Admission in certified course"
+        ],
+        "hi": [
+          "SC उम्मीदवार",
+          "प्रमाणित कोर्स में प्रवेश"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Admission Letter",
+          "Course Fee structure",
+          "SC Certificate"
+        ],
+        "hi": [
+          "प्रवेश पत्र",
+          "कोर्स शुल्क संरचना",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit form",
+          "Bank verifies institute",
+          "Fee transfer"
+        ],
+        "hi": [
+          "फॉर्म जमा करें",
+          "संस्थान सत्यापन",
+          "शुल्क हस्तांतरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Which courses are allowed?",
+            "a": "NSDC certified courses"
+          }
+        ],
+        "hi": [
+          {
+            "q": "कौन से कोर्स की अनुमति है?",
+            "a": "NSDC प्रमाणित कोर्स"
+          }
+        ]
+      }
+    },
+    {
+      "id": "green-energy",
+      "name": {
+        "en": "Green Energy Enterprise",
+        "hi": "हरित ऊर्जा उद्यम"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "हरित ऊर्जा"
+      },
+      "description": {
+        "en": "Funding for solar panels, biogas plants, or green energy businesses.",
+        "hi": "सौर पैनल, बायोगैस प्लांट या हरित ऊर्जा व्यवसायों के लिए फंडिंग।"
+      },
+      "maxAmount": 2500000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 7
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        9
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Project Viability"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "परियोजना व्यवहार्यता"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Project Report",
+          "Quotation",
+          "SC Certificate"
+        ],
+        "hi": [
+          "परियोजना रिपोर्ट",
+          "कोटेशन",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Report",
+          "Technical Review",
+          "Sanction"
+        ],
+        "hi": [
+          "रिपोर्ट जमा करें",
+          "तकनीकी समीक्षा",
+          "मंजूरी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are solar pumps covered?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या सोलर पंप शामिल हैं?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "healthcare-startup",
+      "name": {
+        "en": "Sanjeevani Healthcare Loan",
+        "hi": "संजीवनी स्वास्थ्य सेवा ऋण"
+      },
+      "category": {
+        "en": "Healthcare",
+        "hi": "स्वास्थ्य सेवा"
+      },
+      "description": {
+        "en": "Loans to set up clinics, pharmacies, or diagnostic centers.",
+        "hi": "क्लिनिक, फार्मेसी या डायग्नोस्टिक सेंटर स्थापित करने के लिए ऋण।"
+      },
+      "maxAmount": 2000000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 72,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Doctor/Pharmacist",
+          "Valid License"
+        ],
+        "hi": [
+          "SC डॉक्टर/फार्मासिस्ट",
+          "वैध लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Medical Degree/License",
+          "Project Report",
+          "SC Certificate"
+        ],
+        "hi": [
+          "मेडिकल डिग्री/लाइसेंस",
+          "परियोजना रिपोर्ट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit documents",
+          "License verification",
+          "Disbursement"
+        ],
+        "hi": [
+          "दस्तावेज जमा करें",
+          "लाइसेंस सत्यापन",
+          "संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can a nurse apply?",
+            "a": "Yes, for a nursing home/clinic"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या नर्स आवेदन कर सकती है?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "transport-loan",
+      "name": {
+        "en": "Commercial Vehicle Loan",
+        "hi": "वाणिज्यिक वाहन ऋण"
+      },
+      "category": {
+        "en": "Transport",
+        "hi": "परिवहन"
+      },
+      "description": {
+        "en": "Financing for purchasing commercial vehicles (taxis, trucks, autos).",
+        "hi": "वाणिज्यिक वाहन (टैक्सी, ट्रक, ऑटो) खरीदने के लिए वित्तपोषण।"
+      },
+      "maxAmount": 1000000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 400000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Commercial Driving License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वाणिज्यिक ड्राइविंग लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Driving License",
+          "Vehicle Quotation",
+          "SC Certificate"
+        ],
+        "hi": [
+          "ड्राइविंग लाइसेंस",
+          "वाहन कोटेशन",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quotation",
+          "Bank verifies",
+          "Direct payment to dealer"
+        ],
+        "hi": [
+          "कोटेशन जमा करें",
+          "बैंक सत्यापन",
+          "डीलर को भुगतान"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy an e-rickshaw?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं ई-रिक्शा खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "shilpi-samridhi",
+      "name": {
+        "en": "Shilpi Samridhi Yojana",
+        "hi": "शिल्पी समृद्धि योजना"
+      },
+      "category": {
+        "en": "Artisan",
+        "hi": "कारीगर"
+      },
+      "description": {
+        "en": "Financial assistance for SC artisans and craftspersons to buy raw materials and tools.",
+        "hi": "कच्चा माल और उपकरण खरीदने के लिए SC कारीगरों को वित्तीय सहायता।"
+      },
+      "maxAmount": 50000,
+      "interestRate": {
+        "min": 4,
+        "max": 5
+      },
+      "fundingPercent": 100,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 24,
+      "incomeLimit": 200000,
+      "eligibility": {
+        "en": [
+          "SC Artisan",
+          "Artisan Card Holder"
+        ],
+        "hi": [
+          "SC कारीगर",
+          "कारीगर कार्ड धारक"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Artisan Identity Card",
+          "SC Certificate",
+          "Aadhaar"
+        ],
+        "hi": [
+          "कारीगर पहचान पत्र",
+          "जाति प्रमाण पत्र",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit at SCA",
+          "Verification",
+          "Quick Disbursement"
+        ],
+        "hi": [
+          "SCA पर जमा करें",
+          "सत्यापन",
+          "त्वरित संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is 100% funding available?",
+            "a": "Yes, no margin required"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या 100% फंडिंग उपलब्ध है?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "poultry-farming",
+      "name": {
+        "en": "Poultry & Dairy Farming",
+        "hi": "मुर्गी पालन और डेयरी"
+      },
+      "category": {
+        "en": "Agriculture",
+        "hi": "कृषि"
+      },
+      "description": {
+        "en": "Funding for setting up dairy farms, poultry, or fisheries.",
+        "hi": "डेयरी फार्म, मुर्गी पालन, या मत्स्य पालन स्थापित करने के लिए फंडिंग।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 7
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        6,
+        9
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 300000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Adequate Space/Land"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "पर्याप्त स्थान/भूमि"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Land/Space Proof",
+          "Project Estimate",
+          "SC Certificate"
+        ],
+        "hi": [
+          "भूमि/स्थान प्रमाण",
+          "परियोजना अनुमान",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Estimate",
+          "Field Visit",
+          "Loan Sanction"
+        ],
+        "hi": [
+          "अनुमान जमा करें",
+          "क्षेत्र का दौरा",
+          "ऋण मंजूरी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy cows with this?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं इससे गाय खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "overseas-education",
+      "name": {
+        "en": "Overseas Education Loan",
+        "hi": "विदेशी शिक्षा ऋण"
+      },
+      "category": {
+        "en": "Education",
+        "hi": "शिक्षा"
+      },
+      "description": {
+        "en": "High-value loans for SC students pursuing master's or PhD programs abroad.",
+        "hi": "विदेश में मास्टर या पीएचडी करने वाले छात्रों के लिए उच्च-मूल्य वाले ऋण।"
+      },
+      "maxAmount": 3000000,
+      "interestRate": {
+        "min": 4,
+        "max": 6
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 120,
+      "incomeLimit": 800000,
+      "eligibility": {
+        "en": [
+          "SC Student",
+          "Admission in Foreign Univ",
+          "Valid Visa"
+        ],
+        "hi": [
+          "SC छात्र",
+          "विदेशी विश्वविद्यालय में प्रवेश",
+          "वैध वीज़ा"
+        ]
+      },
+      "documents": {
+        "en": [
+          "University Admission",
+          "Visa Copy",
+          "SC Certificate"
+        ],
+        "hi": [
+          "विश्वविद्यालय प्रवेश",
+          "वीज़ा कॉपी",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit University docs",
+          "Bank Verification",
+          "Forex transfer"
+        ],
+        "hi": [
+          "विश्वविद्यालय दस्तावेज जमा करें",
+          "बैंक सत्यापन",
+          "विदेशी मुद्रा हस्तांतरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are living expenses covered?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या रहने का खर्च शामिल है?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "franchise-business",
+      "name": {
+        "en": "Franchise Business Loan",
+        "hi": "फ्रैंचाइज़ी व्यवसाय ऋण"
+      },
+      "category": {
+        "en": "Business",
+        "hi": "व्यवसाय"
+      },
+      "description": {
+        "en": "Loan to help SC entrepreneurs purchase popular retail or food franchise licenses.",
+        "hi": "लोकप्रिय खुदरा या खाद्य फ्रैंचाइज़ी लाइसेंस खरीदने के लिए ऋण।"
+      },
+      "maxAmount": 2500000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Entrepreneur",
+          "Franchise Agreement"
+        ],
+        "hi": [
+          "SC उद्यमी",
+          "फ्रैंचाइज़ी समझौता"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Franchise LOI",
+          "SC Certificate",
+          "Aadhaar"
+        ],
+        "hi": [
+          "फ्रैंचाइज़ी LOI",
+          "जाति प्रमाण पत्र",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit LOI",
+          "Bank analyzes brand",
+          "Approval"
+        ],
+        "hi": [
+          "LOI जमा करें",
+          "बैंक ब्रांड का विश्लेषण करता है",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is collateral required?",
+            "a": "Depends on loan size"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या जमानत आवश्यक है?",
+            "a": "ऋण के आकार पर निर्भर करता है"
+          }
+        ]
+      }
+    },
+    {
+      "id": "skill-upgrade",
+      "name": {
+        "en": "Professional Skill Upgrade",
+        "hi": "व्यावसायिक कौशल उन्नयन"
+      },
+      "category": {
+        "en": "Education",
+        "hi": "शिक्षा"
+      },
+      "description": {
+        "en": "Short-term loans for working professionals to attend certification programs.",
+        "hi": "प्रमाणन कार्यक्रमों के लिए अल्पकालिक ऋण।"
+      },
+      "maxAmount": 300000,
+      "interestRate": {
+        "min": 5,
+        "max": 6.5
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        0,
+        3
+      ],
+      "tenureMonths": 36,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Professional",
+          "Course Admission"
+        ],
+        "hi": [
+          "SC पेशेवर",
+          "कोर्स प्रवेश"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Salary Slip",
+          "Course details"
+        ],
+        "hi": [
+          "वेतन पर्ची",
+          "कोर्स विवरण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit docs",
+          "Approval"
+        ],
+        "hi": [
+          "दस्तावेज जमा करें",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I apply if already working?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं काम करते हुए आवेदन कर सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sports-excellence",
+      "name": {
+        "en": "Sports Excellence Grant",
+        "hi": "खेल उत्कृष्टता अनुदान"
+      },
+      "category": {
+        "en": "Sports",
+        "hi": "खेल"
+      },
+      "description": {
+        "en": "Funding for SC athletes for training, equipment, and travel to tournaments.",
+        "hi": "प्रशिक्षण, उपकरण और टूर्नामेंट के लिए एससी एथलीटों के लिए फंडिंग।"
+      },
+      "maxAmount": 200000,
+      "interestRate": {
+        "min": 0,
+        "max": 0
+      },
+      "fundingPercent": 100,
+      "moratoriumMonths": [
+        0
+      ],
+      "tenureMonths": 0,
+      "incomeLimit": 300000,
+      "eligibility": {
+        "en": [
+          "SC Athlete",
+          "State/National level participation"
+        ],
+        "hi": [
+          "SC एथलीट",
+          "राज्य/राष्ट्रीय स्तर की भागीदारी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Sports Certificates",
+          "SC Certificate",
+          "Aadhaar"
+        ],
+        "hi": [
+          "खेल प्रमाण पत्र",
+          "जाति प्रमाण पत्र",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit application",
+          "Sports quota review",
+          "Grant release"
+        ],
+        "hi": [
+          "आवेदन जमा करें",
+          "खेल कोटा समीक्षा",
+          "अनुदान जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is this a loan?",
+            "a": "No, it is a 100% grant."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या यह ऋण है?",
+            "a": "नहीं, यह 100% अनुदान है।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "street-vendor",
+      "name": {
+        "en": "SC Street Vendor Support",
+        "hi": "SC स्ट्रीट वेंडर सहायता"
+      },
+      "category": {
+        "en": "Retail",
+        "hi": "खुदरा"
+      },
+      "description": {
+        "en": "Micro-credit for street vendors to upgrade carts, stock inventory, and digitize payments.",
+        "hi": "स्ट्रीट वेंडरों के लिए गाड़ियां अपग्रेड करने और इन्वेंट्री स्टॉक करने के लिए माइक्रो-क्रेडिट।"
+      },
+      "maxAmount": 50000,
+      "interestRate": {
+        "min": 2,
+        "max": 4
+      },
+      "fundingPercent": 100,
+      "moratoriumMonths": [
+        1,
+        2
+      ],
+      "tenureMonths": 12,
+      "incomeLimit": 150000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Vendor Certificate/ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वेंडर प्रमाण पत्र/आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Vending Certificate",
+          "Aadhaar",
+          "Bank passbook"
+        ],
+        "hi": [
+          "वेंडिंग प्रमाण पत्र",
+          "आधार",
+          "बैंक पासबुक"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply at local bank",
+          "Verification",
+          "Instant transfer"
+        ],
+        "hi": [
+          "स्थानीय बैंक में आवेदन",
+          "सत्यापन",
+          "तत्काल हस्तांतरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Do I need collateral?",
+            "a": "No collateral needed."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मुझे जमानत की आवश्यकता है?",
+            "a": "कोई जमानत आवश्यक नहीं।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "divyangjan-sashaktikaran",
+      "name": {
+        "en": "Divyangjan Sashaktikaran Loan",
+        "hi": "दिव्यांगजन सशक्तिकरण ऋण"
+      },
+      "category": {
+        "en": "Social Welfare",
+        "hi": "समाज कल्याण"
+      },
+      "description": {
+        "en": "Special highly subsidized business loans for differently-abled SC individuals.",
+        "hi": "दिव्यांग SC व्यक्तियों के लिए विशेष अत्यधिक सब्सिडी वाले व्यावसायिक ऋण।"
+      },
+      "maxAmount": 300000,
+      "interestRate": {
+        "min": 2,
+        "max": 2.5
+      },
+      "fundingPercent": 100,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 300000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Disability Certificate (>40%)"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "विकलांगता प्रमाण पत्र (>40%)"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Disability Certificate",
+          "SC Certificate",
+          "Project Report"
+        ],
+        "hi": [
+          "विकलांगता प्रमाण पत्र",
+          "जाति प्रमाण पत्र",
+          "परियोजना रिपोर्ट"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit form to SCA",
+          "Verification",
+          "Approval"
+        ],
+        "hi": [
+          "SCA में फॉर्म जमा करें",
+          "सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the interest rate?",
+            "a": "Max 2.5%"
+          }
+        ],
+        "hi": [
+          {
+            "q": "ब्याज दर क्या है?",
+            "a": "अधिकतम 2.5%"
+          }
+        ]
+      }
+    },
+    {
+      "id": "civil-service-coaching",
+      "name": {
+        "en": "UPSC/State PSC Coaching Aid",
+        "hi": "UPSC/राज्य PSC कोचिंग सहायता"
+      },
+      "category": {
+        "en": "Education",
+        "hi": "शिक्षा"
+      },
+      "description": {
+        "en": "Financial support for SC students to enroll in top-tier coaching institutes for civil services.",
+        "hi": "सिविल सेवाओं के लिए शीर्ष कोचिंग संस्थानों में नामांकन के लिए SC छात्रों के लिए वित्तीय सहायता।"
+      },
+      "maxAmount": 150000,
+      "interestRate": {
+        "min": 0,
+        "max": 0
+      },
+      "fundingPercent": 100,
+      "moratoriumMonths": [
+        0
+      ],
+      "tenureMonths": 0,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Student",
+          "Graduation Degree",
+          "Entrance test clear"
+        ],
+        "hi": [
+          "SC छात्र",
+          "स्नातक डिग्री",
+          "प्रवेश परीक्षा उत्तीर्ण"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Degree",
+          "SC Certificate",
+          "Institute Fee Demand"
+        ],
+        "hi": [
+          "डिग्री",
+          "जाति प्रमाण पत्र",
+          "संस्थान शुल्क मांग"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Clear govt entrance",
+          "Select empaneled institute",
+          "Direct fee payment"
+        ],
+        "hi": [
+          "प्रवेश परीक्षा उत्तीर्ण करें",
+          "संस्थान चुनें",
+          "सीधे शुल्क भुगतान"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I choose any institute?",
+            "a": "Only govt empaneled institutes."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं कोई भी संस्थान चुन सकता हूँ?",
+            "a": "केवल सरकारी पैनलबद्ध संस्थान।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "export-promotion",
+      "name": {
+        "en": "SC Export Promotion Scheme",
+        "hi": "SC निर्यात संवर्धन योजना"
+      },
+      "category": {
+        "en": "Business",
+        "hi": "व्यवसाय"
+      },
+      "description": {
+        "en": "Financial assistance for SC-owned enterprises to participate in international trade fairs and export goods.",
+        "hi": "अंतरराष्ट्रीय व्यापार मेलों में भाग लेने और माल निर्यात करने के लिए SC के स्वामित्व वाले उद्यमों के लिए वित्तीय सहायता।"
+      },
+      "maxAmount": 1000000,
+      "interestRate": {
+        "min": 5,
+        "max": 6
+      },
+      "fundingPercent": 80,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 48,
+      "incomeLimit": 1200000,
+      "eligibility": {
+        "en": [
+          "SC MSME",
+          "IEC Code holder",
+          "Active business"
+        ],
+        "hi": [
+          "SC MSME",
+          "IEC कोड धारक",
+          "सक्रिय व्यवसाय"
+        ]
+      },
+      "documents": {
+        "en": [
+          "IEC Certificate",
+          "GST returns",
+          "Export order/Fair invite"
+        ],
+        "hi": [
+          "IEC प्रमाण पत्र",
+          "GST रिटर्न",
+          "निर्यात आदेश/मेला आमंत्रण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit proposal",
+          "Export council review",
+          "Fund release"
+        ],
+        "hi": [
+          "प्रस्ताव जमा करें",
+          "निर्यात परिषद समीक्षा",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Does this cover travel?",
+            "a": "Yes, partial travel for trade fairs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या इसमें यात्रा शामिल है?",
+            "a": "हाँ, व्यापार मेलों के लिए आंशिक यात्रा।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "legal-advocacy",
+      "name": {
+        "en": "Legal Practitioner Setup Loan",
+        "hi": "कानूनी व्यवसायी सेटअप ऋण"
+      },
+      "category": {
+        "en": "Professional",
+        "hi": "पेशेवर"
+      },
+      "description": {
+        "en": "Loan for young SC lawyers to set up their own office, buy law books, computers, and software.",
+        "hi": "युवा SC वकीलों के लिए अपना कार्यालय स्थापित करने, कानून की किताबें, कंप्यूटर और सॉफ्टवेयर खरीदने के लिए ऋण।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 6.5
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Lawyer",
+          "Bar Council Registration"
+        ],
+        "hi": [
+          "SC वकील",
+          "बार काउंसिल पंजीकरण"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Bar Council ID",
+          "LLB/LLM Degree",
+          "Project Estimate"
+        ],
+        "hi": [
+          "बार काउंसिल आईडी",
+          "LLB/LLM डिग्री",
+          "परियोजना अनुमान"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit to Bank",
+          "Verification",
+          "Sanction"
+        ],
+        "hi": [
+          "बैंक में जमा करें",
+          "सत्यापन",
+          "मंजूरी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is rent covered?",
+            "a": "Office setup and initial rent deposit are covered."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या किराया शामिल है?",
+            "a": "कार्यालय सेटअप और प्रारंभिक किराया जमा शामिल हैं।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organic-farming",
+      "name": {
+        "en": "Organic Farming & Vermicompost",
+        "hi": "जैविक खेती और वर्मीकम्पोस्ट"
+      },
+      "category": {
+        "en": "Agriculture",
+        "hi": "कृषि"
+      },
+      "description": {
+        "en": "Funding to transition to organic farming, setup vermicompost pits, and obtain organic certification.",
+        "hi": "जैविक खेती में परिवर्तन करने, वर्मीकम्पोस्ट गड्ढे स्थापित करने और जैविक प्रमाणीकरण प्राप्त करने के लिए फंडिंग।"
+      },
+      "maxAmount": 300000,
+      "interestRate": {
+        "min": 4,
+        "max": 5.5
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 48,
+      "incomeLimit": 400000,
+      "eligibility": {
+        "en": [
+          "SC Farmer",
+          "Agricultural Land"
+        ],
+        "hi": [
+          "SC किसान",
+          "कृषि भूमि"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Land Records",
+          "Organic Transition Plan",
+          "SC Certificate"
+        ],
+        "hi": [
+          "भूमि रिकॉर्ड",
+          "जैविक संक्रमण योजना",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit plan via agriculture dept",
+          "Approval",
+          "Fund release in phases"
+        ],
+        "hi": [
+          "कृषि विभाग के माध्यम से योजना जमा करें",
+          "स्वीकृति",
+          "चरणों में फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are certifications paid for?",
+            "a": "Yes, certification cost is included."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या प्रमाणीकरण के लिए भुगतान किया जाता है?",
+            "a": "हाँ, प्रमाणीकरण लागत शामिल है।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "clean-water",
+      "name": {
+        "en": "Jal Jeevan Enterprise Loan",
+        "hi": "जल जीवन उद्यम ऋण"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "हरित ऊर्जा"
+      },
+      "description": {
+        "en": "Loans for setting up clean drinking water RO plants and water delivery businesses in rural areas.",
+        "hi": "ग्रामीण क्षेत्रों में स्वच्छ पेयजल आरओ प्लांट और जल वितरण व्यवसाय स्थापित करने के लिए ऋण।"
+      },
+      "maxAmount": 800000,
+      "interestRate": {
+        "min": 6,
+        "max": 7
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 400000,
+      "eligibility": {
+        "en": [
+          "SC Entrepreneur",
+          "Space for RO plant"
+        ],
+        "hi": [
+          "SC उद्यमी",
+          "आरओ प्लांट के लिए जगह"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Location proof",
+          "Equipment Quotation",
+          "SC Certificate"
+        ],
+        "hi": [
+          "स्थान प्रमाण",
+          "उपकरण कोटेशन",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit proposal",
+          "Bank verification",
+          "Direct vendor payment"
+        ],
+        "hi": [
+          "प्रस्ताव जमा करें",
+          "बैंक सत्यापन",
+          "सीधे वेंडर भुगतान"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Does this cover delivery vehicles?",
+            "a": "Yes, small delivery vehicles can be included."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या इसमें डिलीवरी वाहन शामिल हैं?",
+            "a": "हाँ, छोटे डिलीवरी वाहन शामिल किए जा सकते हैं।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "home-renovation",
+      "name": {
+        "en": "SC Home Improvement Loan",
+        "hi": "SC गृह सुधार ऋण"
+      },
+      "category": {
+        "en": "Housing",
+        "hi": "आवास"
+      },
+      "description": {
+        "en": "Low-interest loans for renovation, repairing, or expanding existing homes.",
+        "hi": "मौजूदा घरों के नवीनीकरण, मरम्मत या विस्तार के लिए कम ब्याज वाले ऋण।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 5,
+        "max": 6.5
+      },
+      "fundingPercent": 80,
+      "moratoriumMonths": [
+        0
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "House ownership proof"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "घर के स्वामित्व का प्रमाण"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Property Tax/Deed",
+          "Income Proof",
+          "Estimate from contractor"
+        ],
+        "hi": [
+          "संपत्ति कर/विलेख",
+          "आय प्रमाण",
+          "ठेकेदार से अनुमान"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply at Bank",
+          "Property inspection",
+          "Disbursement in phases"
+        ],
+        "hi": [
+          "बैंक में आवेदन करें",
+          "संपत्ति निरीक्षण",
+          "चरणों में संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy land with this?",
+            "a": "No, this is only for repairing existing structures."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं इससे जमीन खरीद सकता हूँ?",
+            "a": "नहीं, यह केवल मौजूदा संरचनाओं की मरम्मत के लिए है।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ecommerce-startup",
+      "name": {
+        "en": "Digital Seller Startup Fund",
+        "hi": "डिजिटल विक्रेता स्टार्टअप फंड"
+      },
+      "category": {
+        "en": "Retail",
+        "hi": "खुदरा"
+      },
+      "description": {
+        "en": "Loans for setting up e-commerce businesses, buying inventory, and digital marketing.",
+        "hi": "ई-कॉमर्स व्यवसाय स्थापित करने, इन्वेंट्री खरीदने और डिजिटल मार्केटिंग के लिए ऋण।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 48,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "GST Registration"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "GST पंजीकरण"
+        ]
+      },
+      "documents": {
+        "en": [
+          "GST Certificate",
+          "Business Plan",
+          "SC Certificate"
+        ],
+        "hi": [
+          "GST प्रमाण पत्र",
+          "व्यवसाय योजना",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Plan online",
+          "Verification",
+          "Disbursement"
+        ],
+        "hi": [
+          "योजना ऑनलाइन जमा करें",
+          "सत्यापन",
+          "संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can it be used for ads?",
+            "a": "Yes, up to 20% can be used for digital ads."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या इसका उपयोग विज्ञापनों के लिए किया जा सकता है?",
+            "a": "हाँ, 20% तक डिजिटल विज्ञापनों के लिए।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "food-processing",
+      "name": {
+        "en": "Food Processing & Packaging",
+        "hi": "खाद्य प्रसंस्करण और पैकेजिंग"
+      },
+      "category": {
+        "en": "Manufacturing",
+        "hi": "विनिर्माण"
+      },
+      "description": {
+        "en": "Loans to setup small scale food processing, packaging, and preservation units.",
+        "hi": "छोटे पैमाने पर खाद्य प्रसंस्करण, पैकेजिंग और संरक्षण इकाइयां स्थापित करने के लिए ऋण।"
+      },
+      "maxAmount": 2000000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 7
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "FSSAI License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "FSSAI लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "FSSAI Registration",
+          "Project Report",
+          "Aadhaar"
+        ],
+        "hi": [
+          "FSSAI पंजीकरण",
+          "परियोजना रिपोर्ट",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Plan",
+          "Inspection",
+          "Approval"
+        ],
+        "hi": [
+          "योजना जमा करें",
+          "निरीक्षण",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are cold storages included?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या कोल्ड स्टोरेज शामिल हैं?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "beauty-wellness",
+      "name": {
+        "en": "Salon & Wellness Clinic",
+        "hi": "सैलून और वेलनेस क्लिनिक"
+      },
+      "category": {
+        "en": "Services",
+        "hi": "सेवाएं"
+      },
+      "description": {
+        "en": "Setup cost for beauty parlors, wellness spas, and grooming centers.",
+        "hi": "ब्यूटी पार्लर, वेलनेस स्पा और ग्रूमिंग सेंटर के लिए सेटअप लागत।"
+      },
+      "maxAmount": 300000,
+      "interestRate": {
+        "min": 6,
+        "max": 8
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 400000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Certification in beauty/wellness"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "सौंदर्य/वेलनेस में प्रमाणन"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Training Certificate",
+          "Rent Agreement",
+          "SC Certificate"
+        ],
+        "hi": [
+          "प्रशिक्षण प्रमाण पत्र",
+          "किराया समझौता",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply at Bank",
+          "Premise Check",
+          "Disbursement"
+        ],
+        "hi": [
+          "बैंक में आवेदन करें",
+          "परिसर की जांच",
+          "संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is equipment covered?",
+            "a": "Yes, chairs, machines, etc."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या उपकरण शामिल हैं?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "handicraft-export",
+      "name": {
+        "en": "Handicraft Export Support",
+        "hi": "हस्तशिल्प निर्यात सहायता"
+      },
+      "category": {
+        "en": "Export",
+        "hi": "निर्यात"
+      },
+      "description": {
+        "en": "Funding for artisans scaling up for international markets.",
+        "hi": "अंतरराष्ट्रीय बाजारों के लिए हस्तशिल्पियों के लिए फंडिंग।"
+      },
+      "maxAmount": 1000000,
+      "interestRate": {
+        "min": 5,
+        "max": 6.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 72,
+      "incomeLimit": 800000,
+      "eligibility": {
+        "en": [
+          "SC Artisan",
+          "IEC Code"
+        ],
+        "hi": [
+          "SC कारीगर",
+          "IEC कोड"
+        ]
+      },
+      "documents": {
+        "en": [
+          "IEC Code",
+          "Export Orders",
+          "SC Certificate"
+        ],
+        "hi": [
+          "IEC कोड",
+          "निर्यात आदेश",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Orders",
+          "Verification",
+          "Credit Release"
+        ],
+        "hi": [
+          "आदेश जमा करें",
+          "सत्यापन",
+          "क्रेडिट जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Do I need prior export experience?",
+            "a": "No"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मुझे पूर्व निर्यात अनुभव की आवश्यकता है?",
+            "a": "नहीं"
+          }
+        ]
+      }
+    },
+    {
+      "id": "electric-vehicle",
+      "name": {
+        "en": "EV Fleet Business",
+        "hi": "ईवी फ्लीट व्यवसाय"
+      },
+      "category": {
+        "en": "Transport",
+        "hi": "परिवहन"
+      },
+      "description": {
+        "en": "Loans for purchasing electric rickshaws, cabs, or delivery vehicles.",
+        "hi": "इलेक्ट्रिक रिक्शा, कैब या डिलीवरी वाहन खरीदने के लिए ऋण।"
+      },
+      "maxAmount": 800000,
+      "interestRate": {
+        "min": 4.5,
+        "max": 6
+      },
+      "fundingPercent": 95,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Commercial EV License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वाणिज्यिक EV लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Driving License",
+          "Dealer Quote",
+          "SC Certificate"
+        ],
+        "hi": [
+          "ड्राइविंग लाइसेंस",
+          "डीलर कोट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quote",
+          "Bank Pays Dealer",
+          "Registration"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "बैंक डीलर को भुगतान करता है",
+          "पंजीकरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are batteries covered?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या बैटरी शामिल हैं?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "solar-installation",
+      "name": {
+        "en": "Solar Panel Installation Biz",
+        "hi": "सौर पैनल स्थापना व्यवसाय"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "हरित ऊर्जा"
+      },
+      "description": {
+        "en": "Start a business installing and maintaining solar panels.",
+        "hi": "सौर पैनल स्थापित करने और बनाए रखने का व्यवसाय शुरू करें।"
+      },
+      "maxAmount": 1500000,
+      "interestRate": {
+        "min": 5,
+        "max": 6.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        9
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Technical Knowledge/Degree"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "तकनीकी ज्ञान/डिग्री"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Tech Certificate",
+          "Business Plan",
+          "Aadhaar"
+        ],
+        "hi": [
+          "तकनीकी प्रमाण पत्र",
+          "व्यवसाय योजना",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Plan",
+          "Approval",
+          "Fund Release"
+        ],
+        "hi": [
+          "योजना जमा करें",
+          "स्वीकृति",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy inventory?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं इन्वेंट्री खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cloud-kitchen",
+      "name": {
+        "en": "Cloud Kitchen Setup",
+        "hi": "क्लाउड किचन सेटअप"
+      },
+      "category": {
+        "en": "Food & Beverage",
+        "hi": "खाद्य और पेय"
+      },
+      "description": {
+        "en": "Setup cost for delivery-only restaurant business models.",
+        "hi": "केवल डिलीवरी वाले रेस्तरां व्यवसाय मॉडल के लिए सेटअप लागत।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 48,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "FSSAI License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "FSSAI लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "FSSAI",
+          "Premise Lease",
+          "SC Certificate"
+        ],
+        "hi": [
+          "FSSAI",
+          "परिसर पट्टा",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Lease",
+          "Inspection",
+          "Disbursement"
+        ],
+        "hi": [
+          "पट्टा जमा करें",
+          "निरीक्षण",
+          "संवितरण"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are delivery tie-ups required?",
+            "a": "Yes, Swiggy/Zomato MOUs help."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या डिलीवरी टाई-अप आवश्यक हैं?",
+            "a": "हाँ, मदद करते हैं।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "apparel-manufacturing",
+      "name": {
+        "en": "Garment Manufacturing Unit",
+        "hi": "कपड़ा निर्माण इकाई"
+      },
+      "category": {
+        "en": "Manufacturing",
+        "hi": "विनिर्माण"
+      },
+      "description": {
+        "en": "Buy industrial sewing machines and raw materials for garment production.",
+        "hi": "कपड़ा उत्पादन के लिए औद्योगिक सिलाई मशीन और कच्चा माल खरीदें।"
+      },
+      "maxAmount": 1200000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 72,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Experience in Textiles"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वस्त्र में अनुभव"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Experience Proof",
+          "Machinery Quote",
+          "Aadhaar"
+        ],
+        "hi": [
+          "अनुभव प्रमाण",
+          "मशीनरी कोट",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quote",
+          "Approval",
+          "Machine Purchase"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "स्वीकृति",
+          "मशीन खरीद"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is working capital included?",
+            "a": "Yes, 20% working capital."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या कार्यशील पूंजी शामिल है?",
+            "a": "हाँ, 20%।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "it-services",
+      "name": {
+        "en": "IT/BPO Service Center",
+        "hi": "आईटी/बीपीओ सेवा केंद्र"
+      },
+      "category": {
+        "en": "IT Services",
+        "hi": "आईटी सेवाएं"
+      },
+      "description": {
+        "en": "Setup rural BPOs, cyber cafes, or small IT consultancies.",
+        "hi": "ग्रामीण बीपीओ, साइबर कैफे या छोटी आईटी परामर्श स्थापित करें।"
+      },
+      "maxAmount": 800000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Computer Science Degree/Diploma"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "कंप्यूटर विज्ञान डिग्री/डिप्लोमा"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Degree",
+          "Project Report",
+          "SC Certificate"
+        ],
+        "hi": [
+          "डिग्री",
+          "परियोजना रिपोर्ट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Plan",
+          "Verification",
+          "Hardware Purchase"
+        ],
+        "hi": [
+          "योजना जमा करें",
+          "सत्यापन",
+          "हार्डवेयर खरीद"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy servers?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं सर्वर खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tourism-agency",
+      "name": {
+        "en": "Travel & Tourism Agency",
+        "hi": "यात्रा और पर्यटन एजेंसी"
+      },
+      "category": {
+        "en": "Services",
+        "hi": "सेवाएं"
+      },
+      "description": {
+        "en": "Funding for ticketing agencies, tour operators, and homestays.",
+        "hi": "टिकटिंग एजेंसियों, टूर ऑपरेटरों और होमस्टे के लिए फंडिंग।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        0,
+        3
+      ],
+      "tenureMonths": 48,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Tourism Registration"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "पर्यटन पंजीकरण"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Tourism License",
+          "Business Plan",
+          "SC Certificate"
+        ],
+        "hi": [
+          "पर्यटन लाइसेंस",
+          "व्यवसाय योजना",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply at Bank",
+          "Approval",
+          "Fund Release"
+        ],
+        "hi": [
+          "बैंक में आवेदन",
+          "स्वीकृति",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Are homestays covered?",
+            "a": "Yes, setup costs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या होमस्टे शामिल हैं?",
+            "a": "हाँ, सेटअप लागत।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "waste-management",
+      "name": {
+        "en": "Waste Recycling Plant",
+        "hi": "कचरा पुनर्चक्रण संयंत्र"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "हरित ऊर्जा"
+      },
+      "description": {
+        "en": "Setup small scale plastic or e-waste recycling plants.",
+        "hi": "छोटे पैमाने पर प्लास्टिक या ई-कचरा पुनर्चक्रण संयंत्र स्थापित करें।"
+      },
+      "maxAmount": 2500000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 7
+      },
+      "fundingPercent": 80,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 800000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Pollution Control Board Clearance"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "प्रदूषण नियंत्रण बोर्ड क्लीयरेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "PCB Clearance",
+          "Project Report",
+          "Aadhaar"
+        ],
+        "hi": [
+          "PCB क्लीयरेंस",
+          "परियोजना रिपोर्ट",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit PCB Cert",
+          "Technical Review",
+          "Sanction"
+        ],
+        "hi": [
+          "PCB प्रमाण पत्र जमा करें",
+          "तकनीकी समीक्षा",
+          "मंजूरी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is e-waste included?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या ई-कचरा शामिल है?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "construction-equipment",
+      "name": {
+        "en": "Heavy Construction Machinery",
+        "hi": "भारी निर्माण मशीनरी"
+      },
+      "category": {
+        "en": "Infrastructure",
+        "hi": "बुनियादी ढांचा"
+      },
+      "description": {
+        "en": "Loans for purchasing JCBs, cranes, and concrete mixers for contract work.",
+        "hi": "अनुबंध के काम के लिए जेसीबी, क्रेन और कंक्रीट मिक्सर खरीदने के लिए ऋण।"
+      },
+      "maxAmount": 4000000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 7.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 1000000,
+      "eligibility": {
+        "en": [
+          "SC Contractor",
+          "Existing Contracts"
+        ],
+        "hi": [
+          "SC ठेकेदार",
+          "मौजूदा अनुबंध"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Contract Copies",
+          "Machinery Quote",
+          "SC Certificate"
+        ],
+        "hi": [
+          "अनुबंध प्रतियां",
+          "मशीनरी कोट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quotes",
+          "Bank Pays Dealer",
+          "Machinery Handover"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "बैंक डीलर को भुगतान करता है",
+          "मशीनरी हैंडओवर"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy a JCB?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं जेसीबी खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mobile-repair",
+      "name": {
+        "en": "Electronics Repair Hub",
+        "hi": "इलेक्ट्रॉनिक्स मरम्मत हब"
+      },
+      "category": {
+        "en": "Retail",
+        "hi": "खुदरा"
+      },
+      "description": {
+        "en": "Micro-loans to setup mobile and laptop repair shops.",
+        "hi": "मोबाइल और लैपटॉप मरम्मत की दुकानें स्थापित करने के लिए माइक्रो-लोन।"
+      },
+      "maxAmount": 100000,
+      "interestRate": {
+        "min": 5,
+        "max": 7
+      },
+      "fundingPercent": 95,
+      "moratoriumMonths": [
+        0,
+        3
+      ],
+      "tenureMonths": 36,
+      "incomeLimit": 300000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Repairing Skills"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "मरम्मत कौशल"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Skill Certificate",
+          "SC Certificate",
+          "Aadhaar"
+        ],
+        "hi": [
+          "कौशल प्रमाण पत्र",
+          "जाति प्रमाण पत्र",
+          "आधार"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply at Bank",
+          "Instant Approval",
+          "Fund Release"
+        ],
+        "hi": [
+          "बैंक में आवेदन",
+          "तत्काल स्वीकृति",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Do I need a shop?",
+            "a": "Yes, rented or owned."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मुझे दुकान चाहिए?",
+            "a": "हाँ, किराए पर या खुद की।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organic-store",
+      "name": {
+        "en": "Organic Food Retail Store",
+        "hi": "जैविक खाद्य खुदरा स्टोर"
+      },
+      "category": {
+        "en": "Retail",
+        "hi": "खुदरा"
+      },
+      "description": {
+        "en": "Open retail outlets exclusively selling certified organic produce.",
+        "hi": "विशेष रूप से प्रमाणित जैविक उपज बेचने वाले खुदरा आउटलेट खोलें।"
+      },
+      "maxAmount": 600000,
+      "interestRate": {
+        "min": 6,
+        "max": 7.5
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 500000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "FSSAI License"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "FSSAI लाइसेंस"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Store Lease",
+          "FSSAI",
+          "SC Certificate"
+        ],
+        "hi": [
+          "स्टोर पट्टा",
+          "FSSAI",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Lease",
+          "Inspection",
+          "Fund Release"
+        ],
+        "hi": [
+          "पट्टा जमा करें",
+          "निरीक्षण",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy franchise?",
+            "a": "Yes"
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं फ्रैंचाइज़ी खरीद सकता हूँ?",
+            "a": "हाँ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fitness-center",
+      "name": {
+        "en": "Gym & Fitness Center",
+        "hi": "जिम और फिटनेस सेंटर"
+      },
+      "category": {
+        "en": "Services",
+        "hi": "सेवाएं"
+      },
+      "description": {
+        "en": "Setup costs for commercial gyms, yoga studios, and fitness centers.",
+        "hi": "वाणिज्यिक जिम, योग स्टूडियो और फिटनेस सेंटर के लिए सेटअप लागत।"
+      },
+      "maxAmount": 1500000,
+      "interestRate": {
+        "min": 6.5,
+        "max": 8
+      },
+      "fundingPercent": 80,
+      "moratoriumMonths": [
+        6,
+        12
+      ],
+      "tenureMonths": 72,
+      "incomeLimit": 700000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Fitness Trainer Cert"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "फिटनेस ट्रेनर प्रमाणपत्र"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Trainer Cert",
+          "Equipment Quote",
+          "SC Certificate"
+        ],
+        "hi": [
+          "ट्रेनर प्रमाणपत्र",
+          "उपकरण कोट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quote",
+          "Bank Approval",
+          "Payment to Equipment Vendor"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "बैंक स्वीकृति",
+          "उपकरण विक्रेता को भुगतान"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is rent covered?",
+            "a": "Advance deposit is covered."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या किराया शामिल है?",
+            "a": "अग्रिम जमा शामिल है।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dairy-processing",
+      "name": {
+        "en": "Milk Processing & Packaging",
+        "hi": "दूध प्रसंस्करण और पैकेजिंग"
+      },
+      "category": {
+        "en": "Agriculture",
+        "hi": "कृषि"
+      },
+      "description": {
+        "en": "Setup milk chillers, pasteurization units, and dairy product packaging.",
+        "hi": "मिल्क चिलर, पाश्चुरीकरण इकाइयां और डेयरी उत्पाद पैकेजिंग स्थापित करें।"
+      },
+      "maxAmount": 2000000,
+      "interestRate": {
+        "min": 5.5,
+        "max": 7
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        6,
+        9
+      ],
+      "tenureMonths": 84,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Dairy Farmer",
+          "Existing Dairy Business"
+        ],
+        "hi": [
+          "SC डेयरी किसान",
+          "मौजूदा डेयरी व्यवसाय"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Business Proof",
+          "Machinery Quote",
+          "SC Certificate"
+        ],
+        "hi": [
+          "व्यवसाय प्रमाण",
+          "मशीनरी कोट",
+          "जाति प्रमाण पत्र"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Submit Quote",
+          "Inspection",
+          "Fund Release"
+        ],
+        "hi": [
+          "कोट जमा करें",
+          "निरीक्षण",
+          "फंड जारी"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Can I buy delivery vans?",
+            "a": "Yes, refrigerated vans included."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मैं डिलीवरी वैन खरीद सकता हूँ?",
+            "a": "हाँ, प्रशीतित वैन शामिल हैं।"
+          }
+        ]
+      }
+    }
+  ]
+}
