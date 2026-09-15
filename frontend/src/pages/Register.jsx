@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import LanguageToggle from '../components/LanguageToggle';
 import OTPInput from '../components/OTPInput';
+import { API_BASE } from '../lib/api';
 
 export default function Register() {
   const { t } = useLang();
@@ -59,7 +60,7 @@ export default function Register() {
     if (!formData.email || isSendingOtp) return;
     setIsSendingOtp(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/send-otp', {
+      const res = await fetch(`${API_BASE}/api/auth/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identifier: formData.email, type: 'email' })
@@ -94,7 +95,7 @@ export default function Register() {
     setIsVerifyingOtp(true);
     try {
       const identifier = otpType === 'email' ? formData.email : formData.mobile;
-      const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+      const res = await fetch(`${API_BASE}/api/auth/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identifier, otp_code: otpValue })
@@ -129,7 +130,7 @@ export default function Register() {
     }
     
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

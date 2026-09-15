@@ -151,11 +151,7 @@ def _profile_notes(profile: dict, scheme: dict) -> list[str]:
         elif scheme.get("interest_rebate_women", 0) > 0:
             notes.append(f"Women get a {scheme['interest_rebate_women']}% interest rebate on this scheme")
 
-    status = profile.get("verification_status")
-    if status == "verified" and profile.get("needs_reverification"):
-        notes.append("Verified profile but a certificate needs renewal before applying")
-    elif status == "self_reported":
-        notes.append("Self-reported profile — documents will be verified by the channel partner")
+    # Verification status is already covered by the explainer's considerations.
     return notes
 
 

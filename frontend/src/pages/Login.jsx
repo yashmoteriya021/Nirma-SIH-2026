@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import LanguageToggle from '../components/LanguageToggle';
+import { API_BASE } from '../lib/api';
 
 export default function Login() {
   const { t } = useLang();
@@ -23,7 +24,7 @@ export default function Login() {
     setIsLoading(true);
     setEmailError('');
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

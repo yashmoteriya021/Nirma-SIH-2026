@@ -1,219 +1,703 @@
 {
   "navbar": {
-    "logo": { "en": "SchemeSetu", "hi": "स्कीमसेतु" },
-    "search": { "en": "Search schemes...", "hi": "योजनाएं खोजें..." },
-    "login": { "en": "Login", "hi": "लॉगिन" },
-    "home": { "en": "Home", "hi": "होम" },
-    "schemes": { "en": "All Schemes", "hi": "सभी योजनाएं" },
-    "about": { "en": "About", "hi": "हमारे बारे में" },
-    "contact": { "en": "Contact", "hi": "संपर्क" }
+    "logo": {
+      "en": "SchemeSetu",
+      "hi": "स्कीमसेतु"
+    },
+    "search": {
+      "en": "Search schemes...",
+      "hi": "योजनाएं खोजें..."
+    },
+    "login": {
+      "en": "Login",
+      "hi": "लॉगिन"
+    },
+    "home": {
+      "en": "Home",
+      "hi": "होम"
+    },
+    "schemes": {
+      "en": "All Schemes",
+      "hi": "सभी योजनाएं"
+    },
+    "about": {
+      "en": "About",
+      "hi": "हमारे बारे में"
+    },
+    "contact": {
+      "en": "Contact",
+      "hi": "संपर्क"
+    },
+    "assistant": {
+      "en": "AI Assistant",
+      "hi": "AI सहायक"
+    }
   },
   "home": {
     "hero": {
-      "title": { "en": "Your Bridge to Government Loan Schemes", "hi": "सरकारी ऋण योजनाओं तक आपका सेतु" },
-      "subtitle": { "en": "Discover concessional credit and education loan schemes for the SC community. Check your eligibility, compare schemes, and find your nearest Channel Partner — all in one place.", "hi": "अनुसूचित जाति समुदाय के लिए रियायती ऋण और शिक्षा ऋण योजनाओं की खोज करें। अपनी पात्रता जांचें, योजनाओं की तुलना करें, और अपना निकटतम चैनल पार्टनर खोजें — सब एक ही जगह।" },
-      "findScheme": { "en": "Find My Scheme", "hi": "मेरी योजना खोजें" },
-      "browseAll": { "en": "Browse All Schemes", "hi": "सभी योजनाएं देखें" }
+      "title": {
+        "en": "Your Bridge to Government Loan Schemes",
+        "hi": "सरकारी ऋण योजनाओं तक आपका सेतु"
+      },
+      "subtitle": {
+        "en": "Discover concessional credit and education loan schemes for the SC community. Check your eligibility, compare schemes, and find your nearest Channel Partner — all in one place.",
+        "hi": "अनुसूचित जाति समुदाय के लिए रियायती ऋण और शिक्षा ऋण योजनाओं की खोज करें। अपनी पात्रता जांचें, योजनाओं की तुलना करें, और अपना निकटतम चैनल पार्टनर खोजें — सब एक ही जगह।"
+      },
+      "findScheme": {
+        "en": "Find My Scheme",
+        "hi": "मेरी योजना खोजें"
+      },
+      "browseAll": {
+        "en": "Browse All Schemes",
+        "hi": "सभी योजनाएं देखें"
+      }
     },
     "trust": {
-      "partners": { "en": "100+ Channel Partners", "hi": "100+ चैनल पार्टनर" },
-      "funding": { "en": "Up to 90% Funding", "hi": "90% तक वित्तपोषण" },
-      "interest": { "en": "Interest from 4%", "hi": "4% से ब्याज दर" },
-      "community": { "en": "SC Community Focused", "hi": "अनुसूचित जाति केंद्रित" }
+      "partners": {
+        "en": "100+ Channel Partners",
+        "hi": "100+ चैनल पार्टनर"
+      },
+      "funding": {
+        "en": "Up to 90% Funding",
+        "hi": "90% तक वित्तपोषण"
+      },
+      "interest": {
+        "en": "Interest from 4%",
+        "hi": "4% से ब्याज दर"
+      },
+      "community": {
+        "en": "SC Community Focused",
+        "hi": "अनुसूचित जाति केंद्रित"
+      }
     },
     "recommender": {
-      "title": { "en": "Find the Right Scheme for You", "hi": "आपके लिए सही योजना खोजें" },
-      "subtitle": { "en": "Answer a few simple questions and we will recommend the best scheme.", "hi": "कुछ सरल प्रश्नों के उत्तर दें और हम सबसे अच्छी योजना की सिफारिश करेंगे।" },
-      "purpose": { "en": "What do you need the loan for?", "hi": "आपको ऋण किसलिए चाहिए?" },
-      "purposeOptions": {
-        "small": { "en": "Small Business (up to ₹1.4 lakh)", "hi": "छोटा व्यवसाय (₹1.4 लाख तक)" },
-        "large": { "en": "Larger Project (up to ₹50 lakh)", "hi": "बड़ी परियोजना (₹50 लाख तक)" },
-        "education": { "en": "Education", "hi": "शिक्षा" }
+      "title": {
+        "en": "Find the Right Scheme for You",
+        "hi": "आपके लिए सही योजना खोजें"
       },
-      "cost": { "en": "Estimated cost (₹)", "hi": "अनुमानित लागत (₹)" },
-      "income": { "en": "Annual family income (₹)", "hi": "वार्षिक पारिवारिक आय (₹)" },
-      "studying": { "en": "Are you currently studying?", "hi": "क्या आप वर्तमान में पढ़ रहे हैं?" },
-      "yes": { "en": "Yes", "hi": "हाँ" },
-      "no": { "en": "No", "hi": "नहीं" },
-      "submit": { "en": "Find My Scheme", "hi": "मेरी योजना खोजें" },
-      "notEligible": { "en": "Based on the income you entered, this falls outside the current income criteria (₹5,00,000 per year). You may still want to explore other government programs or contact a Channel Partner for guidance.", "hi": "आपकी दर्ज आय के आधार पर, यह वर्तमान आय मानदंड (₹5,00,000 प्रति वर्ष) से बाहर है। आप अन्य सरकारी कार्यक्रमों का पता लगा सकते हैं या मार्गदर्शन के लिए चैनल पार्टनर से संपर्क कर सकते हैं।" },
-      "exceedsMax": { "en": "The estimated cost exceeds the maximum available under current schemes (₹50 lakh). Please contact a Channel Partner for personalized guidance.", "hi": "अनुमानित लागत वर्तमान योजनाओं के तहत उपलब्ध अधिकतम (₹50 लाख) से अधिक है। कृपया व्यक्तिगत मार्गदर्शन के लिए चैनल पार्टनर से संपर्क करें।" },
-      "recommended": { "en": "Recommended for you", "hi": "आपके लिए अनुशंसित" },
-      "viewDetails": { "en": "View Full Details", "hi": "पूरा विवरण देखें" }
+      "subtitle": {
+        "en": "Answer a few simple questions and we will recommend the best scheme.",
+        "hi": "कुछ सरल प्रश्नों के उत्तर दें और हम सबसे अच्छी योजना की सिफारिश करेंगे।"
+      },
+      "purpose": {
+        "en": "What do you need the loan for?",
+        "hi": "आपको ऋण किसलिए चाहिए?"
+      },
+      "purposeOptions": {
+        "small": {
+          "en": "Small Business (up to ₹1.4 lakh)",
+          "hi": "छोटा व्यवसाय (₹1.4 लाख तक)"
+        },
+        "large": {
+          "en": "Larger Project (up to ₹50 lakh)",
+          "hi": "बड़ी परियोजना (₹50 लाख तक)"
+        },
+        "education": {
+          "en": "Education",
+          "hi": "शिक्षा"
+        }
+      },
+      "cost": {
+        "en": "Estimated cost (₹)",
+        "hi": "अनुमानित लागत (₹)"
+      },
+      "income": {
+        "en": "Annual family income (₹)",
+        "hi": "वार्षिक पारिवारिक आय (₹)"
+      },
+      "studying": {
+        "en": "Are you currently studying?",
+        "hi": "क्या आप वर्तमान में पढ़ रहे हैं?"
+      },
+      "yes": {
+        "en": "Yes",
+        "hi": "हाँ"
+      },
+      "no": {
+        "en": "No",
+        "hi": "नहीं"
+      },
+      "submit": {
+        "en": "Find My Scheme",
+        "hi": "मेरी योजना खोजें"
+      },
+      "notEligible": {
+        "en": "Based on the income you entered, this falls outside the current income criteria (₹5,00,000 per year). You may still want to explore other government programs or contact a Channel Partner for guidance.",
+        "hi": "आपकी दर्ज आय के आधार पर, यह वर्तमान आय मानदंड (₹5,00,000 प्रति वर्ष) से बाहर है। आप अन्य सरकारी कार्यक्रमों का पता लगा सकते हैं या मार्गदर्शन के लिए चैनल पार्टनर से संपर्क कर सकते हैं।"
+      },
+      "exceedsMax": {
+        "en": "The estimated cost exceeds the maximum available under current schemes (₹50 lakh). Please contact a Channel Partner for personalized guidance.",
+        "hi": "अनुमानित लागत वर्तमान योजनाओं के तहत उपलब्ध अधिकतम (₹50 लाख) से अधिक है। कृपया व्यक्तिगत मार्गदर्शन के लिए चैनल पार्टनर से संपर्क करें।"
+      },
+      "recommended": {
+        "en": "Recommended for you",
+        "hi": "आपके लिए अनुशंसित"
+      },
+      "viewDetails": {
+        "en": "View Full Details",
+        "hi": "पूरा विवरण देखें"
+      }
     },
     "schemeGrid": {
-      "title": { "en": "Explore Our Schemes", "hi": "हमारी योजनाएं देखें" },
-      "learnMore": { "en": "Learn More", "hi": "और जानें" },
-      "upTo": { "en": "Up to", "hi": "अधिकतम" },
-      "interest": { "en": "Interest", "hi": "ब्याज दर" }
+      "title": {
+        "en": "Explore Our Schemes",
+        "hi": "हमारी योजनाएं देखें"
+      },
+      "learnMore": {
+        "en": "Learn More",
+        "hi": "और जानें"
+      },
+      "upTo": {
+        "en": "Up to",
+        "hi": "अधिकतम"
+      },
+      "interest": {
+        "en": "Interest",
+        "hi": "ब्याज दर"
+      }
     },
     "howItWorks": {
-      "title": { "en": "How It Works", "hi": "यह कैसे काम करता है" },
+      "title": {
+        "en": "How It Works",
+        "hi": "यह कैसे काम करता है"
+      },
       "steps": [
-        { "en": "Check Eligibility", "hi": "पात्रता जांचें" },
-        { "en": "Get Recommendation", "hi": "सिफारिश पाएं" },
-        { "en": "Locate a Partner", "hi": "पार्टनर खोजें" },
-        { "en": "Apply", "hi": "आवेदन करें" }
+        {
+          "en": "Check Eligibility",
+          "hi": "पात्रता जांचें"
+        },
+        {
+          "en": "Get Recommendation",
+          "hi": "सिफारिश पाएं"
+        },
+        {
+          "en": "Locate a Partner",
+          "hi": "पार्टनर खोजें"
+        },
+        {
+          "en": "Apply",
+          "hi": "आवेदन करें"
+        }
       ],
       "stepDescriptions": [
-        { "en": "Answer a few questions about your needs and income.", "hi": "अपनी जरूरतों और आय के बारे में कुछ सवालों के जवाब दें।" },
-        { "en": "We will suggest the best scheme for your situation.", "hi": "हम आपकी स्थिति के लिए सबसे अच्छी योजना सुझाएंगे।" },
-        { "en": "Find the nearest Channel Partner to submit your application.", "hi": "अपना आवेदन जमा करने के लिए निकटतम चैनल पार्टनर खोजें।" },
-        { "en": "Visit the partner with your documents and apply.", "hi": "अपने दस्तावेजों के साथ पार्टनर पर जाएं और आवेदन करें।" }
+        {
+          "en": "Answer a few questions about your needs and income.",
+          "hi": "अपनी जरूरतों और आय के बारे में कुछ सवालों के जवाब दें।"
+        },
+        {
+          "en": "We will suggest the best scheme for your situation.",
+          "hi": "हम आपकी स्थिति के लिए सबसे अच्छी योजना सुझाएंगे।"
+        },
+        {
+          "en": "Find the nearest Channel Partner to submit your application.",
+          "hi": "अपना आवेदन जमा करने के लिए निकटतम चैनल पार्टनर खोजें।"
+        },
+        {
+          "en": "Visit the partner with your documents and apply.",
+          "hi": "अपने दस्तावेजों के साथ पार्टनर पर जाएं और आवेदन करें।"
+        }
       ]
     },
     "impact": {
-      "title": { "en": "Making a Difference", "hi": "बदलाव ला रहे हैं" },
-      "note": { "en": "Illustrative data for demonstration purposes", "hi": "प्रदर्शन उद्देश्यों के लिए उदाहरणात्मक डेटा" },
+      "title": {
+        "en": "Making a Difference",
+        "hi": "बदलाव ला रहे हैं"
+      },
+      "note": {
+        "en": "Illustrative data for demonstration purposes",
+        "hi": "प्रदर्शन उद्देश्यों के लिए उदाहरणात्मक डेटा"
+      },
       "stats": [
-        { "value": "15,000+", "label": { "en": "Beneficiaries Assisted", "hi": "लाभार्थियों की सहायता" } },
-        { "value": "₹120 Cr+", "label": { "en": "Loans Disbursed", "hi": "वितरित ऋण" } },
-        { "value": "28", "label": { "en": "States & UTs Covered", "hi": "राज्य और केंद्र शासित प्रदेश" } }
+        {
+          "value": "15,000+",
+          "label": {
+            "en": "Beneficiaries Assisted",
+            "hi": "लाभार्थियों की सहायता"
+          }
+        },
+        {
+          "value": "₹120 Cr+",
+          "label": {
+            "en": "Loans Disbursed",
+            "hi": "वितरित ऋण"
+          }
+        },
+        {
+          "value": "28",
+          "label": {
+            "en": "States & UTs Covered",
+            "hi": "राज्य और केंद्र शासित प्रदेश"
+          }
+        }
       ]
     },
     "faq": {
-      "title": { "en": "Frequently Asked Questions", "hi": "अक्सर पूछे जाने वाले प्रश्न" },
+      "title": {
+        "en": "Frequently Asked Questions",
+        "hi": "अक्सर पूछे जाने वाले प्रश्न"
+      },
       "items": [
         {
-          "q": { "en": "Who is eligible for these schemes?", "hi": "इन योजनाओं के लिए कौन पात्र है?" },
-          "a": { "en": "These schemes are available for members of the Scheduled Caste (SC) community with an annual family income of ₹5,00,000 or less.", "hi": "ये योजनाएं ₹5,00,000 या उससे कम वार्षिक पारिवारिक आय वाले अनुसूचित जाति (SC) समुदाय के सदस्यों के लिए उपलब्ध हैं।" }
+          "q": {
+            "en": "Who is eligible for these schemes?",
+            "hi": "इन योजनाओं के लिए कौन पात्र है?"
+          },
+          "a": {
+            "en": "These schemes are available for members of the Scheduled Caste (SC) community with an annual family income of ₹5,00,000 or less.",
+            "hi": "ये योजनाएं ₹5,00,000 या उससे कम वार्षिक पारिवारिक आय वाले अनुसूचित जाति (SC) समुदाय के सदस्यों के लिए उपलब्ध हैं।"
+          }
         },
         {
-          "q": { "en": "What is a Channel Partner?", "hi": "चैनल पार्टनर क्या है?" },
-          "a": { "en": "A Channel Partner is an authorized organization — like a State Channelizing Agency (SCA), Public Sector Bank, Regional Rural Bank (RRB), or NBFC-MFI — that processes and disburses loans under these government schemes.", "hi": "चैनल पार्टनर एक अधिकृत संगठन है — जैसे राज्य चैनलाइजिंग एजेंसी (SCA), सार्वजनिक क्षेत्र का बैंक, क्षेत्रीय ग्रामीण बैंक (RRB), या NBFC-MFI — जो इन सरकारी योजनाओं के तहत ऋण की प्रक्रिया और वितरण करता है।" }
+          "q": {
+            "en": "What is a Channel Partner?",
+            "hi": "चैनल पार्टनर क्या है?"
+          },
+          "a": {
+            "en": "A Channel Partner is an authorized organization — like a State Channelizing Agency (SCA), Public Sector Bank, Regional Rural Bank (RRB), or NBFC-MFI — that processes and disburses loans under these government schemes.",
+            "hi": "चैनल पार्टनर एक अधिकृत संगठन है — जैसे राज्य चैनलाइजिंग एजेंसी (SCA), सार्वजनिक क्षेत्र का बैंक, क्षेत्रीय ग्रामीण बैंक (RRB), या NBFC-MFI — जो इन सरकारी योजनाओं के तहत ऋण की प्रक्रिया और वितरण करता है।"
+          }
         },
         {
-          "q": { "en": "What does 'moratorium period' mean?", "hi": "'मोरेटोरियम अवधि' का क्या मतलब है?" },
-          "a": { "en": "A moratorium period is a grace period after your loan is disbursed during which you don't have to make any repayments. This gives you time to start your business or complete your education before beginning to repay.", "hi": "मोरेटोरियम अवधि एक अनुग्रह अवधि है जो आपके ऋण वितरण के बाद होती है, जिसके दौरान आपको कोई भुगतान नहीं करना होता। यह आपको भुगतान शुरू करने से पहले अपना व्यवसाय शुरू करने या शिक्षा पूरी करने का समय देती है।" }
+          "q": {
+            "en": "What does 'moratorium period' mean?",
+            "hi": "'मोरेटोरियम अवधि' का क्या मतलब है?"
+          },
+          "a": {
+            "en": "A moratorium period is a grace period after your loan is disbursed during which you don't have to make any repayments. This gives you time to start your business or complete your education before beginning to repay.",
+            "hi": "मोरेटोरियम अवधि एक अनुग्रह अवधि है जो आपके ऋण वितरण के बाद होती है, जिसके दौरान आपको कोई भुगतान नहीं करना होता। यह आपको भुगतान शुरू करने से पहले अपना व्यवसाय शुरू करने या शिक्षा पूरी करने का समय देती है।"
+          }
         },
         {
-          "q": { "en": "What is EMI and how is it calculated?", "hi": "EMI क्या है और इसकी गणना कैसे होती है?" },
-          "a": { "en": "EMI (Equated Monthly Installment) is the fixed amount you pay every month to repay your loan. It is calculated based on the loan amount, interest rate, and repayment period. You can use our EMI Calculator on any scheme page to see your estimated monthly payment.", "hi": "EMI (समान मासिक किस्त) वह निश्चित राशि है जो आप हर महीने अपने ऋण को चुकाने के लिए भुगतान करते हैं। इसकी गणना ऋण राशि, ब्याज दर और चुकौती अवधि के आधार पर की जाती है। आप किसी भी योजना पृष्ठ पर हमारे EMI कैलकुलेटर का उपयोग करके अपना अनुमानित मासिक भुगतान देख सकते हैं।" }
+          "q": {
+            "en": "What is EMI and how is it calculated?",
+            "hi": "EMI क्या है और इसकी गणना कैसे होती है?"
+          },
+          "a": {
+            "en": "EMI (Equated Monthly Installment) is the fixed amount you pay every month to repay your loan. It is calculated based on the loan amount, interest rate, and repayment period. You can use our EMI Calculator on any scheme page to see your estimated monthly payment.",
+            "hi": "EMI (समान मासिक किस्त) वह निश्चित राशि है जो आप हर महीने अपने ऋण को चुकाने के लिए भुगतान करते हैं। इसकी गणना ऋण राशि, ब्याज दर और चुकौती अवधि के आधार पर की जाती है। आप किसी भी योजना पृष्ठ पर हमारे EMI कैलकुलेटर का उपयोग करके अपना अनुमानित मासिक भुगतान देख सकते हैं।"
+          }
         },
         {
-          "q": { "en": "Is SchemeSetu an official government website?", "hi": "क्या स्कीमसेतु एक आधिकारिक सरकारी वेबसाइट है?" },
-          "a": { "en": "SchemeSetu is a platform designed to help you discover and navigate government loan schemes. It is not an official government website. For official information, please visit the relevant government department or Channel Partner.", "hi": "स्कीमसेतु एक मंच है जो आपको सरकारी ऋण योजनाओं को खोजने और समझने में मदद करने के लिए डिज़ाइन किया गया है। यह एक आधिकारिक सरकारी वेबसाइट नहीं है। आधिकारिक जानकारी के लिए, कृपया संबंधित सरकारी विभाग या चैनल पार्टनर से संपर्क करें।" }
+          "q": {
+            "en": "Is SchemeSetu an official government website?",
+            "hi": "क्या स्कीमसेतु एक आधिकारिक सरकारी वेबसाइट है?"
+          },
+          "a": {
+            "en": "SchemeSetu is a platform designed to help you discover and navigate government loan schemes. It is not an official government website. For official information, please visit the relevant government department or Channel Partner.",
+            "hi": "स्कीमसेतु एक मंच है जो आपको सरकारी ऋण योजनाओं को खोजने और समझने में मदद करने के लिए डिज़ाइन किया गया है। यह एक आधिकारिक सरकारी वेबसाइट नहीं है। आधिकारिक जानकारी के लिए, कृपया संबंधित सरकारी विभाग या चैनल पार्टनर से संपर्क करें।"
+          }
         }
       ]
     }
   },
   "login": {
-    "title": { "en": "Welcome Back", "hi": "वापसी पर स्वागत है" },
-    "subtitle": { "en": "Log in to your SchemeSetu account", "hi": "अपने स्कीमसेतु खाते में लॉगिन करें" },
-    "mobileTab": { "en": "Mobile OTP", "hi": "मोबाइल OTP" },
-    "emailTab": { "en": "Email & Password", "hi": "ईमेल और पासवर्ड" },
-    "phone": { "en": "Mobile number", "hi": "मोबाइल नंबर" },
-    "sendOTP": { "en": "Send OTP", "hi": "OTP भेजें" },
-    "enterOTP": { "en": "Enter the 6-digit code sent to your mobile", "hi": "अपने मोबाइल पर भेजा गया 6-अंकीय कोड दर्ज करें" },
-    "resendIn": { "en": "Resend in", "hi": "पुनः भेजें" },
-    "resend": { "en": "Resend OTP", "hi": "OTP पुनः भेजें" },
-    "verify": { "en": "Verify & Continue", "hi": "सत्यापित करें और जारी रखें" },
-    "email": { "en": "Email address", "hi": "ईमेल पता" },
-    "password": { "en": "Password", "hi": "पासवर्ड" },
-    "showPassword": { "en": "Show password", "hi": "पासवर्ड दिखाएं" },
-    "hidePassword": { "en": "Hide password", "hi": "पासवर्ड छिपाएं" },
-    "loginBtn": { "en": "Log In", "hi": "लॉगिन करें" },
-    "secure": { "en": "Your information is safe and secure", "hi": "आपकी जानकारी सुरक्षित है" },
-    "register": { "en": "New to SchemeSetu? Register here", "hi": "स्कीमसेतु पर नए हैं? यहां रजिस्टर करें" },
-    "otpError": { "en": "That OTP didn't match. Please try again.", "hi": "वह OTP मेल नहीं खाता। कृपया पुनः प्रयास करें।" },
-    "loginError": { "en": "Incorrect email or password. Please check and try again.", "hi": "गलत ईमेल या पासवर्ड। कृपया जांचें और पुनः प्रयास करें।" }
+    "title": {
+      "en": "Welcome Back",
+      "hi": "वापसी पर स्वागत है"
+    },
+    "subtitle": {
+      "en": "Log in to your SchemeSetu account",
+      "hi": "अपने स्कीमसेतु खाते में लॉगिन करें"
+    },
+    "mobileTab": {
+      "en": "Mobile OTP",
+      "hi": "मोबाइल OTP"
+    },
+    "emailTab": {
+      "en": "Email & Password",
+      "hi": "ईमेल और पासवर्ड"
+    },
+    "phone": {
+      "en": "Mobile number",
+      "hi": "मोबाइल नंबर"
+    },
+    "sendOTP": {
+      "en": "Send OTP",
+      "hi": "OTP भेजें"
+    },
+    "enterOTP": {
+      "en": "Enter the 6-digit code sent to your mobile",
+      "hi": "अपने मोबाइल पर भेजा गया 6-अंकीय कोड दर्ज करें"
+    },
+    "resendIn": {
+      "en": "Resend in",
+      "hi": "पुनः भेजें"
+    },
+    "resend": {
+      "en": "Resend OTP",
+      "hi": "OTP पुनः भेजें"
+    },
+    "verify": {
+      "en": "Verify & Continue",
+      "hi": "सत्यापित करें और जारी रखें"
+    },
+    "email": {
+      "en": "Email address",
+      "hi": "ईमेल पता"
+    },
+    "password": {
+      "en": "Password",
+      "hi": "पासवर्ड"
+    },
+    "showPassword": {
+      "en": "Show password",
+      "hi": "पासवर्ड दिखाएं"
+    },
+    "hidePassword": {
+      "en": "Hide password",
+      "hi": "पासवर्ड छिपाएं"
+    },
+    "loginBtn": {
+      "en": "Log In",
+      "hi": "लॉगिन करें"
+    },
+    "secure": {
+      "en": "Your information is safe and secure",
+      "hi": "आपकी जानकारी सुरक्षित है"
+    },
+    "register": {
+      "en": "New to SchemeSetu? Register here",
+      "hi": "स्कीमसेतु पर नए हैं? यहां रजिस्टर करें"
+    },
+    "otpError": {
+      "en": "That OTP didn't match. Please try again.",
+      "hi": "वह OTP मेल नहीं खाता। कृपया पुनः प्रयास करें।"
+    },
+    "loginError": {
+      "en": "Incorrect email or password. Please check and try again.",
+      "hi": "गलत ईमेल या पासवर्ड। कृपया जांचें और पुनः प्रयास करें।"
+    }
   },
   "register": {
-    "title": { "en": "Create an Account", "hi": "खाता बनाएं" },
-    "subtitle": { "en": "Register for SchemeSetu", "hi": "स्कीमसेतु के लिए रजिस्टर करें" },
-    "firstName": { "en": "First Name (as per Aadhar)", "hi": "प्रथम नाम (आधार के अनुसार)" },
-    "lastName": { "en": "Last Name (as per Aadhar)", "hi": "अंतिम नाम (आधार के अनुसार)" },
-    "email": { "en": "Email address", "hi": "ईमेल पता" },
-    "mobile": { "en": "Mobile number", "hi": "मोबाइल नंबर" },
-    "password": { "en": "Password", "hi": "पासवर्ड" },
-    "confirmPassword": { "en": "Confirm Password", "hi": "पासवर्ड की पुष्टि करें" },
-    "passwordMismatch": { "en": "Passwords do not match", "hi": "पासवर्ड मेल नहीं खाते" },
-    "verifyBtn": { "en": "Verify", "hi": "सत्यापित करें" },
-    "verified": { "en": "Verified", "hi": "सत्यापित" },
-    "certificate": { "en": "SC Caste Certificate", "hi": "अनुसूचित जाति प्रमाणपत्र" },
-    "uploadBtn": { "en": "Choose File", "hi": "फ़ाइल चुनें" },
-    "submitBtn": { "en": "Register", "hi": "रजिस्टर करें" },
-    "loginLink": { "en": "Already have an account? Log in here", "hi": "पहले से खाता है? यहाँ लॉग इन करें" }
+    "title": {
+      "en": "Create an Account",
+      "hi": "खाता बनाएं"
+    },
+    "subtitle": {
+      "en": "Register for SchemeSetu",
+      "hi": "स्कीमसेतु के लिए रजिस्टर करें"
+    },
+    "firstName": {
+      "en": "First Name (as per Aadhar)",
+      "hi": "प्रथम नाम (आधार के अनुसार)"
+    },
+    "lastName": {
+      "en": "Last Name (as per Aadhar)",
+      "hi": "अंतिम नाम (आधार के अनुसार)"
+    },
+    "email": {
+      "en": "Email address",
+      "hi": "ईमेल पता"
+    },
+    "mobile": {
+      "en": "Mobile number",
+      "hi": "मोबाइल नंबर"
+    },
+    "password": {
+      "en": "Password",
+      "hi": "पासवर्ड"
+    },
+    "confirmPassword": {
+      "en": "Confirm Password",
+      "hi": "पासवर्ड की पुष्टि करें"
+    },
+    "passwordMismatch": {
+      "en": "Passwords do not match",
+      "hi": "पासवर्ड मेल नहीं खाते"
+    },
+    "verifyBtn": {
+      "en": "Verify",
+      "hi": "सत्यापित करें"
+    },
+    "verified": {
+      "en": "Verified",
+      "hi": "सत्यापित"
+    },
+    "certificate": {
+      "en": "SC Caste Certificate",
+      "hi": "अनुसूचित जाति प्रमाणपत्र"
+    },
+    "uploadBtn": {
+      "en": "Choose File",
+      "hi": "फ़ाइल चुनें"
+    },
+    "submitBtn": {
+      "en": "Register",
+      "hi": "रजिस्टर करें"
+    },
+    "loginLink": {
+      "en": "Already have an account? Log in here",
+      "hi": "पहले से खाता है? यहाँ लॉग इन करें"
+    }
   },
   "scheme": {
     "breadcrumb": {
-      "home": { "en": "Home", "hi": "होम" },
-      "schemes": { "en": "Schemes", "hi": "योजनाएं" }
+      "home": {
+        "en": "Home",
+        "hi": "होम"
+      },
+      "schemes": {
+        "en": "Schemes",
+        "hi": "योजनाएं"
+      }
     },
     "tabs": {
-      "overview": { "en": "Overview", "hi": "अवलोकन" },
-      "eligibility": { "en": "Eligibility", "hi": "पात्रता" },
-      "loanDetails": { "en": "Loan Details", "hi": "ऋण विवरण" },
-      "emiCalculator": { "en": "EMI Calculator", "hi": "EMI कैलकुलेटर" },
-      "documents": { "en": "Documents Required", "hi": "आवश्यक दस्तावेज" },
-      "process": { "en": "Application Process", "hi": "आवेदन प्रक्रिया" },
-      "partners": { "en": "Find a Channel Partner", "hi": "चैनल पार्टनर खोजें" },
-      "related": { "en": "Related Schemes", "hi": "संबंधित योजनाएं" },
-      "faqs": { "en": "FAQs", "hi": "अक्सर पूछे जाने वाले प्रश्न" }
+      "overview": {
+        "en": "Overview",
+        "hi": "अवलोकन"
+      },
+      "eligibility": {
+        "en": "Eligibility",
+        "hi": "पात्रता"
+      },
+      "loanDetails": {
+        "en": "Loan Details",
+        "hi": "ऋण विवरण"
+      },
+      "emiCalculator": {
+        "en": "EMI Calculator",
+        "hi": "EMI कैलकुलेटर"
+      },
+      "documents": {
+        "en": "Documents Required",
+        "hi": "आवश्यक दस्तावेज"
+      },
+      "process": {
+        "en": "Application Process",
+        "hi": "आवेदन प्रक्रिया"
+      },
+      "partners": {
+        "en": "Find a Channel Partner",
+        "hi": "चैनल पार्टनर खोजें"
+      },
+      "related": {
+        "en": "Related Schemes",
+        "hi": "संबंधित योजनाएं"
+      },
+      "faqs": {
+        "en": "FAQs",
+        "hi": "अक्सर पूछे जाने वाले प्रश्न"
+      }
     },
     "details": {
-      "maxLoan": { "en": "Maximum Loan Amount", "hi": "अधिकतम ऋण राशि" },
-      "interestRate": { "en": "Interest Rate", "hi": "ब्याज दर" },
-      "funding": { "en": "Funding Coverage", "hi": "वित्तपोषण कवरेज" },
-      "moratorium": { "en": "Moratorium Period", "hi": "मोरेटोरियम अवधि" },
-      "tenure": { "en": "Loan Tenure", "hi": "ऋण अवधि" },
-      "incomeLimit": { "en": "Income Limit", "hi": "आय सीमा" },
-      "months": { "en": "months", "hi": "महीने" },
-      "toMonths": { "en": "to", "hi": "से" },
-      "perAnnum": { "en": "per annum", "hi": "प्रति वर्ष" },
-      "ofProjectCost": { "en": "of project cost", "hi": "परियोजना लागत का" },
-      "perYear": { "en": "per year", "hi": "प्रति वर्ष" }
+      "maxLoan": {
+        "en": "Maximum Loan Amount",
+        "hi": "अधिकतम ऋण राशि"
+      },
+      "interestRate": {
+        "en": "Interest Rate",
+        "hi": "ब्याज दर"
+      },
+      "funding": {
+        "en": "Funding Coverage",
+        "hi": "वित्तपोषण कवरेज"
+      },
+      "moratorium": {
+        "en": "Moratorium Period",
+        "hi": "मोरेटोरियम अवधि"
+      },
+      "tenure": {
+        "en": "Loan Tenure",
+        "hi": "ऋण अवधि"
+      },
+      "incomeLimit": {
+        "en": "Income Limit",
+        "hi": "आय सीमा"
+      },
+      "months": {
+        "en": "months",
+        "hi": "महीने"
+      },
+      "toMonths": {
+        "en": "to",
+        "hi": "से"
+      },
+      "perAnnum": {
+        "en": "per annum",
+        "hi": "प्रति वर्ष"
+      },
+      "ofProjectCost": {
+        "en": "of project cost",
+        "hi": "परियोजना लागत का"
+      },
+      "perYear": {
+        "en": "per year",
+        "hi": "प्रति वर्ष"
+      }
     },
     "emi": {
-      "title": { "en": "EMI Calculator", "hi": "EMI कैलकुलेटर" },
-      "subtitle": { "en": "Calculate your estimated monthly payment", "hi": "अपना अनुमानित मासिक भुगतान गणना करें" },
-      "loanAmount": { "en": "Loan Amount (₹)", "hi": "ऋण राशि (₹)" },
-      "tenure": { "en": "Tenure (months)", "hi": "अवधि (महीने)" },
-      "rate": { "en": "Interest Rate (% per year)", "hi": "ब्याज दर (% प्रति वर्ष)" },
-      "monthlyEMI": { "en": "Monthly EMI", "hi": "मासिक EMI" },
-      "totalInterest": { "en": "Total Interest Payable", "hi": "कुल देय ब्याज" },
-      "totalRepayment": { "en": "Total Repayment", "hi": "कुल पुनर्भुगतान" },
-      "tooltip": { "en": "EMI (Equated Monthly Installment) is the fixed amount you pay each month to repay your loan.", "hi": "EMI (समान मासिक किस्त) वह निश्चित राशि है जो आप अपने ऋण को चुकाने के लिए हर महीने भुगतान करते हैं।" }
+      "title": {
+        "en": "EMI Calculator",
+        "hi": "EMI कैलकुलेटर"
+      },
+      "subtitle": {
+        "en": "Calculate your estimated monthly payment",
+        "hi": "अपना अनुमानित मासिक भुगतान गणना करें"
+      },
+      "loanAmount": {
+        "en": "Loan Amount (₹)",
+        "hi": "ऋण राशि (₹)"
+      },
+      "tenure": {
+        "en": "Tenure (months)",
+        "hi": "अवधि (महीने)"
+      },
+      "rate": {
+        "en": "Interest Rate (% per year)",
+        "hi": "ब्याज दर (% प्रति वर्ष)"
+      },
+      "monthlyEMI": {
+        "en": "Monthly EMI",
+        "hi": "मासिक EMI"
+      },
+      "totalInterest": {
+        "en": "Total Interest Payable",
+        "hi": "कुल देय ब्याज"
+      },
+      "totalRepayment": {
+        "en": "Total Repayment",
+        "hi": "कुल पुनर्भुगतान"
+      },
+      "tooltip": {
+        "en": "EMI (Equated Monthly Installment) is the fixed amount you pay each month to repay your loan.",
+        "hi": "EMI (समान मासिक किस्त) वह निश्चित राशि है जो आप अपने ऋण को चुकाने के लिए हर महीने भुगतान करते हैं।"
+      }
     },
     "partner": {
-      "title": { "en": "Find a Channel Partner Near You", "hi": "अपने पास चैनल पार्टनर खोजें" },
-      "searchCity": { "en": "Enter city name", "hi": "शहर का नाम दर्ज करें" },
-      "useLocation": { "en": "Use my location", "hi": "मेरा स्थान उपयोग करें" },
-      "accepting": { "en": "Currently accepting applications", "hi": "वर्तमान में आवेदन स्वीकार कर रहे हैं" },
-      "paused": { "en": "Temporarily paused", "hi": "अस्थायी रूप से रुका हुआ" },
-      "contact": { "en": "Contact", "hi": "संपर्क" },
-      "apply": { "en": "Apply Through This Partner", "hi": "इस पार्टनर के माध्यम से आवेदन करें" }
+      "title": {
+        "en": "Find a Channel Partner Near You",
+        "hi": "अपने पास चैनल पार्टनर खोजें"
+      },
+      "searchCity": {
+        "en": "Enter city name",
+        "hi": "शहर का नाम दर्ज करें"
+      },
+      "useLocation": {
+        "en": "Use my location",
+        "hi": "मेरा स्थान उपयोग करें"
+      },
+      "accepting": {
+        "en": "Currently accepting applications",
+        "hi": "वर्तमान में आवेदन स्वीकार कर रहे हैं"
+      },
+      "paused": {
+        "en": "Temporarily paused",
+        "hi": "अस्थायी रूप से रुका हुआ"
+      },
+      "contact": {
+        "en": "Contact",
+        "hi": "संपर्क"
+      },
+      "apply": {
+        "en": "Apply Through This Partner",
+        "hi": "इस पार्टनर के माध्यम से आवेदन करें"
+      }
     },
-    "relatedTitle": { "en": "You May Also Be Interested In", "hi": "आपकी रुचि हो सकती है" },
-    "applyNow": { "en": "Apply Now / Contact Partner", "hi": "अभी आवेदन करें / पार्टनर से संपर्क करें" },
+    "relatedTitle": {
+      "en": "You May Also Be Interested In",
+      "hi": "आपकी रुचि हो सकती है"
+    },
+    "applyNow": {
+      "en": "Apply Now / Contact Partner",
+      "hi": "अभी आवेदन करें / पार्टनर से संपर्क करें"
+    },
     "chips": {
-      "income": { "en": "Income ≤ ₹5L", "hi": "आय ≤ ₹5L" },
-      "category": { "en": "SC Category", "hi": "अनुसूचित जाति" }
+      "income": {
+        "en": "Income ≤ ₹5L",
+        "hi": "आय ≤ ₹5L"
+      },
+      "category": {
+        "en": "SC Category",
+        "hi": "अनुसूचित जाति"
+      }
     }
   },
   "footer": {
-    "description": { "en": "Bridging the gap between government loan schemes and SC community beneficiaries.", "hi": "सरकारी ऋण योजनाओं और अनुसूचित जाति समुदाय के लाभार्थियों के बीच की खाई को पाटना।" },
-    "quickLinks": { "en": "Quick Links", "hi": "त्वरित लिंक" },
-    "home": { "en": "Home", "hi": "होम" },
-    "allSchemes": { "en": "All Schemes", "hi": "सभी योजनाएं" },
-    "about": { "en": "About", "hi": "हमारे बारे में" },
-    "faqs": { "en": "FAQs", "hi": "अक्सर पूछे जाने वाले प्रश्न" },
-    "contact": { "en": "Contact", "hi": "संपर्क" },
-    "support": { "en": "Support", "hi": "सहायता" },
-    "accessibility": { "en": "Accessibility Statement", "hi": "सुगम्यता विवरण" },
-    "privacy": { "en": "Privacy Policy", "hi": "गोपनीयता नीति" },
-    "terms": { "en": "Terms of Use", "hi": "उपयोग की शर्तें" },
-    "helpline": { "en": "Helpline", "hi": "हेल्पलाइन" },
-    "helplineNumber": { "en": "1800-XXX-XXXX (Toll Free)", "hi": "1800-XXX-XXXX (टोल फ्री)" },
-    "affiliation": { "en": "This is an illustrative platform. Not an official government website.", "hi": "यह एक उदाहरणात्मक मंच है। यह आधिकारिक सरकारी वेबसाइट नहीं है।" },
-    "copyright": { "en": "© 2026 SchemeSetu. All rights reserved.", "hi": "© 2026 स्कीमसेतु। सर्वाधिकार सुरक्षित।" }
+    "description": {
+      "en": "Bridging the gap between government loan schemes and SC community beneficiaries.",
+      "hi": "सरकारी ऋण योजनाओं और अनुसूचित जाति समुदाय के लाभार्थियों के बीच की खाई को पाटना।"
+    },
+    "quickLinks": {
+      "en": "Quick Links",
+      "hi": "त्वरित लिंक"
+    },
+    "home": {
+      "en": "Home",
+      "hi": "होम"
+    },
+    "allSchemes": {
+      "en": "All Schemes",
+      "hi": "सभी योजनाएं"
+    },
+    "about": {
+      "en": "About",
+      "hi": "हमारे बारे में"
+    },
+    "faqs": {
+      "en": "FAQs",
+      "hi": "अक्सर पूछे जाने वाले प्रश्न"
+    },
+    "contact": {
+      "en": "Contact",
+      "hi": "संपर्क"
+    },
+    "support": {
+      "en": "Support",
+      "hi": "सहायता"
+    },
+    "accessibility": {
+      "en": "Accessibility Statement",
+      "hi": "सुगम्यता विवरण"
+    },
+    "privacy": {
+      "en": "Privacy Policy",
+      "hi": "गोपनीयता नीति"
+    },
+    "terms": {
+      "en": "Terms of Use",
+      "hi": "उपयोग की शर्तें"
+    },
+    "helpline": {
+      "en": "Helpline",
+      "hi": "हेल्पलाइन"
+    },
+    "helplineNumber": {
+      "en": "1800-XXX-XXXX (Toll Free)",
+      "hi": "1800-XXX-XXXX (टोल फ्री)"
+    },
+    "affiliation": {
+      "en": "This is an illustrative platform. Not an official government website.",
+      "hi": "यह एक उदाहरणात्मक मंच है। यह आधिकारिक सरकारी वेबसाइट नहीं है।"
+    },
+    "copyright": {
+      "en": "© 2026 SchemeSetu. All rights reserved.",
+      "hi": "© 2026 स्कीमसेतु। सर्वाधिकार सुरक्षित।"
+    }
   },
   "common": {
-    "selectOption": { "en": "Select an option", "hi": "एक विकल्प चुनें" },
-    "required": { "en": "This field is required", "hi": "यह फ़ील्ड आवश्यक है" },
-    "back": { "en": "Back", "hi": "वापस" },
-    "next": { "en": "Next", "hi": "अगला" },
-    "close": { "en": "Close", "hi": "बंद करें" },
-    "menu": { "en": "Menu", "hi": "मेनू" }
+    "selectOption": {
+      "en": "Select an option",
+      "hi": "एक विकल्प चुनें"
+    },
+    "required": {
+      "en": "This field is required",
+      "hi": "यह फ़ील्ड आवश्यक है"
+    },
+    "back": {
+      "en": "Back",
+      "hi": "वापस"
+    },
+    "next": {
+      "en": "Next",
+      "hi": "अगला"
+    },
+    "close": {
+      "en": "Close",
+      "hi": "बंद करें"
+    },
+    "menu": {
+      "en": "Menu",
+      "hi": "मेनू"
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useLang } from '../context/LanguageContext';
+import { API_BASE } from '../lib/api';
 
 export default function EMICalculator({ scheme }) {
   const { t } = useLang();
@@ -67,7 +68,7 @@ export default function EMICalculator({ scheme }) {
     if (!scheme?.id) return;
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5001/api/calculator/emi', {
+      const res = await fetch(`${API_BASE}/api/calculator/emi`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -37,6 +37,12 @@ export default function Navbar() {
 
           {/* Desktop right actions */}
           <div className="hidden md:flex items-center gap-3">
+            <Link
+              to="/assistant"
+              className="px-4 py-2 bg-accent-gold text-navy-900 font-medium text-sm rounded-xl hover:bg-offwhite-0 transition-colors duration-200 min-h-[44px] flex items-center"
+            >
+              {t('navbar.assistant')}
+            </Link>
             <LanguageToggle />
             {user ? (
               <div className="flex items-center gap-4 ml-2">
@@ -95,6 +101,13 @@ export default function Navbar() {
         >
           <div className="pt-3 space-y-3">
             <SearchBar onClose={() => setMobileOpen(false)} />
+            <Link
+              to="/assistant"
+              onClick={() => setMobileOpen(false)}
+              className="block text-center px-4 py-2 bg-accent-gold text-navy-900 font-medium text-sm rounded-xl min-h-[44px] leading-[28px]"
+            >
+              {t('navbar.assistant')}
+            </Link>
             <div className="flex items-center justify-between gap-3 pt-2">
               <LanguageToggle />
               {user ? (
