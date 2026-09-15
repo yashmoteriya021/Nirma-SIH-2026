@@ -23,7 +23,7 @@ export const generalLimiter = rateLimit({
  */
 export const otpLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,  // 1 hour
-  max: 3,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
   message: {

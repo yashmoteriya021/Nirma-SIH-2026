@@ -17,9 +17,9 @@ const generateToken = (userId) => {
  * Sends a 6-digit OTP to the given mobile number.
  */
 export const sendOtp = asyncHandler(async (req, res) => {
-  const { mobile_number } = req.body;
+  const { identifier, type } = req.body;
 
-  const result = await createAndSendOTP(mobile_number);
+  const result = await createAndSendOTP(identifier, type);
 
   return successResponse(res, result, 'OTP sent successfully');
 });
@@ -30,28 +30,14 @@ export const sendOtp = asyncHandler(async (req, res) => {
  * Creates the user if they don't exist yet (first-time OTP login).
  */
 export const verifyOtpHandler = asyncHandler(async (req, res) => {
-  const { mobile_number, otp_code } = req.body;
+  const { identifier, otp_code } = req.body;
 
-  const isValid = await verifyOTP(mobile_number, otp_code);
+  const isValid = await verifyOTP(identifier, otp_code);
   if (!isValid) {
     return errorResponse(res, 'INVALID_OTP', 'Invalid or expired OTP. Please request a new one.', 401);
   }
 
-  // Find or create user
-  let user = await User.findOne({ mobile_number });
-  if (!user) {
-    user = await User.create({ mobile_number, is_verified: true });
-  } else {
-    user.is_verified = true;
-    await user.save();
-  }
-
-  const token = generateToken(user._id);
-
-  return successResponse(res, {
-    token,
-    user: user.toSafeObject(),
-  }, 'OTP verified successfully');
+  return successResponse(res, { verified: true }, 'OTP verified successfully');
 });
 
 /**
@@ -59,10 +45,16 @@ export const verifyOtpHandler = asyncHandler(async (req, res) => {
  * Registers a new user with full details.
  */
 export const register = asyncHandler(async (req, res) => {
-  const { full_name, mobile_number, email, password } = req.body;
+  const { firstName, lastName, mobile, email, password } = req.body;
+
+  if (!req.file) {
+    return errorResponse(res, 'MISSING_FILE', 'SC Caste Certificate is required.', 400);
+  }
+
+  const certificate_url = `/uploads/certificates/${req.file.filename}`;
 
   // Check if mobile number already exists
-  const existingUser = await User.findOne({ mobile_number });
+  const existingUser = await User.findOne({ mobile_number: mobile });
   if (existingUser) {
     return errorResponse(res, 'USER_EXISTS', 'A user with this mobile number already exists.', 409);
   }
@@ -76,10 +68,14 @@ export const register = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    full_name,
-    mobile_number,
-    email: email || undefined,
-    password_hash: password || undefined,
+    first_name: firstName,
+    last_name: lastName,
+    mobile_number: mobile,
+    email: email,
+    password_hash: password,
+    certificate_url,
+    is_email_verified: true,
+    is_verified: true,
   });
 
   const token = generateToken(user._id);

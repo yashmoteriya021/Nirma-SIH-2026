@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import LanguageToggle from '../components/LanguageToggle';
+import OTPInput from '../components/OTPInput';
 
 export default function Register() {
   const { t } = useLang();
@@ -24,7 +25,30 @@ export default function Register() {
 
   // Mock Verification States
   const [emailVerified, setEmailVerified] = useState(false);
-  const [mobileVerified, setMobileVerified] = useState(false);
+
+  // OTP Modal States
+  const [otpModalVisible, setOtpModalVisible] = useState(false);
+  const [otpType, setOtpType] = useState(null); // 'email' or 'mobile'
+  const [otpValue, setOtpValue] = useState('');
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(120);
+
+  useEffect(() => {
+    let timer;
+    if (otpModalVisible && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [otpModalVisible, timeLeft]);
+
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  };
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -35,18 +59,68 @@ export default function Register() {
     }
   };
 
-  const handleVerifyEmail = () => {
-    if (formData.email) setEmailVerified(true);
+  const handleVerifyEmail = async () => {
+    if (!formData.email || isSendingOtp) return;
+    setIsSendingOtp(true);
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier: formData.email, type: 'email' })
+      });
+      if (res.ok) {
+        setOtpType('email');
+        setOtpValue('');
+        setTimeLeft(120);
+        setOtpModalVisible(true);
+      } else {
+        const data = await res.json();
+        alert(data.error?.message || 'Failed to send OTP');
+      }
+    } catch (err) {
+      alert('Network error');
+    } finally {
+      setIsSendingOtp(false);
+    }
   };
 
-  const handleVerifyMobile = () => {
-    if (formData.mobile.length === 10) setMobileVerified(true);
+  const handleResendOTP = () => {
+    setTimeLeft(120);
+    handleVerifyEmail();
+  };
+
+
+
+  const handleSubmitOTP = async (e) => {
+    e.preventDefault();
+    if (otpValue.length !== 6 || isVerifyingOtp) return;
+    
+    setIsVerifyingOtp(true);
+    try {
+      const identifier = otpType === 'email' ? formData.email : formData.mobile;
+      const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier, otp_code: otpValue })
+      });
+      if (res.ok) {
+        if (otpType === 'email') setEmailVerified(true);
+        setOtpModalVisible(false);
+      } else {
+        const data = await res.json();
+        alert(data.error?.message || 'Invalid OTP');
+      }
+    } catch (err) {
+      alert('Network error');
+    } finally {
+      setIsVerifyingOtp(false);
+    }
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (!emailVerified || !mobileVerified) {
-      alert('Please verify email and mobile number first.');
+    if (!emailVerified) {
+      alert('Please verify email first.');
       return;
     }
     if (formData.password !== formData.confirmPassword) {
@@ -118,6 +192,31 @@ export default function Register() {
             </div>
 
             <div>
+              <label htmlFor="mobile" className="block text-sm font-medium text-ink-900 mb-1.5">
+                {t('register.mobile')}
+              </label>
+              <div className="flex w-full">
+                <span className="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-navy-100 bg-offwhite-50 text-navy-700 text-sm">
+                  +91
+                </span>
+                <input
+                  id="mobile"
+                  name="mobile"
+                  type="tel"
+                  value={formData.mobile}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                    setFormData({ ...formData, mobile: val });
+                  }}
+                  required
+                  placeholder="xxxxx xxxxx"
+                  maxLength={10}
+                  className="flex-1 px-4 py-3 rounded-r-xl border border-navy-100 bg-offwhite-0 text-ink-900 text-sm focus:border-accent-gold focus:outline-none min-h-[44px]"
+                />
+              </div>
+            </div>
+
+            <div>
               <label htmlFor="email" className="block text-sm font-medium text-ink-900 mb-1.5">
                 {t('register.email')}
               </label>
@@ -136,48 +235,12 @@ export default function Register() {
                 <button
                   type="button"
                   onClick={handleVerifyEmail}
-                  disabled={emailVerified || !formData.email}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200 min-h-[44px] whitespace-nowrap ${emailVerified ? 'bg-green-100 text-green-700' : 'bg-navy-100 text-navy-900 hover:bg-navy-200'
-                    }`}
+                  disabled={emailVerified || !formData.email || isSendingOtp}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200 min-h-[44px] whitespace-nowrap ${
+                    emailVerified ? 'bg-green-100 text-green-700' : 'bg-navy-100 text-navy-900 hover:bg-navy-200'
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
-                  {emailVerified ? t('register.verified') : t('register.verifyBtn')}
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="mobile" className="block text-sm font-medium text-ink-900 mb-1.5">
-                {t('register.mobile')}
-              </label>
-              <div className="flex gap-2">
-                <div className="flex w-full">
-                  <span className="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-navy-100 bg-offwhite-50 text-navy-700 text-sm">
-                    +91
-                  </span>
-                  <input
-                    id="mobile"
-                    name="mobile"
-                    type="tel"
-                    value={formData.mobile}
-                    onChange={(e) => {
-                      const val = e.target.value.replace(/\D/g, '').slice(0, 10);
-                      setFormData({ ...formData, mobile: val });
-                    }}
-                    disabled={mobileVerified}
-                    required
-                    placeholder="xxxxx xxxxx"
-                    maxLength={10}
-                    className="flex-1 px-4 py-3 rounded-r-xl border border-navy-100 bg-offwhite-0 text-ink-900 text-sm focus:border-accent-gold focus:outline-none min-h-[44px] disabled:bg-gray-100"
-                  />
-                </div>
-                <button
-                  type="button"
-                  onClick={handleVerifyMobile}
-                  disabled={mobileVerified || formData.mobile.length < 10}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200 min-h-[44px] whitespace-nowrap ${mobileVerified ? 'bg-green-100 text-green-700' : 'bg-navy-100 text-navy-900 hover:bg-navy-200'
-                    }`}
-                >
-                  {mobileVerified ? t('register.verified') : t('register.verifyBtn')}
+                  {isSendingOtp ? 'Sending...' : emailVerified ? t('register.verified') : t('register.verifyBtn')}
                 </button>
               </div>
             </div>
@@ -289,6 +352,60 @@ export default function Register() {
           </p>
         </div>
       </div>
+
+      {/* OTP Modal */}
+      {otpModalVisible && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy-900/50 backdrop-blur-sm px-4">
+          <div className="bg-offwhite-0 rounded-2xl shadow-xl w-full max-w-sm p-6 sm:p-8 animate-fade-in-up">
+            <h3 className="text-xl font-bold text-navy-900 mb-2">
+              Enter OTP
+            </h3>
+            <p className="text-sm text-navy-700 mb-6">
+              We sent a 6-digit code to your {otpType === 'email' ? 'email' : 'mobile number'}.
+            </p>
+
+            <form onSubmit={handleSubmitOTP}>
+              <div className="mb-6">
+                <OTPInput length={6} value={otpValue} onChange={setOtpValue} />
+              </div>
+
+              <div className="flex flex-col items-center gap-4 mb-6">
+                {timeLeft > 0 ? (
+                  <p className="text-sm text-navy-700">
+                    Resend OTP in <span className="font-semibold text-accent-gold">{formatTime(timeLeft)}</span>
+                  </p>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleResendOTP}
+                    disabled={isSendingOtp}
+                    className="text-sm text-accent-gold hover:text-navy-900 font-semibold transition-colors duration-200"
+                  >
+                    {isSendingOtp ? 'Sending...' : 'Resend OTP'}
+                  </button>
+                )}
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setOtpModalVisible(false)}
+                  className="flex-1 py-3 bg-offwhite-50 text-navy-700 border border-navy-100 font-medium text-sm rounded-xl hover:bg-navy-50 transition-colors duration-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={otpValue.length !== 6 || isVerifyingOtp}
+                  className="flex-1 py-3 bg-navy-900 text-offwhite-0 font-medium text-sm rounded-xl hover:bg-navy-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isVerifyingOtp ? 'Verifying...' : 'Verify'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

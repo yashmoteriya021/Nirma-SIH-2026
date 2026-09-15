@@ -1,13 +1,16 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 const userSchema = new mongoose.Schema({
-  full_name:     { type: String },
+  first_name:    { type: String, required: true },
+  last_name:     { type: String, required: true },
   mobile_number: { type: String, required: true, unique: true },
-  email:         { type: String, unique: true, sparse: true },
-  password_hash: { type: String },
+  email:         { type: String, required: true, unique: true },
+  password_hash: { type: String, required: true },
+  certificate_url: { type: String, required: true },
   preferred_language: { type: String, enum: ['en', 'hi', 'gu'], default: 'en' },
-  is_verified:   { type: Boolean, default: false },
+  is_verified:   { type: Boolean, default: false }, // Overall verification
+  is_email_verified: { type: Boolean, default: false },
 }, { timestamps: true });
 
 /**

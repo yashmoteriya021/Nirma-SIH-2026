@@ -17,6 +17,15 @@ const config = {
     expiryMinutes: parseInt(process.env.OTP_EXPIRY_MINUTES, 10) || 5,
     mockMode: process.env.OTP_MOCK_MODE === 'true',
   },
+  smtp: {
+    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+    port: parseInt(process.env.SMTP_PORT, 10) || 465,
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+  fast2sms: {
+    apiKey: process.env.FAST2SMS_API_KEY,
+  },
   corsOrigin: process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(',').map(s => s.trim())
     : ['http://localhost:5173'],

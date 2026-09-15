@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const otpSchema = new mongoose.Schema({
-  mobile_number: { type: String, required: true },
+  identifier: { type: String, required: true },
   otp_code:      { type: String, required: true },
   expires_at:    { type: Date, required: true },
 });
