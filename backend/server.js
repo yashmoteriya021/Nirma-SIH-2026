@@ -1,14 +1,17 @@
+import mongoose from 'mongoose';
 import app from './src/app.js';
 import config from './src/config/env.js';
 import connectDB from './src/config/db.js';
 import { seedDatabase } from './src/seed/seed.js';
 
 const startServer = async () => {
-  // Connect to MongoDB (falls back to in-memory if local MongoDB isn't running)
+  // Connect to MongoDB
   await connectDB();
 
-  // Auto-seed if database is empty (useful for in-memory mode)
-  await seedDatabase();
+  // Auto-seed if database is connected
+  if (mongoose.connection.readyState === 1) {
+    await seedDatabase();
+  }
 
   // Start Express server
   app.listen(config.port, () => {

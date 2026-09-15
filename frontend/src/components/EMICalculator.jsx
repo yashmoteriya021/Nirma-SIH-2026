@@ -81,7 +81,15 @@ export default function EMICalculator({ scheme }) {
             <label htmlFor="emi-amount" className="text-sm font-medium text-ink-900">
               {t('scheme.emi.loanAmount')}
             </label>
-            <span className="text-sm font-semibold text-navy-900">{formatCurrency(loanAmount)}</span>
+            <div className="flex items-center gap-1 bg-offwhite-50 border border-navy-100 rounded px-2 py-1 focus-within:border-accent-gold">
+              <span className="text-sm font-semibold text-navy-700">₹</span>
+              <input
+                type="number"
+                value={loanAmount || ''}
+                onChange={(e) => setLoanAmount(e.target.value === '' ? 0 : parseInt(e.target.value))}
+                className="w-24 text-right text-sm font-semibold text-navy-900 bg-transparent focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+            </div>
           </div>
           <input
             id="emi-amount"
@@ -105,7 +113,19 @@ export default function EMICalculator({ scheme }) {
             <label htmlFor="emi-tenure" className="text-sm font-medium text-ink-900">
               {t('scheme.emi.tenure')}
             </label>
-            <span className="text-sm font-semibold text-navy-900">{tenure} {t('scheme.details.months')}</span>
+            <div className="flex items-center gap-1 bg-offwhite-50 border border-navy-100 rounded px-2 py-1 focus-within:border-accent-gold">
+              <input
+                type="number"
+                value={tenure || ''}
+                onChange={(e) => {
+                  const newTenure = e.target.value === '' ? 0 : parseInt(e.target.value);
+                  setTenure(newTenure);
+                  if (moratorium >= newTenure) setMoratorium(newTenure - 1 > 0 ? newTenure - 1 : 0);
+                }}
+                className="w-16 text-right text-sm font-semibold text-navy-900 bg-transparent focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+              <span className="text-sm font-semibold text-navy-700">{t('scheme.details.months')}</span>
+            </div>
           </div>
           <input
             id="emi-tenure"
@@ -133,7 +153,15 @@ export default function EMICalculator({ scheme }) {
             <label htmlFor="emi-moratorium" className="text-sm font-medium text-ink-900">
               {t('scheme.tabs.process') ? (t('scheme.emi.title').includes('EMI') ? 'Moratorium Period (Interest Only)' : 'स्थगन अवधि (केवल ब्याज)') : 'Moratorium Period'}
             </label>
-            <span className="text-sm font-semibold text-navy-900">{moratorium} {t('scheme.details.months')}</span>
+            <div className="flex items-center gap-1 bg-offwhite-50 border border-navy-100 rounded px-2 py-1 focus-within:border-accent-gold">
+              <input
+                type="number"
+                value={moratorium !== undefined ? moratorium : ''}
+                onChange={(e) => setMoratorium(e.target.value === '' ? 0 : parseInt(e.target.value))}
+                className="w-16 text-right text-sm font-semibold text-navy-900 bg-transparent focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+              <span className="text-sm font-semibold text-navy-700">{t('scheme.details.months')}</span>
+            </div>
           </div>
           <input
             id="emi-moratorium"
@@ -157,7 +185,16 @@ export default function EMICalculator({ scheme }) {
             <label htmlFor="emi-rate" className="text-sm font-medium text-ink-900">
               {t('scheme.emi.rate')}
             </label>
-            <span className="text-sm font-semibold text-navy-900">{rate}%</span>
+            <div className="flex items-center gap-1 bg-offwhite-50 border border-navy-100 rounded px-2 py-1 focus-within:border-accent-gold">
+              <input
+                type="number"
+                step="0.1"
+                value={rate || ''}
+                onChange={(e) => setRate(e.target.value === '' ? 0 : parseFloat(e.target.value))}
+                className="w-16 text-right text-sm font-semibold text-navy-900 bg-transparent focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+              <span className="text-sm font-semibold text-navy-700">%</span>
+            </div>
           </div>
           <input
             id="emi-rate"
