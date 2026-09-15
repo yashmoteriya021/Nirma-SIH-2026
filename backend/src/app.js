@@ -12,6 +12,7 @@ import schemeRoutes from './routes/scheme.routes.js';
 import partnerRoutes from './routes/partner.routes.js';
 import calculatorRoutes from './routes/calculator.routes.js';
 import statsRoutes from './routes/stats.routes.js';
+import aiRoutes from './routes/ai.routes.js';
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use('/api/schemes', schemeRoutes);
 app.use('/api/partners', partnerRoutes);
 app.use('/api/calculator', calculatorRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/ai', aiRoutes); // Python ML pipeline (profile → intent → match → partners)
 
 // ─── Error Handling ─────────────────────────────────────────────
 app.use(notFoundHandler);

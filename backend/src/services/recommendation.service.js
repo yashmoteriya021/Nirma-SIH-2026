@@ -1,6 +1,10 @@
 import Scheme from '../models/Scheme.js';
 
 /**
+ * @deprecated Legacy 3-rule recommender kept for backward compatibility.
+ * The explainable matching engine now lives in the Python ML service and is
+ * exposed via POST /api/ai/match (see ai.controller.js).
+ *
  * Recommendation Engine — server is the source of truth.
  *
  * Rules (evaluated top-to-bottom, first match wins):

@@ -26,6 +26,9 @@ const config = {
   fast2sms: {
     apiKey: process.env.FAST2SMS_API_KEY,
   },
+  // Python FastAPI ML service (ml/service). See ml/README section in root README.
+  mlServiceUrl: (process.env.ML_SERVICE_URL || 'http://localhost:8000').replace(/\/+$/, ''),
+  mlServiceTimeoutMs: parseInt(process.env.ML_SERVICE_TIMEOUT_MS, 10) || 30000,
   corsOrigin: process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(',').map(s => s.trim())
     : ['http://localhost:5173'],
