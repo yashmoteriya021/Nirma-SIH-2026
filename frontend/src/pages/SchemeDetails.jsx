@@ -84,16 +84,6 @@ export default function SchemeDetails() {
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
             {tData(scheme.name)}
           </h1>
-          {lang === 'en' && scheme.name.hi && (
-            <p className="text-navy-100 text-lg mt-1" style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
-              {scheme.name.hi}
-            </p>
-          )}
-          {lang === 'hi' && scheme.name.en && (
-            <p className="text-navy-100 text-lg mt-1">
-              {scheme.name.en}
-            </p>
-          )}
         </div>
       </div>
 
@@ -127,7 +117,15 @@ export default function SchemeDetails() {
             {activeTab === 'overview' && (
               <section>
                 <h2 className="text-xl font-semibold text-navy-900 mb-4">{t('scheme.tabs.overview')}</h2>
-                <p className="text-ink-900 leading-relaxed">{tData(scheme.description)}</p>
+                <div className="space-y-4">
+                  <p className="text-ink-900 leading-relaxed text-lg">{tData(scheme.description)}</p>
+                  <p className="text-navy-700 leading-relaxed">
+                    {lang === 'en' 
+                      ? "This initiative is part of the government's ongoing efforts to ensure financial inclusion and socio-economic empowerment for the Scheduled Caste community. By offering subsidized interest rates, relaxed eligibility criteria, and flexible repayment terms, this scheme aims to reduce financial barriers, promote sustainable growth, and foster long-term self-reliance among beneficiaries."
+                      : "यह पहल अनुसूचित जाति समुदाय के लिए वित्तीय समावेशन और सामाजिक-आर्थिक सशक्तिकरण सुनिश्चित करने के सरकार के निरंतर प्रयासों का हिस्सा है। रियायती ब्याज दरों, आसान पात्रता मानदंडों और लचीली पुनर्भुगतान शर्तों की पेशकश करके, इस योजना का उद्देश्य वित्तीय बाधाओं को कम करना, सतत विकास को बढ़ावा देना और लाभार्थियों के बीच दीर्घकालिक आत्मनिर्भरता को बढ़ावा देना है।"
+                    }
+                  </p>
+                </div>
 
                 {/* Quick stats */}
                 <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -266,10 +264,9 @@ export default function SchemeDetails() {
             )}
           </div>
 
-          {/* Sidebar — related schemes + CTA */}
-          <aside className="space-y-6">
-            {/* Sticky CTA */}
-            <div className="bg-navy-900 rounded-xl p-6 text-center lg:sticky lg:top-32">
+          {/* Sidebar — CTA */}
+          <aside>
+            <div className="bg-navy-900 rounded-xl p-6 text-center">
               <h3 className="text-offwhite-0 font-semibold text-lg mb-2">{tData(scheme.name)}</h3>
               <p className="text-navy-100 text-sm mb-4">
                 {t('scheme.details.interestRate')}: {scheme.interestRate.min}%–{scheme.interestRate.max}%
@@ -280,16 +277,6 @@ export default function SchemeDetails() {
               >
                 {t('scheme.applyNow')}
               </button>
-            </div>
-
-            {/* Related Schemes */}
-            <div>
-              <h3 className="text-lg font-semibold text-navy-900 mb-4">{t('scheme.relatedTitle')}</h3>
-              <div className="space-y-4">
-                {relatedSchemes.map(s => (
-                  <SchemeCard key={s.id} scheme={s} />
-                ))}
-              </div>
             </div>
           </aside>
         </div>

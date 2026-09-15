@@ -1,0 +1,90 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const partners = [
+  {
+    "id": "p1",
+    "name": { "en": "Gujarat State SC Development Corporation", "hi": "गुजरात राज्य अनुसूचित जाति विकास निगम" },
+    "type": "SCA",
+    "city": { "en": "Ahmedabad", "hi": "अहमदाबाद" },
+    "state": { "en": "Gujarat", "hi": "गुजरात" },
+    "address": { "en": "Block No. 5, Gandhinagar", "hi": "ब्लॉक नं. 5, गांधीनगर" },
+    "lat": 23.2156,
+    "lng": 72.6369,
+    "phone": "+91-79-2325-XXXX",
+    "status": "accepting",
+    "schemesSupported": ["micro-finance", "term-loan", "education-loan", "mahila-samridhi", "agriculture-loan", "shilpi-samridhi"]
+  },
+  {
+    "id": "p2",
+    "name": { "en": "State Bank of India — SC Loan Cell", "hi": "भारतीय स्टेट बैंक" },
+    "type": "Public Sector Bank",
+    "city": { "en": "Mumbai", "hi": "मुंबई" },
+    "state": { "en": "Maharashtra", "hi": "महाराष्ट्र" },
+    "address": { "en": "BKC, Mumbai", "hi": "BKC, मुंबई" },
+    "lat": 19.0596,
+    "lng": 72.8656,
+    "phone": "+91-22-2274-XXXX",
+    "status": "accepting",
+    "schemesSupported": ["term-loan", "education-loan", "overseas-education", "franchise-business", "tech-startup", "green-energy"]
+  },
+  {
+    "id": "p3",
+    "name": { "en": "UP SC Finance Corporation", "hi": "यूपी अनुसूचित जाति वित्त निगम" },
+    "type": "SCA",
+    "city": { "en": "Lucknow", "hi": "लखनऊ" },
+    "state": { "en": "Uttar Pradesh", "hi": "उत्तर प्रदेश" },
+    "address": { "en": "Gomti Nagar, Lucknow", "hi": "गोमती नगर, लखनऊ" },
+    "lat": 26.8467,
+    "lng": 80.9462,
+    "phone": "+91-522-2304-XXXX",
+    "status": "accepting",
+    "schemesSupported": ["micro-finance", "term-loan", "agriculture-loan", "poultry-farming", "transport-loan", "shilpi-samridhi"]
+  },
+  {
+    "id": "p4",
+    "name": { "en": "Bandhan Micro Finance", "hi": "बंधन माइक्रो फाइनेंस" },
+    "type": "NBFC-MFI",
+    "city": { "en": "Kolkata", "hi": "कोलकाता" },
+    "state": { "en": "West Bengal", "hi": "पश्चिम बंगाल" },
+    "address": { "en": "Salt Lake City, Kolkata", "hi": "साल्ट लेक सिटी, कोलकाता" },
+    "lat": 22.5726,
+    "lng": 88.4379,
+    "phone": "+91-33-6609-XXXX",
+    "status": "accepting",
+    "schemesSupported": ["micro-finance", "mahila-samridhi", "shilpi-samridhi", "vocational-training"]
+  },
+  {
+    "id": "p5",
+    "name": { "en": "Karnataka Gramin Bank", "hi": "कर्नाटक ग्रामीण बैंक" },
+    "type": "RRB",
+    "city": { "en": "Dharwad", "hi": "धारवाड़" },
+    "state": { "en": "Karnataka", "hi": "कर्नाटक" },
+    "address": { "en": "PB Road, Dharwad", "hi": "PB रोड, धारवाड़" },
+    "lat": 15.4589,
+    "lng": 75.0078,
+    "phone": "+91-836-2747-XXXX",
+    "status": "accepting",
+    "schemesSupported": ["agriculture-loan", "poultry-farming", "transport-loan", "micro-finance"]
+  },
+  {
+    "id": "p6",
+    "name": { "en": "Punjab National Bank — Priority Sector", "hi": "पंजाब नेशनल बैंक" },
+    "type": "Public Sector Bank",
+    "city": { "en": "New Delhi", "hi": "नई दिल्ली" },
+    "state": { "en": "Delhi", "hi": "दिल्ली" },
+    "address": { "en": "Connaught Place, New Delhi", "hi": "कनॉट प्लेस, नई दिल्ली" },
+    "lat": 28.6304,
+    "lng": 77.2177,
+    "phone": "+91-11-2331-XXXX",
+    "status": "accepting",
+    "schemesSupported": ["healthcare-startup", "tech-startup", "education-loan", "skill-upgrade", "green-energy", "term-loan"]
+  }
+];
+
+fs.writeFileSync(path.join(__dirname, 'partners.json'), JSON.stringify({ partners }, null, 2));
+console.log('Created partners.json');

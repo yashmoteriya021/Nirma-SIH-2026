@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import SchemeRecommender from '../components/SchemeRecommender';
@@ -9,7 +11,25 @@ import schemesData from '../data/schemes.json';
 export default function Home() {
   const { t } = useLang();
   const { user } = useAuth();
-  const schemes = schemesData.schemes;
+  
+  const [schemes, setSchemes] = useState(schemesData.schemes);
+
+  useEffect(() => {
+    const fetchSchemes = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/schemes');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.data && data.data.schemes && data.data.schemes.length > 0) {
+            setSchemes(data.data.schemes);
+          }
+        }
+      } catch (err) {
+        console.log('Using local scheme data as fallback. DB connection might be down.');
+      }
+    };
+    fetchSchemes();
+  }, []);
 
   const faqItems = [
     { q: t('home.faq.items.0.q'), a: t('home.faq.items.0.a') },
@@ -151,10 +171,22 @@ export default function Home() {
         <h2 className="text-2xl sm:text-3xl font-bold text-navy-900 text-center mb-8">
           {t('home.schemeGrid.title')}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {schemes.map(scheme => (
-            <SchemeCard key={scheme.id} scheme={scheme} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {schemes.slice(0, 6).map((scheme, idx) => (
+            <SchemeCard key={scheme.id || idx} scheme={scheme} />
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link 
+            to="/schemes" 
+            className="inline-flex items-center gap-2 px-8 py-3 bg-white text-navy-900 border border-navy-200 rounded-lg hover:bg-navy-50 font-medium transition-colors duration-200 shadow-sm hover:shadow"
+          >
+            Explore All Schemes
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
       </section>
 

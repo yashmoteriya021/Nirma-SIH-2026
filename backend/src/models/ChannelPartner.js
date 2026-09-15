@@ -1,30 +1,35 @@
 import mongoose from 'mongoose';
 
+const localizedStringSchema = new mongoose.Schema({
+  en: { type: String, required: true },
+  hi: { type: String, required: true },
+}, { _id: false });
+
 const partnerSchema = new mongoose.Schema({
-  partner_id:   { type: String, required: true, unique: true, index: true },
-  name:         { type: String, required: true },
-  partner_type: { type: String, enum: ['SCA', 'PSB', 'RRB', 'NBFC_MFI'], required: true },
-  address:      { type: String, required: true },
-  pincode:      { type: String, required: true },
-  latitude:     { type: Number, required: true },
-  longitude:    { type: Number, required: true },
+  id: { type: String, required: true, unique: true, index: true },
+  name: { type: localizedStringSchema, required: true },
+  type: { type: String, required: true }, // e.g. "SCA", "Public Sector Bank"
+  city: { type: localizedStringSchema, required: true },
+  state: { type: localizedStringSchema, required: true },
+  address: { type: localizedStringSchema, required: true },
+  lat: { type: Number, required: true },
+  lng: { type: Number, required: true },
+  phone: { type: String, required: true },
+  status: { type: String, enum: ['accepting', 'paused'], default: 'accepting' },
+  schemesSupported: [{ type: String }],
+  
+  // GeoJSON for spatial queries
   location: {
-    type:        { type: String, enum: ['Point'], default: 'Point' },
-    coordinates: { type: [Number], default: [0, 0] },   // [longitude, latitude] — auto-set by pre-validate hook
+    type: { type: String, enum: ['Point'], default: 'Point' },
+    coordinates: { type: [Number], default: [0, 0] }, // [lng, lat]
   },
-  npa_rate:     { type: Number, required: true },
-  fund_status:  { type: String, enum: ['available', 'exhausted'], default: 'available' },
-  supported_schemes: [{ type: String }],
-  contact_phone:     { type: String, required: true },
 }, { timestamps: true });
 
-// 2dsphere geospatial index for nearby partner search
 partnerSchema.index({ location: '2dsphere' });
 
-// Pre-validate hook: keep location.coordinates in sync with latitude/longitude
 partnerSchema.pre('validate', function (next) {
-  if (this.longitude != null && this.latitude != null) {
-    this.location = { type: 'Point', coordinates: [this.longitude, this.latitude] };
+  if (this.lng != null && this.lat != null) {
+    this.location = { type: 'Point', coordinates: [this.lng, this.lat] };
   }
   next();
 });

@@ -13,6 +13,7 @@ export default function EMICalculator({ scheme }) {
   const [loanAmount, setLoanAmount] = useState(defaults.amount);
   const [tenure, setTenure] = useState(defaults.tenure);
   const [rate, setRate] = useState(defaults.rate);
+  const [moratorium, setMoratorium] = useState(0);
 
   const maxAmount = scheme?.maxAmount || 5000000;
 
@@ -20,19 +21,36 @@ export default function EMICalculator({ scheme }) {
     const P = loanAmount;
     const r = rate / 12 / 100; // monthly rate
     const n = tenure;
+    const m = moratorium;
 
-    if (P <= 0 || r <= 0 || n <= 0) return { monthly: 0, totalInterest: 0, totalPayment: 0 };
+    if (P <= 0 || r <= 0 || n <= 0) return { monthly: 0, totalInterest: 0, totalPayment: 0, moratoriumPayment: 0 };
 
-    const emiVal = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
-    const totalPayment = emiVal * n;
+    let moratoriumPayment = 0;
+    let totalMoratoriumInterest = 0;
+    let remainingTenure = n - m;
+    let emiVal = 0;
+    let totalEmiPayment = 0;
+
+    if (m > 0) {
+      moratoriumPayment = P * r;
+      totalMoratoriumInterest = moratoriumPayment * m;
+    }
+
+    if (remainingTenure > 0) {
+      emiVal = P * r * Math.pow(1 + r, remainingTenure) / (Math.pow(1 + r, remainingTenure) - 1);
+      totalEmiPayment = emiVal * remainingTenure;
+    }
+
+    const totalPayment = totalMoratoriumInterest + totalEmiPayment;
     const totalInterest = totalPayment - P;
 
     return {
       monthly: Math.round(emiVal),
+      moratoriumPayment: Math.round(moratoriumPayment),
       totalInterest: Math.round(totalInterest),
       totalPayment: Math.round(totalPayment),
     };
-  }, [loanAmount, tenure, rate]);
+  }, [loanAmount, tenure, rate, moratorium]);
 
   const formatCurrency = (val) => `₹${val.toLocaleString('en-IN')}`;
 
@@ -96,12 +114,40 @@ export default function EMICalculator({ scheme }) {
             max="120"
             step="6"
             value={tenure}
-            onChange={(e) => setTenure(parseInt(e.target.value))}
+            onChange={(e) => {
+              const newTenure = parseInt(e.target.value);
+              setTenure(newTenure);
+              if (moratorium >= newTenure) setMoratorium(newTenure - 1 > 0 ? newTenure - 1 : 0);
+            }}
             className="w-full h-2 bg-navy-100 rounded-full appearance-none cursor-pointer accent-navy-900"
           />
           <div className="flex justify-between text-xs text-navy-700 mt-1">
             <span>6 {t('scheme.details.months')}</span>
             <span>120 {t('scheme.details.months')}</span>
+          </div>
+        </div>
+
+        {/* Moratorium */}
+        <div>
+          <div className="flex justify-between items-center mb-2">
+            <label htmlFor="emi-moratorium" className="text-sm font-medium text-ink-900">
+              {t('scheme.tabs.process') ? (t('scheme.emi.title').includes('EMI') ? 'Moratorium Period (Interest Only)' : 'स्थगन अवधि (केवल ब्याज)') : 'Moratorium Period'}
+            </label>
+            <span className="text-sm font-semibold text-navy-900">{moratorium} {t('scheme.details.months')}</span>
+          </div>
+          <input
+            id="emi-moratorium"
+            type="range"
+            min="0"
+            max={tenure - 1 > 0 ? tenure - 1 : 0}
+            step="1"
+            value={moratorium}
+            onChange={(e) => setMoratorium(parseInt(e.target.value))}
+            className="w-full h-2 bg-navy-100 rounded-full appearance-none cursor-pointer accent-navy-900"
+          />
+          <div className="flex justify-between text-xs text-navy-700 mt-1">
+            <span>0 {t('scheme.details.months')}</span>
+            <span>{tenure - 1 > 0 ? tenure - 1 : 0} {t('scheme.details.months')}</span>
           </div>
         </div>
 
@@ -132,9 +178,21 @@ export default function EMICalculator({ scheme }) {
 
       {/* Results */}
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-navy-900 rounded-xl p-4 text-center">
-          <p className="text-navy-100 text-xs mb-1">{t('scheme.emi.monthlyEMI')}</p>
-          <p className="text-accent-gold text-xl font-bold">{formatCurrency(emi.monthly)}</p>
+        <div className="bg-navy-900 rounded-xl p-4 text-center flex flex-col justify-center">
+          {moratorium > 0 ? (
+            <>
+              <p className="text-navy-100 text-[10px] sm:text-xs mb-1">Interest Only ({moratorium} mos)</p>
+              <p className="text-accent-gold text-lg sm:text-xl font-bold">{formatCurrency(emi.moratoriumPayment)}</p>
+              <div className="h-px bg-navy-700 w-1/2 mx-auto my-2"></div>
+              <p className="text-navy-100 text-[10px] sm:text-xs mb-1">Regular EMI ({tenure - moratorium} mos)</p>
+              <p className="text-accent-gold text-lg sm:text-xl font-bold">{formatCurrency(emi.monthly)}</p>
+            </>
+          ) : (
+            <>
+              <p className="text-navy-100 text-xs mb-1">{t('scheme.emi.monthlyEMI')}</p>
+              <p className="text-accent-gold text-xl font-bold">{formatCurrency(emi.monthly)}</p>
+            </>
+          )}
         </div>
         <div className="bg-offwhite-50 rounded-xl p-4 text-center border border-navy-100">
           <p className="text-navy-700 text-xs mb-1">{t('scheme.emi.totalInterest')}</p>
