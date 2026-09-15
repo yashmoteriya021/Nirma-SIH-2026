@@ -26,6 +26,9 @@ VALID_EDUCATION = {
 }
 VALID_MARITAL = {"single", "married", "widowed", "divorced"}
 
+# All NSFDC/NBCFDC/NSKFDC loan schemes require an adult applicant.
+MIN_APPLICANT_AGE = 18
+
 # Indian state codes (ISO 3166-2:IN without 'IN-' prefix)
 VALID_STATE_CODES = {
     "AN", "AP", "AR", "AS", "BR", "CH", "CT", "DL", "GA", "GJ",
@@ -102,6 +105,10 @@ def validate_and_build_profile(
             errors.append(f"dob '{dob}' is in the future")
         elif parsed_dob.year < 1900:
             errors.append(f"dob '{dob}' is unrealistically old")
+        else:
+            years = today.year - parsed_dob.year - ((today.month, today.day) < (parsed_dob.month, parsed_dob.day))
+            if years < MIN_APPLICANT_AGE:
+                errors.append(f"Applicant must be at least {MIN_APPLICANT_AGE} years old (is {years})")
     except (ValueError, TypeError):
         errors.append(f"dob '{dob}' is not a valid date (expected YYYY-MM-DD)")
 

@@ -1,9 +1,18 @@
-# SIH PS 26092 — AI-Driven Scheme Matching Pipeline
-# Core dependencies
+# SIH PS 26092 — AI-Driven Scheme Matching Pipeline + FastAPI service
 
-pydantic>=2.0,<3.0        # JSON schema validation & data models
-pytest>=7.0               # Testing framework
-scikit-learn>=1.3         # BallTree for geospatial nearest-neighbor
-numpy>=1.24               # Numerical computation (Haversine, etc.)
-openai>=1.0               # LLM API (provider-agnostic, OpenAI-compatible)
-python-dateutil>=2.8      # Date parsing and relative delta
+# Core
+pydantic>=2.0,<3.0        # Request/response models for the service
+python-dateutil>=2.8      # Date parsing
+python-dotenv>=1.0        # Loads ml/.env
+
+# Service
+fastapi>=0.110
+uvicorn[standard]>=0.29
+httpx>=0.27               # FastAPI TestClient
+
+# LLM providers (Module 2). Only the one you configure is used at runtime.
+openai>=1.0               # OpenAI, OpenRouter, Ollama (OpenAI-compatible)
+anthropic>=0.40           # Anthropic Claude
+
+# Tests
+pytest>=7.0

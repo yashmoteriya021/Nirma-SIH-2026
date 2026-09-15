@@ -154,7 +154,10 @@ class SlotFillingSession:
             new_val = extracted.get(key)
             if new_val is None:
                 continue
-            if self.current_intent.get(key) is not None:
+            current = self.current_intent.get(key)
+            if key == "loan_type_guess" and current == "unknown":
+                current = None
+            if current is not None:
                 # "self" is the extractor's default when nobody else is named,
                 # so an explicit dependent mention in a later turn wins.
                 if key == "beneficiary" and new_val == "dependent" and "beneficiary" in filled:

@@ -297,3 +297,10 @@ class TestSlotMachineFollowUps:
         assert result["llm_provider"] == "anthropic"
         assert result["estimated_cost"] == 500000
         assert "purpose" in result["slots_filled"]
+
+    def test_loan_type_guess_is_carried_into_session(self):
+        from module2_intent.llm_extractor import LLMConfig
+
+        session = SlotFillingSession(llm_config=LLMConfig(provider="none"))
+        result = session.process_input("silai ki dukaan kholni hai, 80 hazar chahiye")
+        assert result["intent"]["loan_type_guess"] == "micro_finance"
