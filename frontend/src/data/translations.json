@@ -118,6 +118,23 @@
     "otpError": { "en": "That OTP didn't match. Please try again.", "hi": "वह OTP मेल नहीं खाता। कृपया पुनः प्रयास करें।" },
     "loginError": { "en": "Incorrect email or password. Please check and try again.", "hi": "गलत ईमेल या पासवर्ड। कृपया जांचें और पुनः प्रयास करें।" }
   },
+  "register": {
+    "title": { "en": "Create an Account", "hi": "खाता बनाएं" },
+    "subtitle": { "en": "Register for SchemeSetu", "hi": "स्कीमसेतु के लिए रजिस्टर करें" },
+    "firstName": { "en": "First Name (as per Aadhar)", "hi": "प्रथम नाम (आधार के अनुसार)" },
+    "lastName": { "en": "Last Name (as per Aadhar)", "hi": "अंतिम नाम (आधार के अनुसार)" },
+    "email": { "en": "Email address", "hi": "ईमेल पता" },
+    "mobile": { "en": "Mobile number", "hi": "मोबाइल नंबर" },
+    "password": { "en": "Password", "hi": "पासवर्ड" },
+    "confirmPassword": { "en": "Confirm Password", "hi": "पासवर्ड की पुष्टि करें" },
+    "passwordMismatch": { "en": "Passwords do not match", "hi": "पासवर्ड मेल नहीं खाते" },
+    "verifyBtn": { "en": "Verify", "hi": "सत्यापित करें" },
+    "verified": { "en": "Verified", "hi": "सत्यापित" },
+    "certificate": { "en": "SC Caste Certificate", "hi": "अनुसूचित जाति प्रमाणपत्र" },
+    "uploadBtn": { "en": "Choose File", "hi": "फ़ाइल चुनें" },
+    "submitBtn": { "en": "Register", "hi": "रजिस्टर करें" },
+    "loginLink": { "en": "Already have an account? Log in here", "hi": "पहले से खाता है? यहाँ लॉग इन करें" }
+  },
   "scheme": {
     "breadcrumb": {
       "home": { "en": "Home", "hi": "होम" },
