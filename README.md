@@ -79,7 +79,17 @@ npm run dev
 cd frontend
 npm install
 npm run dev
+
+# Terminal 3 — ML service (port 8000; the AI Assistant and partner ranking need it)
+cd ml
+pip install -r requirements.txt
+uvicorn service.app:app --reload --port 8000
 ```
+
+> **macOS note:** port 5000 is usually taken by AirPlay Receiver. Run the backend with
+> `PORT=5001` and put `VITE_API_PROXY_TARGET=http://localhost:5001` in `frontend/.env.local`.
+> The backend reads `backend/.env` (copy `backend/.env.example`); set `ML_SERVICE_URL` there
+> if the ML service is not on `localhost:8000`.
 
 - **Frontend**: http://localhost:5173
 - **Backend API**: http://localhost:5000
@@ -106,6 +116,12 @@ All responses follow a standard envelope: `{ "success": true/false, "data" | "er
 | `GET` | `/api/partners/:partner_id`| Single partner by ID |
 | `POST` | `/api/calculator/emi` | EMI calculator (`{ principal, annual_rate_pct, tenure_years, moratorium_months? }`) |
 | `GET` | `/api/stats` | Aggregate platform statistics |
+| `POST` | `/api/ai/profile` | Build a verified/self-reported citizen profile (ML Module 1) |
+| `POST` | `/api/ai/intent` | One turn of Hindi/English/Hinglish slot filling (`{ text, profile, session_id? }`) |
+| `POST` | `/api/ai/match` | Explainable eligibility matching + ranking (`{ profile, intent }`) |
+| `POST` | `/api/ai/partners` | Capacity-aware partner routing (`{ scheme_id \| frontend_scheme_id, lat/lon or pin_code }`) |
+| `GET` | `/api/ai/schemes` | Scheme knowledge base and frontend id mapping |
+| `GET` | `/api/ai/health` | ML service status and configured LLM provider |
 
 ### Frontend Routes
 
@@ -113,7 +129,8 @@ All responses follow a standard envelope: `{ "success": true/false, "data" | "er
 |------|------|
 | `/` | Home (8 sections) |
 | `/login` | Login (OTP + Email) |
-| `/schemes/:schemeId` | Scheme Details (8 tabs) |
+| `/schemes/:schemeId` | Scheme Details (8 tabs; the Partners tab uses the ML routing engine) |
+| `/assistant` | AI Assistant — profile → chat → explained scheme matches → nearby healthy partners |
 
 Valid scheme IDs: `micro-finance`, `term-loan`, `education-loan`
 
