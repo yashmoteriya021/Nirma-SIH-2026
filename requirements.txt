@@ -1,0 +1,9 @@
+# SIH PS 26092 — AI-Driven Scheme Matching Pipeline
+# Core dependencies
+
+pydantic>=2.0,<3.0        # JSON schema validation & data models
+pytest>=7.0               # Testing framework
+scikit-learn>=1.3         # BallTree for geospatial nearest-neighbor
+numpy>=1.24               # Numerical computation (Haversine, etc.)
+openai>=1.0               # LLM API (provider-agnostic, OpenAI-compatible)
+python-dateutil>=2.8      # Date parsing and relative delta
