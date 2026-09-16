@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
-import SchemeRecommender from '../components/SchemeRecommender';
 import SchemeCard from '../components/SchemeCard';
+import AIAssistant from '../components/AIAssistant';
 import StatChip from '../components/StatChip';
 import Accordion from '../components/Accordion';
 import schemesData from '../data/schemes.json';
@@ -146,9 +146,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== 3. Smart Scheme Recommender ===== */}
+      {/* ===== 3. AI Assistant ===== */}
       <section id="recommender" className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <SchemeRecommender />
+        <AIAssistant user={user} />
       </section>
 
       {/* ===== 4. Scheme Category Grid ===== */}

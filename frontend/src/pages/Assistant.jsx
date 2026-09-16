@@ -243,7 +243,7 @@ export default function Assistant() {
             <div>
               <label className={labelCls} htmlFor="caste_certificate_issue_date">
                 {L('Caste certificate issue date', 'जाति प्रमाण पत्र जारी तिथि')}
-                <span className="text-navy-700 font-normal"> {L('(needed for OBC)', '(OBC के लिए आवश्यक)')}</span>
+                <span className="text-navy-700 font-normal"> {L('(needed for SC)', '(SC के लिए आवश्यक)')}</span>
               </label>
               <input id="caste_certificate_issue_date" type="date" className={inputCls} value={form.caste_certificate_issue_date} onChange={onField('caste_certificate_issue_date')} />
             </div>

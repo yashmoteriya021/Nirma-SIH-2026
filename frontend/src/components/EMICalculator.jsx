@@ -285,11 +285,7 @@ export default function EMICalculator({ scheme }) {
               </div>
             )}
 
-            {!apiResult && !loading && (
-               <div className="text-xs text-navy-100 text-center mt-4">
-                 ⚠️ Showing generic estimation. API disconnected or scheme data unavailable.
-               </div>
-            )}
+
           </div>
         </div>
       </div>

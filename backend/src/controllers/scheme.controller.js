@@ -1,7 +1,6 @@
 import Scheme from '../models/Scheme.js';
 import { successResponse, errorResponse } from '../utils/apiResponse.js';
 import asyncHandler from '../utils/asyncHandler.js';
-import { recommendScheme } from '../services/recommendation.service.js';
 
 /**
  * GET /api/schemes?lang=en&category=business
@@ -77,19 +76,3 @@ export const searchSchemes = asyncHandler(async (req, res) => {
   return successResponse(res, { schemes: localized, count: localized.length }, 'Search results');
 });
 
-/**
- * POST /api/schemes/recommend
- * Body: { category, project_cost, annual_income }
- * Runs the rule-based recommendation engine.
- */
-export const recommend = asyncHandler(async (req, res) => {
-  const { category, project_cost, annual_income } = req.body;
-
-  const result = await recommendScheme({ category, project_cost, annual_income });
-
-  if (!result.eligible) {
-    return successResponse(res, result, result.message);
-  }
-
-  return successResponse(res, result, result.message);
-});

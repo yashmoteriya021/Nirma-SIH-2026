@@ -3010,6 +3010,1526 @@
           }
         ]
       }
+    },
+    {
+      "id": "new-scheme-1789534494563-0",
+      "name": {
+        "en": "Micro Finance Expansion Scheme 1",
+        "hi": "Micro Finance विस्तार योजना 1"
+      },
+      "category": {
+        "en": "Micro Finance",
+        "hi": "Micro Finance"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for micro finance initiatives across the country.",
+        "hi": "देश भर में Micro Finance पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 500000,
+      "interestRate": {
+        "min": 4,
+        "max": 7
+      },
+      "fundingPercent": 80,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 60,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-1",
+      "name": {
+        "en": "Education Expansion Scheme 2",
+        "hi": "Education विस्तार योजना 2"
+      },
+      "category": {
+        "en": "Education",
+        "hi": "Education"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for education initiatives across the country.",
+        "hi": "देश भर में Education पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 550000,
+      "interestRate": {
+        "min": 5,
+        "max": 8
+      },
+      "fundingPercent": 81,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 61,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 5.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "5.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-2",
+      "name": {
+        "en": "Business Expansion Scheme 3",
+        "hi": "Business विस्तार योजना 3"
+      },
+      "category": {
+        "en": "Business",
+        "hi": "Business"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for business initiatives across the country.",
+        "hi": "देश भर में Business पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 600000,
+      "interestRate": {
+        "min": 6,
+        "max": 7
+      },
+      "fundingPercent": 82,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 62,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 6 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "6 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-3",
+      "name": {
+        "en": "Green Energy Expansion Scheme 4",
+        "hi": "Green Energy विस्तार योजना 4"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "Green Energy"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for green energy initiatives across the country.",
+        "hi": "देश भर में Green Energy पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 650000,
+      "interestRate": {
+        "min": 4,
+        "max": 8
+      },
+      "fundingPercent": 83,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 63,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 6.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "6.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-4",
+      "name": {
+        "en": "Agriculture Expansion Scheme 5",
+        "hi": "Agriculture विस्तार योजना 5"
+      },
+      "category": {
+        "en": "Agriculture",
+        "hi": "Agriculture"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for agriculture initiatives across the country.",
+        "hi": "देश भर में Agriculture पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 700000,
+      "interestRate": {
+        "min": 5,
+        "max": 7
+      },
+      "fundingPercent": 84,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 64,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 7 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "7 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-5",
+      "name": {
+        "en": "Healthcare Expansion Scheme 6",
+        "hi": "Healthcare विस्तार योजना 6"
+      },
+      "category": {
+        "en": "Healthcare",
+        "hi": "Healthcare"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for healthcare initiatives across the country.",
+        "hi": "देश भर में Healthcare पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 750000,
+      "interestRate": {
+        "min": 6,
+        "max": 8
+      },
+      "fundingPercent": 85,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 65,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 7.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "7.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-6",
+      "name": {
+        "en": "Tech Startup Expansion Scheme 7",
+        "hi": "Tech Startup विस्तार योजना 7"
+      },
+      "category": {
+        "en": "Tech Startup",
+        "hi": "Tech Startup"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for tech startup initiatives across the country.",
+        "hi": "देश भर में Tech Startup पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 800000,
+      "interestRate": {
+        "min": 4,
+        "max": 7
+      },
+      "fundingPercent": 86,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 66,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 8 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "8 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-7",
+      "name": {
+        "en": "Micro Finance Expansion Scheme 8",
+        "hi": "Micro Finance विस्तार योजना 8"
+      },
+      "category": {
+        "en": "Micro Finance",
+        "hi": "Micro Finance"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for micro finance initiatives across the country.",
+        "hi": "देश भर में Micro Finance पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 850000,
+      "interestRate": {
+        "min": 5,
+        "max": 8
+      },
+      "fundingPercent": 87,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 67,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 8.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "8.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-8",
+      "name": {
+        "en": "Education Expansion Scheme 9",
+        "hi": "Education विस्तार योजना 9"
+      },
+      "category": {
+        "en": "Education",
+        "hi": "Education"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for education initiatives across the country.",
+        "hi": "देश भर में Education पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 900000,
+      "interestRate": {
+        "min": 6,
+        "max": 7
+      },
+      "fundingPercent": 88,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 68,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 9 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "9 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-9",
+      "name": {
+        "en": "Business Expansion Scheme 10",
+        "hi": "Business विस्तार योजना 10"
+      },
+      "category": {
+        "en": "Business",
+        "hi": "Business"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for business initiatives across the country.",
+        "hi": "देश भर में Business पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 950000,
+      "interestRate": {
+        "min": 4,
+        "max": 8
+      },
+      "fundingPercent": 89,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 69,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 9.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "9.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-10",
+      "name": {
+        "en": "Green Energy Expansion Scheme 11",
+        "hi": "Green Energy विस्तार योजना 11"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "Green Energy"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for green energy initiatives across the country.",
+        "hi": "देश भर में Green Energy पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1000000,
+      "interestRate": {
+        "min": 5,
+        "max": 7
+      },
+      "fundingPercent": 90,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 70,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 10 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "10 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-11",
+      "name": {
+        "en": "Agriculture Expansion Scheme 12",
+        "hi": "Agriculture विस्तार योजना 12"
+      },
+      "category": {
+        "en": "Agriculture",
+        "hi": "Agriculture"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for agriculture initiatives across the country.",
+        "hi": "देश भर में Agriculture पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1050000,
+      "interestRate": {
+        "min": 6,
+        "max": 8
+      },
+      "fundingPercent": 91,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 71,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 10.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "10.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-12",
+      "name": {
+        "en": "Healthcare Expansion Scheme 13",
+        "hi": "Healthcare विस्तार योजना 13"
+      },
+      "category": {
+        "en": "Healthcare",
+        "hi": "Healthcare"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for healthcare initiatives across the country.",
+        "hi": "देश भर में Healthcare पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1100000,
+      "interestRate": {
+        "min": 4,
+        "max": 7
+      },
+      "fundingPercent": 92,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 72,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 11 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "11 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-13",
+      "name": {
+        "en": "Tech Startup Expansion Scheme 14",
+        "hi": "Tech Startup विस्तार योजना 14"
+      },
+      "category": {
+        "en": "Tech Startup",
+        "hi": "Tech Startup"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for tech startup initiatives across the country.",
+        "hi": "देश भर में Tech Startup पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1150000,
+      "interestRate": {
+        "min": 5,
+        "max": 8
+      },
+      "fundingPercent": 93,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 73,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 11.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "11.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-14",
+      "name": {
+        "en": "Micro Finance Expansion Scheme 15",
+        "hi": "Micro Finance विस्तार योजना 15"
+      },
+      "category": {
+        "en": "Micro Finance",
+        "hi": "Micro Finance"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for micro finance initiatives across the country.",
+        "hi": "देश भर में Micro Finance पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1200000,
+      "interestRate": {
+        "min": 6,
+        "max": 7
+      },
+      "fundingPercent": 94,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 74,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 12 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "12 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-15",
+      "name": {
+        "en": "Education Expansion Scheme 16",
+        "hi": "Education विस्तार योजना 16"
+      },
+      "category": {
+        "en": "Education",
+        "hi": "Education"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for education initiatives across the country.",
+        "hi": "देश भर में Education पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1250000,
+      "interestRate": {
+        "min": 4,
+        "max": 8
+      },
+      "fundingPercent": 95,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 75,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 12.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "12.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-16",
+      "name": {
+        "en": "Business Expansion Scheme 17",
+        "hi": "Business विस्तार योजना 17"
+      },
+      "category": {
+        "en": "Business",
+        "hi": "Business"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for business initiatives across the country.",
+        "hi": "देश भर में Business पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1300000,
+      "interestRate": {
+        "min": 5,
+        "max": 7
+      },
+      "fundingPercent": 96,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 76,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 13 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "13 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-17",
+      "name": {
+        "en": "Green Energy Expansion Scheme 18",
+        "hi": "Green Energy विस्तार योजना 18"
+      },
+      "category": {
+        "en": "Green Energy",
+        "hi": "Green Energy"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for green energy initiatives across the country.",
+        "hi": "देश भर में Green Energy पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1350000,
+      "interestRate": {
+        "min": 6,
+        "max": 8
+      },
+      "fundingPercent": 97,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 77,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 13.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "13.5 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-18",
+      "name": {
+        "en": "Agriculture Expansion Scheme 19",
+        "hi": "Agriculture विस्तार योजना 19"
+      },
+      "category": {
+        "en": "Agriculture",
+        "hi": "Agriculture"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for agriculture initiatives across the country.",
+        "hi": "देश भर में Agriculture पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1400000,
+      "interestRate": {
+        "min": 4,
+        "max": 7
+      },
+      "fundingPercent": 98,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 78,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 14 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "14 लाख तक।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-scheme-1789534494563-19",
+      "name": {
+        "en": "Healthcare Expansion Scheme 20",
+        "hi": "Healthcare विस्तार योजना 20"
+      },
+      "category": {
+        "en": "Healthcare",
+        "hi": "Healthcare"
+      },
+      "description": {
+        "en": "A new comprehensive financial support scheme for healthcare initiatives across the country.",
+        "hi": "देश भर में Healthcare पहलों के लिए एक नई व्यापक वित्तीय सहायता योजना।"
+      },
+      "maxAmount": 1450000,
+      "interestRate": {
+        "min": 5,
+        "max": 8
+      },
+      "fundingPercent": 99,
+      "moratoriumMonths": [
+        3,
+        6,
+        12
+      ],
+      "tenureMonths": 79,
+      "incomeLimit": 600000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Valid Business/Student ID"
+        ],
+        "hi": [
+          "SC श्रेणी",
+          "वैध व्यवसाय/छात्र आईडी"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Apply Online",
+          "Bank Verification",
+          "Approval"
+        ],
+        "hi": [
+          "ऑनलाइन आवेदन करें",
+          "बैंक सत्यापन",
+          "स्वीकृति"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "What is the max amount?",
+            "a": "Up to 14.5 Lakhs."
+          }
+        ],
+        "hi": [
+          {
+            "q": "अधिकतम राशि क्या है?",
+            "a": "14.5 लाख तक।"
+          }
+        ]
+      }
     }
   ]
 }

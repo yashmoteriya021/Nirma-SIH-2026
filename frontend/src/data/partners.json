@@ -1226,6 +1226,566 @@
         "electric-vehicle",
         "waste-management"
       ]
+    },
+    {
+      "id": "new-cp-1789534494563-0",
+      "name": {
+        "en": "National Bank Branch 1",
+        "hi": "राष्ट्रीय बैंक शाखा 1"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "New Delhi",
+        "hi": "New Delhi"
+      },
+      "state": {
+        "en": "Delhi",
+        "hi": "Delhi"
+      },
+      "address": {
+        "en": "Main Road, New Delhi, Delhi",
+        "hi": "मुख्य सड़क, New Delhi, Delhi"
+      },
+      "lat": 28.62406875294331,
+      "lng": 77.22388985019624,
+      "phone": "+91 9800010000",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-0"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-1",
+      "name": {
+        "en": "National Bank Branch 2",
+        "hi": "राष्ट्रीय बैंक शाखा 2"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Mumbai",
+        "hi": "Mumbai"
+      },
+      "state": {
+        "en": "Maharashtra",
+        "hi": "Maharashtra"
+      },
+      "address": {
+        "en": "Main Road, Mumbai, Maharashtra",
+        "hi": "मुख्य सड़क, Mumbai, Maharashtra"
+      },
+      "lat": 19.05372229290241,
+      "lng": 72.8639795440492,
+      "phone": "+91 9800010001",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-1"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-2",
+      "name": {
+        "en": "National Bank Branch 3",
+        "hi": "राष्ट्रीय बैंक शाखा 3"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "Chennai",
+        "hi": "Chennai"
+      },
+      "state": {
+        "en": "Tamil Nadu",
+        "hi": "Tamil Nadu"
+      },
+      "address": {
+        "en": "Main Road, Chennai, Tamil Nadu",
+        "hi": "मुख्य सड़क, Chennai, Tamil Nadu"
+      },
+      "lat": 13.066423298287958,
+      "lng": 80.22170564994643,
+      "phone": "+91 9800010002",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-2"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-3",
+      "name": {
+        "en": "National Bank Branch 4",
+        "hi": "राष्ट्रीय बैंक शाखा 4"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Kolkata",
+        "hi": "Kolkata"
+      },
+      "state": {
+        "en": "West Bengal",
+        "hi": "West Bengal"
+      },
+      "address": {
+        "en": "Main Road, Kolkata, West Bengal",
+        "hi": "मुख्य सड़क, Kolkata, West Bengal"
+      },
+      "lat": 22.52698466519087,
+      "lng": 88.3941764745508,
+      "phone": "+91 9800010003",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-3"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-4",
+      "name": {
+        "en": "National Bank Branch 5",
+        "hi": "राष्ट्रीय बैंक शाखा 5"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "Bengaluru",
+        "hi": "Bengaluru"
+      },
+      "state": {
+        "en": "Karnataka",
+        "hi": "Karnataka"
+      },
+      "address": {
+        "en": "Main Road, Bengaluru, Karnataka",
+        "hi": "मुख्य सड़क, Bengaluru, Karnataka"
+      },
+      "lat": 13.01865816799544,
+      "lng": 77.54650561046351,
+      "phone": "+91 9800010004",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-4"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-5",
+      "name": {
+        "en": "National Bank Branch 6",
+        "hi": "राष्ट्रीय बैंक शाखा 6"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Hyderabad",
+        "hi": "Hyderabad"
+      },
+      "state": {
+        "en": "Telangana",
+        "hi": "Telangana"
+      },
+      "address": {
+        "en": "Main Road, Hyderabad, Telangana",
+        "hi": "मुख्य सड़क, Hyderabad, Telangana"
+      },
+      "lat": 17.428839324108946,
+      "lng": 78.48782326695708,
+      "phone": "+91 9800010005",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-5"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-6",
+      "name": {
+        "en": "National Bank Branch 7",
+        "hi": "राष्ट्रीय बैंक शाखा 7"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "Pune",
+        "hi": "Pune"
+      },
+      "state": {
+        "en": "Maharashtra",
+        "hi": "Maharashtra"
+      },
+      "address": {
+        "en": "Main Road, Pune, Maharashtra",
+        "hi": "मुख्य सड़क, Pune, Maharashtra"
+      },
+      "lat": 18.544930551400448,
+      "lng": 73.82378791365724,
+      "phone": "+91 9800010006",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-6"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-7",
+      "name": {
+        "en": "National Bank Branch 8",
+        "hi": "राष्ट्रीय बैंक शाखा 8"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Jaipur",
+        "hi": "Jaipur"
+      },
+      "state": {
+        "en": "Rajasthan",
+        "hi": "Rajasthan"
+      },
+      "address": {
+        "en": "Main Road, Jaipur, Rajasthan",
+        "hi": "मुख्य सड़क, Jaipur, Rajasthan"
+      },
+      "lat": 26.950756631587485,
+      "lng": 75.75071330911258,
+      "phone": "+91 9800010007",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-7"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-8",
+      "name": {
+        "en": "National Bank Branch 9",
+        "hi": "राष्ट्रीय बैंक शाखा 9"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "Lucknow",
+        "hi": "Lucknow"
+      },
+      "state": {
+        "en": "Uttar Pradesh",
+        "hi": "Uttar Pradesh"
+      },
+      "address": {
+        "en": "Main Road, Lucknow, Uttar Pradesh",
+        "hi": "मुख्य सड़क, Lucknow, Uttar Pradesh"
+      },
+      "lat": 26.865961067414734,
+      "lng": 80.94932424995494,
+      "phone": "+91 9800010008",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-8"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-9",
+      "name": {
+        "en": "National Bank Branch 10",
+        "hi": "राष्ट्रीय बैंक शाखा 10"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Patna",
+        "hi": "Patna"
+      },
+      "state": {
+        "en": "Bihar",
+        "hi": "Bihar"
+      },
+      "address": {
+        "en": "Main Road, Patna, Bihar",
+        "hi": "मुख्य सड़क, Patna, Bihar"
+      },
+      "lat": 25.566112556293945,
+      "lng": 85.16177484532467,
+      "phone": "+91 9800010009",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-9"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-10",
+      "name": {
+        "en": "National Bank Branch 11",
+        "hi": "राष्ट्रीय बैंक शाखा 11"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "New Delhi",
+        "hi": "New Delhi"
+      },
+      "state": {
+        "en": "Delhi",
+        "hi": "Delhi"
+      },
+      "address": {
+        "en": "Main Road, New Delhi, Delhi",
+        "hi": "मुख्य सड़क, New Delhi, Delhi"
+      },
+      "lat": 28.576638915027477,
+      "lng": 77.19077189585583,
+      "phone": "+91 9800010010",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-10"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-11",
+      "name": {
+        "en": "National Bank Branch 12",
+        "hi": "राष्ट्रीय बैंक शाखा 12"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Mumbai",
+        "hi": "Mumbai"
+      },
+      "state": {
+        "en": "Maharashtra",
+        "hi": "Maharashtra"
+      },
+      "address": {
+        "en": "Main Road, Mumbai, Maharashtra",
+        "hi": "मुख्य सड़क, Mumbai, Maharashtra"
+      },
+      "lat": 19.086339414128002,
+      "lng": 72.89651037331369,
+      "phone": "+91 9800010011",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-11"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-12",
+      "name": {
+        "en": "National Bank Branch 13",
+        "hi": "राष्ट्रीय बैंक शाखा 13"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "Chennai",
+        "hi": "Chennai"
+      },
+      "state": {
+        "en": "Tamil Nadu",
+        "hi": "Tamil Nadu"
+      },
+      "address": {
+        "en": "Main Road, Chennai, Tamil Nadu",
+        "hi": "मुख्य सड़क, Chennai, Tamil Nadu"
+      },
+      "lat": 13.044106185823697,
+      "lng": 80.24466441177948,
+      "phone": "+91 9800010012",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-12"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-13",
+      "name": {
+        "en": "National Bank Branch 14",
+        "hi": "राष्ट्रीय बैंक शाखा 14"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Kolkata",
+        "hi": "Kolkata"
+      },
+      "state": {
+        "en": "West Bengal",
+        "hi": "West Bengal"
+      },
+      "address": {
+        "en": "Main Road, Kolkata, West Bengal",
+        "hi": "मुख्य सड़क, Kolkata, West Bengal"
+      },
+      "lat": 22.59171242681234,
+      "lng": 88.40477226861569,
+      "phone": "+91 9800010013",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-13"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-14",
+      "name": {
+        "en": "National Bank Branch 15",
+        "hi": "राष्ट्रीय बैंक शाखा 15"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "Bengaluru",
+        "hi": "Bengaluru"
+      },
+      "state": {
+        "en": "Karnataka",
+        "hi": "Karnataka"
+      },
+      "address": {
+        "en": "Main Road, Bengaluru, Karnataka",
+        "hi": "मुख्य सड़क, Bengaluru, Karnataka"
+      },
+      "lat": 12.97194320171386,
+      "lng": 77.55363931257322,
+      "phone": "+91 9800010014",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-14"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-15",
+      "name": {
+        "en": "National Bank Branch 16",
+        "hi": "राष्ट्रीय बैंक शाखा 16"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Hyderabad",
+        "hi": "Hyderabad"
+      },
+      "state": {
+        "en": "Telangana",
+        "hi": "Telangana"
+      },
+      "address": {
+        "en": "Main Road, Hyderabad, Telangana",
+        "hi": "मुख्य सड़क, Hyderabad, Telangana"
+      },
+      "lat": 17.352511507639026,
+      "lng": 78.45057096757283,
+      "phone": "+91 9800010015",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-15"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-16",
+      "name": {
+        "en": "National Bank Branch 17",
+        "hi": "राष्ट्रीय बैंक शाखा 17"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "Pune",
+        "hi": "Pune"
+      },
+      "state": {
+        "en": "Maharashtra",
+        "hi": "Maharashtra"
+      },
+      "address": {
+        "en": "Main Road, Pune, Maharashtra",
+        "hi": "मुख्य सड़क, Pune, Maharashtra"
+      },
+      "lat": 18.540062257890003,
+      "lng": 73.87970901614086,
+      "phone": "+91 9800010016",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-16"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-17",
+      "name": {
+        "en": "National Bank Branch 18",
+        "hi": "राष्ट्रीय बैंक शाखा 18"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Jaipur",
+        "hi": "Jaipur"
+      },
+      "state": {
+        "en": "Rajasthan",
+        "hi": "Rajasthan"
+      },
+      "address": {
+        "en": "Main Road, Jaipur, Rajasthan",
+        "hi": "मुख्य सड़क, Jaipur, Rajasthan"
+      },
+      "lat": 26.9590506481109,
+      "lng": 75.74811873580002,
+      "phone": "+91 9800010017",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-17"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-18",
+      "name": {
+        "en": "National Bank Branch 19",
+        "hi": "राष्ट्रीय बैंक शाखा 19"
+      },
+      "type": "PSB",
+      "city": {
+        "en": "Lucknow",
+        "hi": "Lucknow"
+      },
+      "state": {
+        "en": "Uttar Pradesh",
+        "hi": "Uttar Pradesh"
+      },
+      "address": {
+        "en": "Main Road, Lucknow, Uttar Pradesh",
+        "hi": "मुख्य सड़क, Lucknow, Uttar Pradesh"
+      },
+      "lat": 26.8190574857174,
+      "lng": 80.93014479101554,
+      "phone": "+91 9800010018",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-18"
+      ]
+    },
+    {
+      "id": "new-cp-1789534494563-19",
+      "name": {
+        "en": "National Bank Branch 20",
+        "hi": "राष्ट्रीय बैंक शाखा 20"
+      },
+      "type": "RRB",
+      "city": {
+        "en": "Patna",
+        "hi": "Patna"
+      },
+      "state": {
+        "en": "Bihar",
+        "hi": "Bihar"
+      },
+      "address": {
+        "en": "Main Road, Patna, Bihar",
+        "hi": "मुख्य सड़क, Patna, Bihar"
+      },
+      "lat": 25.613803267406055,
+      "lng": 85.14743454574524,
+      "phone": "+91 9800010019",
+      "status": "accepting",
+      "schemesSupported": [
+        "micro-finance",
+        "new-scheme-1789534494563-19"
+      ]
     }
   ]
 }

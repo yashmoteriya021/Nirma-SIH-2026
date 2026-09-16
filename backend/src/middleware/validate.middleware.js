@@ -88,17 +88,6 @@ export const emiValidation = [
   validate,
 ];
 
-export const recommendValidation = [
-  body('category')
-    .trim()
-    .notEmpty().withMessage('Category is required')
-    .isIn(['business', 'education']).withMessage('Category must be "business" or "education"'),
-  body('project_cost')
-    .isFloat({ min: 0 }).withMessage('Project cost must be non-negative'),
-  body('annual_income')
-    .isFloat({ min: 0 }).withMessage('Annual income must be non-negative'),
-  validate,
-];
 
 export const nearbyPartnersValidation = [
   query('lat')
