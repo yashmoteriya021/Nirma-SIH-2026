@@ -4,13 +4,14 @@
 
 ## Features
 
-- 🔍 **Smart Scheme Recommender** — Answer a few questions to get a personalized scheme recommendation
-- 💰 **EMI Calculator** — Interactive calculator using the reducing-balance formula
-- 🗺️ **Channel Partner Locator** — Find the nearest SCA, Bank, RRB, or NBFC-MFI with geospatial search, automatically excluding high-NPA or exhausted partners.
-- 🌐 **Bilingual** — Full English/Hindi support with `localStorage` persistence
-- 📱 **Mobile-first** — Responsive design tested at 360px, 768px, 1024px, 1440px
-- ♿ **Accessible** — WCAG AA contrast, 44×44px tap targets, semantic HTML
-- 🔐 **Auth API** — OTP and email/password authentication endpoints (JWT based)
+- 🔍 **Smart Scheme Recommender** — Answer a few questions to get a personalized scheme recommendation from our expanded knowledge base of **60 unique schemes**.
+- 🤖 **AI Assistant** — An intelligent chatbot powered by a custom ML pipeline (OpenRouter integration) that interacts with users to find matching schemes and authorized channel partners natively.
+- 💰 **EMI Calculator** — Interactive calculator using the reducing-balance formula.
+- 🗺️ **Channel Partner Locator** — Find the nearest authorized partner among **55 locations nationwide** with geospatial search, automatically excluding high-NPA or exhausted partners.
+- 🌐 **Bilingual** — Full English/Hindi support with `localStorage` persistence.
+- 📱 **Mobile-first** — Responsive design tested at 360px, 768px, 1024px, 1440px.
+- ♿ **Accessible** — WCAG AA contrast, 44×44px tap targets, semantic HTML.
+- 🔐 **Auth API** — OTP and email/password authentication endpoints (JWT based).
 
 ## Tech Stack
 
@@ -72,7 +73,7 @@ d:\SIH\
 # Terminal 1 — Backend API (port 5000)
 cd backend
 npm install
-npm run seed          # Populate MongoDB with mock data (run once)
+npm run seed          # Populate MongoDB with mock data (adds 60 schemes and 55 partners nationwide)
 npm run dev
 
 # Terminal 2 — Frontend (port 5173, proxies /api → backend)
@@ -132,7 +133,7 @@ All responses follow a standard envelope: `{ "success": true/false, "data" | "er
 | `/schemes/:schemeId` | Scheme Details (8 tabs; the Partners tab uses the ML routing engine) |
 | `/assistant` | AI Assistant — profile → chat → explained scheme matches → nearby healthy partners |
 
-Valid scheme IDs: `micro-finance`, `term-loan`, `education-loan`
+Valid scheme IDs: `micro-finance`, `term-loan`, `education-loan`, and 57 more generated schemes.
 
 ## ML Pipeline (`ml/`)
 
@@ -142,7 +143,7 @@ The decision core for PS 26092 lives in `ml/` as a 4-stage deterministic pipelin
 |--------|-----------|--------------|
 | 1. Verified Profile | `ml/module1_profile/` | DigiLocker-style mock verification, manual fallback form, certificate staleness (Indian FY) |
 | 2. Intent Extraction | `ml/module2_intent/` | Slot-filling state machine; LLM extractor (OpenAI / OpenRouter / Anthropic / Ollama) with offline Hindi/English/Hinglish rule fallback |
-| 3. Matching & Ranking | `ml/module3_matching/` | 13-scheme knowledge base (NSFDC/NBCFDC/NSKFDC/VISVAS), hard eligibility filter, weighted soft ranker, explanation generator |
+| 3. Matching & Ranking | `ml/module3_matching/` | 60-scheme comprehensive knowledge base (NSFDC/NBCFDC/NSKFDC/VISVAS and more), hard eligibility filter, weighted soft ranker, explanation generator |
 | 4. Partner Routing | `ml/module4_partners/` | Capacity/NPA health filter then Haversine distance ranking; PIN-code fallback |
 
 ```bash
