@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ChannelPartner",
+  "description": "Schema for a Channel Partner that can process NSFDC/NBCFDC/NSKFDC loan schemes. Channel Partners include State Channelizing Agencies (SCAs), Public Sector Banks (PSBs), Regional Rural Banks (RRBs), and NBFC-MFIs.",
+  "type": "object",
+  "required": [
+    "partner_id",
+    "name",
+    "type",
+    "state",
+    "latitude",
+    "longitude",
+    "scheme_categories_processed",
+    "fund_utilization_pct",
+    "npa_pct",
+    "is_active"
+  ],
+  "properties": {
+    "partner_id": {
+      "type": "string",
+      "description": "Unique identifier for the partner (e.g., 'SCA_MH_001', 'PSB_SBI_UP_003')"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the channel partner"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["SCA", "PSB", "RRB", "NBFC_MFI"],
+      "description": "Type of channel partner: State Channelizing Agency, Public Sector Bank, Regional Rural Bank, or NBFC-MFI"
+    },
+    "state": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "Indian state code (e.g., 'MH', 'UP')"
+    },
+    "district": {
+      "type": "string",
+      "description": "District where the partner branch is located"
+    },
+    "pin_code": {
+      "type": "string",
+      "pattern": "^[0-9]{6}$",
+      "description": "6-digit Indian PIN code"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": 6.0,
+      "maximum": 37.0,
+      "description": "Latitude of the partner branch (India range: ~6-37°N)"
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": 68.0,
+      "maximum": 98.0,
+      "description": "Longitude of the partner branch (India range: ~68-98°E)"
+    },
+    "scheme_categories_processed": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "List of scheme IDs this partner can process (e.g., ['NSFDC_MCF', 'NSFDC_TL'])"
+    },
+    "fund_utilization_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Current fund utilization percentage (how much of allocated funds are already committed). Higher = less capacity."
+    },
+    "npa_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Net Non-Performing Assets percentage. NSFDC requires RRBs to have NPA < 15% for eligibility."
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Whether the partner is currently accepting new applications"
+    },
+    "contact_phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "source": {
+      "type": "string",
+      "description": "Data source attribution (e.g., 'synthetic', 'NSFDC SCA list')"
+    }
+  },
+  "additionalProperties": false
+}

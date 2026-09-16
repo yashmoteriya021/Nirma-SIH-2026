@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CitizenProfile",
+  "description": "Verified structured citizen profile for scheme matching. Derived from DigiLocker documents or manual self-reporting. No raw document images are stored — only structured fields.",
+  "type": "object",
+  "required": [
+    "applicant_id",
+    "full_name",
+    "dob",
+    "gender",
+    "category",
+    "domicile_state",
+    "annual_family_income",
+    "income_certificate_issue_date",
+    "verification_status",
+    "consent_given_at"
+  ],
+  "properties": {
+    "applicant_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the applicant"
+    },
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full legal name of the applicant"
+    },
+    "dob": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of birth (YYYY-MM-DD)"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 150,
+      "description": "Computed age in years from DOB. Auto-calculated, not user-input."
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "other"
+      ],
+      "description": "Gender of the applicant"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "SC",
+        "OBC",
+        "SafaiKaramchari",
+        "ManualScavenger",
+        "WastePicker"
+      ],
+      "description": "Social category. SC = Scheduled Caste, OBC = Other Backward Class. SafaiKaramchari/ManualScavenger/WastePicker are NSKFDC-eligible categories."
+    },
+    "domicile_state": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "Indian state code (ISO 3166-2:IN minus 'IN-' prefix, e.g., 'MH' for Maharashtra, 'UP' for Uttar Pradesh). Distinct from live GPS location."
+    },
+    "annual_family_income": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Annual family income in INR (₹) as declared on the income certificate"
+    },
+    "income_certificate_issue_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the income certificate was issued (YYYY-MM-DD). Used for staleness checks."
+    },
+    "education_status": {
+      "type": "string",
+      "enum": [
+        "below_8th",
+        "8th_pass",
+        "10th_pass",
+        "12th_pass",
+        "graduate",
+        "post_graduate",
+        "professional"
+      ],
+      "default": "below_8th",
+      "description": "Highest education qualification"
+    },
+    "disability_status": {
+      "type": "object",
+      "properties": {
+        "has_disability": {
+          "type": "boolean",
+          "default": false
+        },
+        "disability_type": {
+          "type": "string",
+          "description": "Type of disability if applicable (e.g., 'visual', 'hearing', 'locomotor', 'intellectual', 'multiple')"
+        },
+        "disability_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Certified disability percentage (40%+ is typical threshold for PwD benefits)"
+        }
+      },
+      "description": "Disability information for special provisions"
+    },
+    "existing_loan_flag": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the applicant has an existing loan from NSFDC/NBCFDC/NSKFDC or their channel partners"
+    },
+    "marital_status": {
+      "type": "string",
+      "enum": [
+        "single",
+        "married",
+        "widowed",
+        "divorced"
+      ],
+      "description": "Marital status of the applicant"
+    },
+    "is_single_woman": {
+      "type": "boolean",
+      "description": "Derived field: true if gender=female AND marital_status in (single, widowed, divorced). Relevant for NASY scheme eligibility."
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "self_reported"
+      ],
+      "description": "Whether the profile was verified via DigiLocker or self-reported manually. Downstream modules use this to assess confidence."
+    },
+    "needs_reverification": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if income certificate is stale (older than 1 financial year) or OBC-NCL certificate needs renewal."
+    },
+    "consent_given_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the user consented to data processing. Required for DPDP Act 2023 compliance."
+    },
+    "verification_source": {
+      "type": "string",
+      "enum": [
+        "digilocker",
+        "manual",
+        "none"
+      ],
+      "default": "none",
+      "description": "Source of profile verification"
+    },
+    "reverification_reason": {
+      "type": "string",
+      "description": "Human-readable reason if needs_reverification is true (e.g., 'Income certificate issued on 2024-03-15 is older than 1 financial year')"
+    },
+    "caste_certificate_issue_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "description": "Issue date of the caste/OBC-NCL certificate. Required for OBC (annual validity, Indian FY); ignored for SC and Safai Karamchari categories (lifetime validity)."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExtractedIntent",
+  "description": "Structured intent slots extracted from a citizen's freeform description of their need. Used as input to the Eligibility Matching engine (Module 3).",
+  "type": "object",
+  "required": [
+    "purpose",
+    "estimated_cost",
+    "beneficiary",
+    "extraction_method",
+    "slots_filled",
+    "slots_missing"
+  ],
+  "properties": {
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "business_start",
+        "business_expansion",
+        "education",
+        "vehicle_livelihood",
+        "agriculture_allied",
+        "sanitation_equipment",
+        "other"
+      ],
+      "description": "Primary purpose of the loan/assistance"
+    },
+    "project_type": {
+      "type": "string",
+      "description": "Free-text description of the specific project or business (e.g., 'tailoring shop', 'kirana store', 'BTech CS')"
+    },
+    "estimated_cost": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Estimated total project/education cost in INR (₹)"
+    },
+    "cost_confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "description": "Confidence in the cost estimate. 'high' = user stated exact figure; 'medium' = user gave range or approximate; 'low' = system estimated from typical ranges."
+    },
+    "beneficiary": {
+      "type": "string",
+      "enum": [
+        "self",
+        "dependent"
+      ],
+      "description": "Whether the loan is for the applicant themselves or their dependent (e.g., child's education)"
+    },
+    "loan_type_guess": {
+      "type": "string",
+      "enum": [
+        "micro_finance",
+        "term_loan",
+        "education_loan",
+        "unknown"
+      ],
+      "default": "unknown",
+      "description": "User's own guess at which loan type they need, if any. Not binding on Module 3."
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "immediate",
+        "within_3_months",
+        "flexible"
+      ],
+      "default": "flexible",
+      "description": "How urgently the applicant needs the funds"
+    },
+    "slots_filled": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of slot names that were successfully filled"
+    },
+    "slots_missing": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of slot names that could not be filled after all extraction attempts"
+    },
+    "extraction_method": {
+      "type": "string",
+      "enum": [
+        "llm",
+        "offline_rules",
+        "manual_form"
+      ],
+      "description": "Which extraction method was used"
+    },
+    "raw_input": {
+      "type": "string",
+      "description": "The original freeform text from the user (for audit/debugging)"
+    },
+    "confirmation_summary": {
+      "type": "string",
+      "description": "Human-readable summary shown to user for confirmation (e.g., 'So you want ~₹80,000 for a tailoring shop, correct?')"
+    },
+    "student_education_status": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "below_8th",
+        "8th_pass",
+        "10th_pass",
+        "12th_pass",
+        "graduate",
+        "post_graduate",
+        "professional",
+        null
+      ],
+      "description": "Education level of the student when purpose is education. Pre-filled from the profile when beneficiary is self; asked as a follow-up when beneficiary is dependent."
+    },
+    "llm_provider": {
+      "type": "string",
+      "description": "Provider used when extraction_method is llm."
+    },
+    "llm_model": {
+      "type": "string",
+      "description": "Model used when extraction_method is llm."
+    },
+    "llm_error": {
+      "type": "string",
+      "description": "Present when an LLM call failed and offline rules were used instead."
+    }
+  },
+  "additionalProperties": false
+}

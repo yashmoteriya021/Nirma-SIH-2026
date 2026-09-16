@@ -1,0 +1,517 @@
+{
+  "version": "1.1",
+  "last_updated": "2026-09-14",
+  "note": "Scheme data researched from official NSFDC, NBCFDC, NSKFDC websites, myScheme.gov.in, PIB press releases, and DoSJE documents. Any unverifiable figure is marked with assumption_note. `frontend_id` links a scheme to its detail page id in frontend/src/data/schemes.json (null when the frontend has no page for it yet).",
+  "schemes": [
+    {
+      "scheme_id": "NSFDC_MCF",
+      "corporation": "NSFDC",
+      "name": "Micro Credit Finance (MCF)",
+      "description": "Micro-loans for small income-generating activities for Scheduled Castes",
+      "target_category": [
+        "SC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 140000,
+      "loan_ceiling": 140000,
+      "loan_percentage": 90,
+      "interest_rate": 6.5,
+      "interest_rebate_women": 0.5,
+      "moratorium_months": 6,
+      "repayment_years": 5,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "vehicle_livelihood",
+        "agriculture_allied"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report"
+      ],
+      "source_url": "https://nsfdc.nic.in",
+      "source_notes": "MCF scheme from NSFDC official website and myScheme.gov.in. Income ceiling revised to ₹5L per PIB Jan 2026.",
+      "frontend_id": "micro-finance"
+    },
+    {
+      "scheme_id": "NSFDC_TL",
+      "corporation": "NSFDC",
+      "name": "Term Loan",
+      "description": "Larger loans for viable income-generating projects for Scheduled Castes",
+      "target_category": [
+        "SC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 140001,
+      "project_cost_max": 5000000,
+      "loan_ceiling": 5000000,
+      "loan_percentage": 90,
+      "interest_rate": 8.0,
+      "interest_rebate_women": 0.5,
+      "moratorium_months": 6,
+      "repayment_years": 10,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "vehicle_livelihood",
+        "agriculture_allied"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report",
+        "collateral_docs"
+      ],
+      "source_url": "https://dosje.gov.in",
+      "source_notes": "Term Loan scheme from DoSJE and NSFDC. Rate 8% p.a. for >₹1.4L.",
+      "frontend_id": "term-loan"
+    },
+    {
+      "scheme_id": "NSFDC_ELS",
+      "corporation": "NSFDC",
+      "name": "Educational Loan Scheme (ELS)",
+      "description": "Education loans for SC students pursuing professional/technical courses in India or abroad",
+      "target_category": [
+        "SC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 4000000,
+      "loan_ceiling": 4000000,
+      "loan_percentage": 90,
+      "interest_rate": 4.0,
+      "interest_rebate_women": 0.5,
+      "moratorium_months": 12,
+      "repayment_years": 7,
+      "purpose_types": [
+        "education"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": "12th_pass",
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "admission_letter",
+        "fee_structure"
+      ],
+      "source_url": "https://nsfdc.nic.in",
+      "source_notes": "ELS from NSFDC. Up to ₹40L at 4% (3.5% for women). Source: nsfdc.nic.in, propelld.com, gyandhan.com.",
+      "frontend_id": "education-loan"
+    },
+    {
+      "scheme_id": "NSFDC_MSY",
+      "corporation": "NSFDC",
+      "name": "Mahila Samriddhi Yojana (MSY)",
+      "description": "Micro-finance scheme exclusively for SC women for income-generating activities",
+      "target_category": [
+        "SC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 140000,
+      "loan_ceiling": 140000,
+      "loan_percentage": 90,
+      "interest_rate": 6.0,
+      "interest_rebate_women": 0,
+      "moratorium_months": 6,
+      "repayment_years": 5,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "agriculture_allied"
+      ],
+      "gender_restriction": "female",
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report"
+      ],
+      "source_url": "https://nsfdc.nic.in",
+      "source_notes": "MSY from NSFDC. Women-only scheme with lower interest rate (6% vs 6.5% MCF).",
+      "frontend_id": "mahila-samridhi"
+    },
+    {
+      "scheme_id": "NSFDC_NASY",
+      "corporation": "NSFDC",
+      "name": "Nari Arthik Sashaktikaran Yojana (NASY)",
+      "description": "Support for single SC women, widows, and female heads of household for income-generating ventures",
+      "target_category": [
+        "SC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 300000,
+      "loan_ceiling": 300000,
+      "loan_percentage": 90,
+      "interest_rate": 5.0,
+      "interest_rebate_women": 0,
+      "moratorium_months": 6,
+      "repayment_years": 7,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "agriculture_allied"
+      ],
+      "gender_restriction": "female_single",
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report",
+        "proof_of_single_status"
+      ],
+      "source_url": "https://nsfdc.nic.in",
+      "source_notes": "NASY from NSFDC. For single women/widows/divorced women. Assumption: loan ceiling ₹3L and rate 5% based on scheme description; exact figures may vary by implementation.",
+      "frontend_id": null
+    },
+    {
+      "scheme_id": "NBCFDC_GL",
+      "corporation": "NBCFDC",
+      "name": "General Loan",
+      "description": "Term loans for income-generating activities for OBC beneficiaries",
+      "target_category": [
+        "OBC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 1500000,
+      "loan_ceiling": 1500000,
+      "loan_percentage": 85,
+      "interest_rate_tiers": [
+        {
+          "max_amount": 500000,
+          "rate": 6.0
+        },
+        {
+          "max_amount": 1000000,
+          "rate": 7.0
+        },
+        {
+          "max_amount": 1500000,
+          "rate": 8.0
+        }
+      ],
+      "interest_rate": 6.0,
+      "interest_rebate_women": 0,
+      "moratorium_months": 6,
+      "repayment_years": 8,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "vehicle_livelihood",
+        "agriculture_allied"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report"
+      ],
+      "source_url": "https://nbcfdc.gov.in",
+      "source_notes": "General Loan from NBCFDC. Tiered rates: 6% (≤5L), 7% (5-10L), 8% (10-15L). Source: nbcfdc.gov.in.",
+      "frontend_id": null
+    },
+    {
+      "scheme_id": "NBCFDC_SL",
+      "corporation": "NBCFDC",
+      "name": "Small Loan",
+      "description": "Small loans for micro-enterprises by OBC beneficiaries",
+      "target_category": [
+        "OBC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 125000,
+      "loan_ceiling": 125000,
+      "loan_percentage": 85,
+      "interest_rate": 6.0,
+      "interest_rebate_women": 0,
+      "moratorium_months": 3,
+      "repayment_years": 5,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "agriculture_allied"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report"
+      ],
+      "source_url": "https://nbcfdc.gov.in",
+      "source_notes": "Small Loan from NBCFDC. Up to ₹1.25L at 6%. Source: nbcfdc.gov.in.",
+      "frontend_id": null
+    },
+    {
+      "scheme_id": "NBCFDC_NSW",
+      "corporation": "NBCFDC",
+      "name": "New Swarnima for Women",
+      "description": "Concessional loans exclusively for OBC women entrepreneurs",
+      "target_category": [
+        "OBC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 200000,
+      "loan_ceiling": 200000,
+      "loan_percentage": 90,
+      "interest_rate": 5.0,
+      "interest_rebate_women": 0,
+      "moratorium_months": 6,
+      "repayment_years": 8,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "agriculture_allied"
+      ],
+      "gender_restriction": "female",
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report"
+      ],
+      "source_url": "https://nbcfdc.gov.in",
+      "source_notes": "New Swarnima from NBCFDC. Women-only, up to ₹2L at 5%. Source: nbcfdc.gov.in, pib.gov.in.",
+      "frontend_id": null
+    },
+    {
+      "scheme_id": "NBCFDC_EL",
+      "corporation": "NBCFDC",
+      "name": "Education Loan",
+      "description": "Education loans for OBC students for courses in India and abroad",
+      "target_category": [
+        "OBC"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 2000000,
+      "loan_ceiling": 2000000,
+      "loan_percentage": 90,
+      "interest_rate": 4.0,
+      "interest_rebate_women": 0.5,
+      "moratorium_months": 12,
+      "repayment_years": 7,
+      "purpose_types": [
+        "education"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": "12th_pass",
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "admission_letter",
+        "fee_structure"
+      ],
+      "source_url": "https://nbcfdc.gov.in",
+      "source_notes": "Education Loan from NBCFDC. Up to ₹10L (India) / ₹20L (abroad) at 4% (3.5% for girls). Source: negd.in, nbcfdc.gov.in.",
+      "frontend_id": null
+    },
+    {
+      "scheme_id": "NSKFDC_GTL",
+      "corporation": "NSKFDC",
+      "name": "General Term Loan",
+      "description": "Term loans for Safai Karamcharis, manual scavengers, and waste pickers for income-generating activities",
+      "target_category": [
+        "SafaiKaramchari",
+        "ManualScavenger",
+        "WastePicker"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 1500000,
+      "loan_ceiling": 1500000,
+      "loan_percentage": 90,
+      "interest_rate": 6.0,
+      "interest_rebate_women": 1.0,
+      "moratorium_months": 6,
+      "repayment_years": 10,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "vehicle_livelihood",
+        "agriculture_allied",
+        "sanitation_equipment"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "identification_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report"
+      ],
+      "source_url": "https://nskfdc.nic.in",
+      "source_notes": "GTL from NSKFDC. Rates 6-9% depending on quantum. 1% rebate for women. Source: nskfdc.nic.in, general web.",
+      "frontend_id": null
+    },
+    {
+      "scheme_id": "NSKFDC_SUY",
+      "corporation": "NSKFDC",
+      "name": "Swachhta Udyami Yojana",
+      "description": "Loans for mechanised sanitation equipment and vehicles for Safai Karamcharis",
+      "target_category": [
+        "SafaiKaramchari",
+        "ManualScavenger",
+        "WastePicker"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 1500000,
+      "loan_ceiling": 1500000,
+      "loan_percentage": 90,
+      "interest_rate": 6.0,
+      "interest_rebate_women": 1.0,
+      "moratorium_months": 6,
+      "repayment_years": 10,
+      "purpose_types": [
+        "sanitation_equipment",
+        "vehicle_livelihood"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "identification_certificate",
+        "income_certificate",
+        "aadhaar",
+        "project_report",
+        "equipment_quotation"
+      ],
+      "source_url": "https://nskfdc.nic.in",
+      "source_notes": "Swachhta Udyami from NSKFDC. For mechanised sanitation equipment/vehicles. Assumption: same loan terms as GTL.",
+      "frontend_id": null
+    },
+    {
+      "scheme_id": "NSKFDC_EL",
+      "corporation": "NSKFDC",
+      "name": "Education Loan",
+      "description": "Education loans for children of Safai Karamcharis for studies in India and abroad",
+      "target_category": [
+        "SafaiKaramchari",
+        "ManualScavenger",
+        "WastePicker"
+      ],
+      "income_ceiling": 500000,
+      "project_cost_min": 0,
+      "project_cost_max": 2000000,
+      "loan_ceiling": 2000000,
+      "loan_percentage": 90,
+      "interest_rate": 4.0,
+      "interest_rebate_women": 1.0,
+      "moratorium_months": 12,
+      "repayment_years": 7,
+      "purpose_types": [
+        "education"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": "12th_pass",
+      "existing_loan_restriction": false,
+      "required_documents": [
+        "identification_certificate",
+        "income_certificate",
+        "aadhaar",
+        "admission_letter",
+        "fee_structure"
+      ],
+      "source_url": "https://nskfdc.nic.in",
+      "source_notes": "Education Loan from NSKFDC. Up to ₹10L (India) / ₹20L (abroad) at ~4%. Source: nskfdc.nic.in.",
+      "frontend_id": null
+    },
+    {
+      "scheme_id": "VISVAS",
+      "corporation": "NBCFDC/NSFDC",
+      "name": "VISVAS (Vanchit Ikai Samooh aur Vargon ki Aarthik Sahayata Yojana)",
+      "description": "Interest subvention scheme providing 5% p.a. subsidy on existing loans for SC/OBC/SafaiKaramchari beneficiaries",
+      "target_category": [
+        "SC",
+        "OBC",
+        "SafaiKaramchari",
+        "ManualScavenger",
+        "WastePicker"
+      ],
+      "income_ceiling": 300000,
+      "project_cost_min": 0,
+      "project_cost_max": 200000,
+      "loan_ceiling": 200000,
+      "loan_percentage": 100,
+      "interest_rate": -5.0,
+      "interest_rebate_women": 0,
+      "moratorium_months": 0,
+      "repayment_years": 0,
+      "purpose_types": [
+        "business_start",
+        "business_expansion",
+        "agriculture_allied"
+      ],
+      "gender_restriction": null,
+      "disability_provisions": null,
+      "education_requirement": null,
+      "existing_loan_restriction": false,
+      "is_convergence_scheme": true,
+      "convergence_with": [
+        "MUDRA",
+        "NRLM",
+        "NULM",
+        "NABARD"
+      ],
+      "required_documents": [
+        "caste_certificate",
+        "income_certificate",
+        "aadhaar",
+        "existing_loan_documents",
+        "bank_account_proof"
+      ],
+      "source_url": "https://nbcfdc.gov.in",
+      "source_notes": "VISVAS from NBCFDC/NSFDC. 5% p.a. interest subvention via DBT. Income ceiling ₹3L for individuals, ≤₹4L for SHGs. Must have standard (regular repayment) account. Source: nbcfdc.gov.in, umang.gov.in, pib.gov.in, myScheme.gov.in.",
+      "special_conditions": [
+        "Beneficiary must have a 'standard' (regular repayment) loan account",
+        "SHGs must be registered with NRLM/NULM/NABARD with 2+ years credit history",
+        "Individual loan limit ₹2L, SHG loan limit ₹4L",
+        "Cannot claim interest subvention under multiple schemes simultaneously"
+      ],
+      "frontend_id": null
+    }
+  ]
+}
