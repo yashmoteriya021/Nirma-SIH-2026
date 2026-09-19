@@ -25,10 +25,12 @@ export default function AIAssistant({ user }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   
-  const messagesEndRef = useRef(null);
+  const chatContainerRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
@@ -127,7 +129,7 @@ export default function AIAssistant({ user }) {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-offwhite-50">
+      <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-6 space-y-6 bg-offwhite-50">
         {messages.map((msg, idx) => (
           <div key={idx} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[85%] rounded-2xl p-4 shadow-sm ${
@@ -204,7 +206,6 @@ export default function AIAssistant({ user }) {
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
 
       {error && (

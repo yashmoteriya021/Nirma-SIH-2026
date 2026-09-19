@@ -100,8 +100,12 @@ export default function Assistant() {
   const [awaitingConfirm, setAwaitingConfirm] = useState(false);
   const [chatBusy, setChatBusy] = useState(false);
   const [lastMethod, setLastMethod] = useState('');
-  const bottomRef = useRef(null);
-  useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
+  const chatContainerRef = useRef(null);
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   async function sendMessage(e) {
     e?.preventDefault();
@@ -287,7 +291,7 @@ export default function Assistant() {
       {step === 2 && (
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-offwhite-0 rounded-xl shadow-sm border border-navy-100 flex flex-col min-h-[420px]">
-            <div className="flex-1 p-5 space-y-3 overflow-y-auto max-h-[60vh]">
+            <div ref={chatContainerRef} className="flex-1 p-5 space-y-3 overflow-y-auto max-h-[60vh]">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm whitespace-pre-line ${
@@ -298,7 +302,6 @@ export default function Assistant() {
                 </div>
               ))}
               {chatBusy && <p className="text-xs text-navy-700">{L('Thinking…', 'सोच रहा हूं…')}</p>}
-              <div ref={bottomRef} />
             </div>
 
             {awaitingConfirm ? (
