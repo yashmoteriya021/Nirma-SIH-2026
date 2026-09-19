@@ -1,7 +1,10 @@
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
+import dns from 'dns';
 import Otp from '../models/Otp.js';
 import config from '../config/env.js';
+
+dns.setDefaultResultOrder('ipv4first');
 
 let transporter;
 if (!config.otp.mockMode && config.smtp.user && config.smtp.pass) {
@@ -76,22 +79,22 @@ const sendViaSMS = async (mobileNumber, otpCode) => {
   try {
     // Fast2SMS expects 10-digit number without country code
     const cleanNumber = mobileNumber.replace('+91', '').replace(/\D/g, '');
-    
+
     const url = `https://www.fast2sms.com/dev/bulkV2?authorization=${config.fast2sms.apiKey}&variables_values=${otpCode}&route=otp&numbers=${cleanNumber}`;
-    
+
     const response = await fetch(url);
     const data = await response.json();
-    
+
     if (!data.return) {
       throw new Error(data.message || 'Fast2SMS returned an error');
     }
-    
+
     return true;
   } catch (error) {
     console.error(`\n❌ [FAST2SMS ERROR]: Failed to send SMS to ${mobileNumber}.`);
     console.error(`Reason: ${error.message}`);
     console.log(`\n  📱 [FALLBACK MOCK OTP] Since Fast2SMS failed, here is your code for ${mobileNumber}: ${otpCode}\n`);
-    
+
     // We return true so the frontend still shows the modal and allows them to enter the fallback code.
     return true;
   }
@@ -115,9 +118,9 @@ export const createAndSendOTP = async (identifier, type) => {
   });
 
   if (type === 'email') {
-    await sendViaEmail(identifier, otpCode);
+    sendViaEmail(identifier, otpCode).catch(e => console.error('Failed to send OTP email:', e.message));
   } else {
-    await sendViaSMS(identifier, otpCode);
+    sendViaSMS(identifier, otpCode).catch(e => console.error('Failed to send OTP SMS:', e.message));
   }
 
   return {
