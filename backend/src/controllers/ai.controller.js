@@ -7,6 +7,8 @@ import {
   resetIntentSession,
   matchSchemes,
   rankPartners,
+  chatSession,
+  synthesizeSpeech,
 } from '../services/ml.service.js';
 import { successResponse, errorResponse } from '../utils/apiResponse.js';
 import asyncHandler from '../utils/asyncHandler.js';
@@ -94,4 +96,54 @@ export const partners = asyncHandler(async (req, res) => {
     ...(max_distance_km ? { max_distance_km: Number(max_distance_km) } : {}),
   });
   return successResponse(res, data, data.message || 'Partners ranked');
+});
+
+/**
+ * POST /api/ai/chat
+ * Body: { text, profile, session_id?, language?, auto_match? }
+ *
+ * Unified single round-trip:
+ *   - runs Module 2 intent slot-filling
+ *   - auto-runs Module 3 when intent is complete (unless auto_match=false)
+ * Returns { stage, follow_up_question | match_result, intent, ... }
+ */
+export const chat = asyncHandler(async (req, res) => {
+  const { text, profile: userProfile, session_id, language, auto_match } = req.body || {};
+  if (!text || typeof text !== 'string' || !text.trim()) {
+    return errorResponse(res, 'MISSING_TEXT', 'Field "text" is required.', 400);
+  }
+  if (!userProfile || typeof userProfile !== 'object') {
+    return errorResponse(res, 'MISSING_PROFILE', 'Field "profile" (citizen profile object) is required.', 400);
+  }
+  const data = await chatSession({
+    text: text.trim(),
+    profile: userProfile,
+    session_id: session_id || null,
+    language: language === 'hi' ? 'hi' : 'en',
+    auto_match: auto_match !== false,   // default true
+  });
+  const msg = data.stage === 'matched'
+    ? `${data.match_result?.total_eligible ?? 0} scheme(s) matched`
+    : data.stage === 'no_match'
+    ? 'No eligible scheme found'
+    : data.follow_up_question || 'Follow-up needed';
+  return successResponse(res, data, msg);
+});
+
+/**
+ * POST /api/ai/speech/tts
+ * Body: { text, language? }
+ * Returns { audio_base64, available } — audio_base64 is null if the ML
+ * service has no TTS provider configured (never an error).
+ */
+export const tts = asyncHandler(async (req, res) => {
+  const { text, language } = req.body || {};
+  if (!text || typeof text !== 'string' || !text.trim()) {
+    return errorResponse(res, 'MISSING_TEXT', 'Field "text" is required.', 400);
+  }
+  const data = await synthesizeSpeech({
+    text: text.trim(),
+    language: language === 'hi' ? 'hi' : 'en',
+  });
+  return successResponse(res, data, data.available ? 'Audio synthesized' : 'TTS not configured');
 });

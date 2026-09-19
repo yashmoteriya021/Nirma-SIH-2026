@@ -24,6 +24,7 @@ const schemeSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true, index: true },
   name: { type: localizedStringSchema, required: true },
   category: { type: localizedStringSchema, required: true },
+  scheme_type: { type: String, enum: ['loan', 'scholarship', 'skilling', 'grant'], default: 'loan' },
   description: { type: localizedStringSchema, required: true },
   
   maxAmount: { type: Number, required: true },

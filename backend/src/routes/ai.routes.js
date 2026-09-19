@@ -7,6 +7,8 @@ import {
   resetIntent,
   match,
   partners,
+  chat,
+  tts,
 } from '../controllers/ai.controller.js';
 
 const router = Router();
@@ -18,5 +20,8 @@ router.post('/intent', intent);
 router.delete('/intent/:session_id', resetIntent);
 router.post('/match', match);
 router.post('/partners', partners);
+/** Unified single-call: intent-turn → auto-match → recommendations */
+router.post('/chat', chat);
+router.post('/speech/tts', tts);
 
 export default router;

@@ -62,3 +62,9 @@ export const intentTurn = (body) => request('POST', '/intent/turn', body);
 export const resetIntentSession = (sessionId) => request('DELETE', `/intent/session/${encodeURIComponent(sessionId)}`);
 export const matchSchemes = (profile, intent) => request('POST', '/match', { profile, intent });
 export const rankPartners = (body) => request('POST', '/partners/rank', body);
+/**
+ * Unified chat call — one round-trip that returns either a follow-up question
+ * or a full scheme recommendation (stage: 'follow_up' | 'confirm' | 'matched' | 'no_match').
+ */
+export const chatSession = (body) => request('POST', '/chat', body);
+export const synthesizeSpeech = (body) => request('POST', '/speech/tts', body);
