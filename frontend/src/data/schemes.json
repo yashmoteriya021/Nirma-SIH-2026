@@ -75,7 +75,8 @@
             "a": "1.4 लाख"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "term-loan",
@@ -152,7 +153,8 @@
             "a": "50 लाख"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "education-loan",
@@ -229,7 +231,8 @@
             "a": "4% से 6.5%"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "mahila-samridhi",
@@ -306,7 +309,8 @@
             "a": "4% निश्चित"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "agriculture-loan",
@@ -383,7 +387,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "tech-startup",
@@ -460,7 +465,8 @@
             "a": "30 लाख"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "vocational-training",
@@ -535,7 +541,8 @@
             "a": "NSDC प्रमाणित कोर्स"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "green-energy",
@@ -610,7 +617,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "healthcare-startup",
@@ -685,7 +693,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "transport-loan",
@@ -760,7 +769,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "shilpi-samridhi",
@@ -835,7 +845,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "poultry-farming",
@@ -910,7 +921,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "overseas-education",
@@ -987,7 +999,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "franchise-business",
@@ -1062,7 +1075,8 @@
             "a": "ऋण के आकार पर निर्भर करता है"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "skill-upgrade",
@@ -1133,7 +1147,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "sports-excellence",
@@ -1207,7 +1222,8 @@
             "a": "नहीं, यह 100% अनुदान है।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "street-vendor",
@@ -1282,7 +1298,8 @@
             "a": "कोई जमानत आवश्यक नहीं।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "divyangjan-sashaktikaran",
@@ -1357,7 +1374,8 @@
             "a": "अधिकतम 2.5%"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "civil-service-coaching",
@@ -1433,7 +1451,8 @@
             "a": "केवल सरकारी पैनलबद्ध संस्थान।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "export-promotion",
@@ -1510,7 +1529,8 @@
             "a": "हाँ, व्यापार मेलों के लिए आंशिक यात्रा।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "legal-advocacy",
@@ -1585,7 +1605,8 @@
             "a": "कार्यालय सेटअप और प्रारंभिक किराया जमा शामिल हैं।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "organic-farming",
@@ -1660,7 +1681,8 @@
             "a": "हाँ, प्रमाणीकरण लागत शामिल है।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "clean-water",
@@ -1735,7 +1757,8 @@
             "a": "हाँ, छोटे डिलीवरी वाहन शामिल किए जा सकते हैं।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "home-renovation",
@@ -1809,7 +1832,8 @@
             "a": "नहीं, यह केवल मौजूदा संरचनाओं की मरम्मत के लिए है।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "ecommerce-startup",
@@ -1884,7 +1908,8 @@
             "a": "हाँ, 20% तक डिजिटल विज्ञापनों के लिए।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "food-processing",
@@ -1959,7 +1984,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "beauty-wellness",
@@ -2034,7 +2060,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "handicraft-export",
@@ -2109,7 +2136,8 @@
             "a": "नहीं"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "electric-vehicle",
@@ -2184,7 +2212,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "solar-installation",
@@ -2259,7 +2288,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "cloud-kitchen",
@@ -2334,7 +2364,8 @@
             "a": "हाँ, मदद करते हैं।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "apparel-manufacturing",
@@ -2409,7 +2440,8 @@
             "a": "हाँ, 20%।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "it-services",
@@ -2484,7 +2516,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "tourism-agency",
@@ -2559,7 +2592,8 @@
             "a": "हाँ, सेटअप लागत।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "waste-management",
@@ -2634,7 +2668,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "construction-equipment",
@@ -2709,7 +2744,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "mobile-repair",
@@ -2784,7 +2820,8 @@
             "a": "हाँ, किराए पर या खुद की।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "organic-store",
@@ -2859,7 +2896,8 @@
             "a": "हाँ"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "fitness-center",
@@ -2934,7 +2972,8 @@
             "a": "अग्रिम जमा शामिल है।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "dairy-processing",
@@ -3009,7 +3048,8 @@
             "a": "हाँ, प्रशीतित वैन शामिल हैं।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-0",
@@ -3085,7 +3125,8 @@
             "a": "5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-1",
@@ -3161,7 +3202,8 @@
             "a": "5.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-2",
@@ -3237,7 +3279,8 @@
             "a": "6 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-3",
@@ -3313,7 +3356,8 @@
             "a": "6.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-4",
@@ -3389,7 +3433,8 @@
             "a": "7 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-5",
@@ -3465,7 +3510,8 @@
             "a": "7.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-6",
@@ -3541,7 +3587,8 @@
             "a": "8 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-7",
@@ -3617,7 +3664,8 @@
             "a": "8.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-8",
@@ -3693,7 +3741,8 @@
             "a": "9 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-9",
@@ -3769,7 +3818,8 @@
             "a": "9.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-10",
@@ -3845,7 +3895,8 @@
             "a": "10 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-11",
@@ -3921,7 +3972,8 @@
             "a": "10.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-12",
@@ -3997,7 +4049,8 @@
             "a": "11 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-13",
@@ -4073,7 +4126,8 @@
             "a": "11.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-14",
@@ -4149,7 +4203,8 @@
             "a": "12 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-15",
@@ -4225,7 +4280,8 @@
             "a": "12.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-16",
@@ -4301,7 +4357,8 @@
             "a": "13 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-17",
@@ -4377,7 +4434,8 @@
             "a": "13.5 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-18",
@@ -4453,7 +4511,8 @@
             "a": "14 लाख तक।"
           }
         ]
-      }
+      },
+      "scheme_type": "loan"
     },
     {
       "id": "new-scheme-1789534494563-19",
@@ -4527,6 +4586,165 @@
           {
             "q": "अधिकतम राशि क्या है?",
             "a": "14.5 लाख तक।"
+          }
+        ]
+      },
+      "scheme_type": "loan"
+    },
+    {
+      "id": "post-matric-scholarship",
+      "name": {
+        "en": "Post Matric Scholarship for SC",
+        "hi": "अनुसूचित जाति के लिए पोस्ट मैट्रिक छात्रवृत्ति"
+      },
+      "category": {
+        "en": "Scholarship",
+        "hi": "छात्रवृत्ति"
+      },
+      "scheme_type": "scholarship",
+      "description": {
+        "en": "Financial assistance to SC students studying at post matriculation or post-secondary stage.",
+        "hi": "मैट्रिक या उत्तर-माध्यमिक स्तर पर पढ़ने वाले एससी छात्रों को वित्तीय सहायता।"
+      },
+      "maxAmount": 100000,
+      "interestRate": {
+        "min": 0,
+        "max": 0
+      },
+      "fundingPercent": 100,
+      "moratoriumMonths": [
+        0
+      ],
+      "tenureMonths": 0,
+      "incomeLimit": 250000,
+      "eligibility": {
+        "en": [
+          "SC Category",
+          "Annual income < ₹2.5L",
+          "Post-matric student"
+        ],
+        "hi": [
+          "अनुसूचित जाति",
+          "आय < ₹2.5L",
+          "पोस्ट-मैट्रिक छात्र"
+        ]
+      },
+      "documents": {
+        "en": [
+          "SC Certificate",
+          "Aadhaar",
+          "Income Proof",
+          "Fee Receipt",
+          "Bank Details"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "आय प्रमाण",
+          "फीस रसीद",
+          "बैंक विवरण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Register on NSP",
+          "Fill application",
+          "Institution Verification"
+        ],
+        "hi": [
+          "एनएसपी पर पंजीकरण करें",
+          "आवेदन भरें",
+          "संस्थान सत्यापन"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Do I have to repay?",
+            "a": "No, this is a grant/scholarship."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या मुझे इसे चुकाना होगा?",
+            "a": "नहीं, यह एक छात्रवृत्ति है।"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pm-daksh-skilling",
+      "name": {
+        "en": "PM DAKSH Skilling Program",
+        "hi": "पीएम दक्ष कौशल विकास कार्यक्रम"
+      },
+      "category": {
+        "en": "Skilling",
+        "hi": "कौशल विकास"
+      },
+      "scheme_type": "skilling",
+      "description": {
+        "en": "Free short-term and long-term skilling programs for marginalized groups to boost employability.",
+        "hi": "रोजगार क्षमता बढ़ाने के लिए वंचित समूहों के लिए मुफ्त अल्पकालिक और दीर्घकालिक कौशल कार्यक्रम।"
+      },
+      "maxAmount": 50000,
+      "interestRate": {
+        "min": 0,
+        "max": 0
+      },
+      "fundingPercent": 100,
+      "moratoriumMonths": [
+        0
+      ],
+      "tenureMonths": 0,
+      "incomeLimit": 300000,
+      "eligibility": {
+        "en": [
+          "SC/OBC/Safai Karamchari",
+          "Age 18-45",
+          "Unemployed"
+        ],
+        "hi": [
+          "एससी/ओबीसी/सफाई कर्मचारी",
+          "आयु 18-45",
+          "बेरोजगार"
+        ]
+      },
+      "documents": {
+        "en": [
+          "Caste Certificate",
+          "Aadhaar",
+          "Education Proof"
+        ],
+        "hi": [
+          "जाति प्रमाण पत्र",
+          "आधार",
+          "शिक्षा प्रमाण"
+        ]
+      },
+      "applicationProcess": {
+        "en": [
+          "Register on PM DAKSH portal",
+          "Select course",
+          "Attend training"
+        ],
+        "hi": [
+          "पीएम दक्ष पोर्टल पर रजिस्टर करें",
+          "कोर्स चुनें",
+          "प्रशिक्षण लें"
+        ]
+      },
+      "faqs": {
+        "en": [
+          {
+            "q": "Is there a fee?",
+            "a": "No, training is completely free and includes a stipend."
+          }
+        ],
+        "hi": [
+          {
+            "q": "क्या कोई शुल्क है?",
+            "a": "नहीं, प्रशिक्षण पूरी तरह से मुफ्त है।"
           }
         ]
       }

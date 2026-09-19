@@ -29,8 +29,11 @@ from module2_intent.llm_extractor import LLMConfig
 from module3_matching.explainer import generate_full_recommendation
 from module3_matching.hard_filter import filter_all_schemes, load_scheme_kb
 from module3_matching.soft_ranker import rank_schemes
+from module2_intent import tts_service
 from module4_partners.partner_ranker import load_partner_dataset, rank_partners
 from service.schemas import (
+    ChatRequest,
+    ChatResponse,
     HealthResponse,
     IntentTurnRequest,
     IntentTurnResponse,
@@ -38,6 +41,8 @@ from service.schemas import (
     MatchRequest,
     MockDigiLockerRequest,
     PartnerRankRequest,
+    TTSRequest,
+    TTSResponse,
 )
 from service.sessions import SessionStore
 
@@ -76,6 +81,16 @@ def health():
         schemes=len(_SCHEMES),
         partners=len(load_partner_dataset()),
     )
+
+
+# --------------------------------------------------------------------------
+# Text-to-speech
+# --------------------------------------------------------------------------
+
+@app.post("/speech/tts", response_model=TTSResponse)
+def speech_tts(req: TTSRequest):
+    audio = tts_service.synthesize(req.text, req.language)
+    return TTSResponse(audio_base64=audio, available=audio is not None)
 
 
 @app.get("/schemes")
@@ -122,6 +137,7 @@ def intent_turn(req: IntentTurnRequest):
     method = result["intent"].get("extraction_method") or (
         "llm" if "llm" in session.extraction_methods else "offline_rules"
     )
+    spoken = result.get("follow_up_question") or result.get("confirmation_summary")
     return IntentTurnResponse(
         session_id=session_id,
         complete=result["complete"],
@@ -131,6 +147,7 @@ def intent_turn(req: IntentTurnRequest):
         confirmation_summary=result.get("confirmation_summary"),
         cost_hint=result.get("cost_hint"),
         extraction_method=method,
+        audio_base64=tts_service.synthesize(spoken, req.language) if spoken else None,
     )
 
 
@@ -150,9 +167,22 @@ def match(req: MatchRequest):
         raise HTTPException(status_code=400, detail={"errors": ["profile needs category and annual_family_income"]})
     filter_results = filter_all_schemes(req.profile, req.intent)
     ranked = rank_schemes(req.profile, req.intent, filter_results["eligible_schemes"])
-    return generate_full_recommendation(
+    result = generate_full_recommendation(
         req.profile, req.intent, ranked, filter_results["ineligible_schemes"]
     )
+
+    language = req.profile.get("language", "en") if isinstance(req.profile, dict) else "en"
+    if result.get("status") == "schemes_found" and result.get("recommendations"):
+        top = result["recommendations"][0]
+        spoken_text = (
+            f"Good news — {result['total_eligible']} scheme{'s' if result['total_eligible'] != 1 else ''} "
+            f"match you. The best fit is {top['scheme_name']}, up to {top['scheme_details']['loan_ceiling']} rupees "
+            f"at {top['scheme_details']['effective_rate']} percent interest."
+        )
+    else:
+        spoken_text = result.get("message") or "No matching scheme was found right now."
+    result["audio_base64"] = tts_service.synthesize(spoken_text, language)
+    return result
 
 
 # --------------------------------------------------------------------------
@@ -182,4 +212,103 @@ def partners_rank(req: PartnerRankRequest):
         user_lon=req.lon,
         user_pin_code=req.pin_code,
         max_distance_km=req.max_distance_km,
+    )
+
+
+# --------------------------------------------------------------------------
+# Unified chat endpoint — intent turn + optional auto-match in one call
+# --------------------------------------------------------------------------
+
+@app.post("/chat", response_model=ChatResponse)
+def chat(req: ChatRequest):
+    """
+    Single round-trip for the AI Assistant widget.
+
+    Flow:
+      1. Run one intent slot-filling turn (Module 2).
+      2. If intent is complete AND auto_match=True:
+         a. Run hard filter + soft ranker (Module 3).
+         b. Return stage='matched' or stage='no_match' with full recommendation.
+      3. If intent is not yet complete:
+         a. Return stage='follow_up' with the next clarifying question.
+      4. If intent is complete but auto_match=False:
+         a. Return stage='confirm' so the frontend can show the summary and
+            ask the user to confirm before matching.
+    """
+    # --- Module 2: one intent turn -------------------------------------------
+    session_id, session = sessions.get_or_create(req.session_id, req.profile, req.language)
+    turn_result = session.process_input(req.text)
+    method = turn_result["intent"].get("extraction_method") or (
+        "llm" if "llm" in session.extraction_methods else "offline_rules"
+    )
+
+    if not turn_result["complete"]:
+        follow_up = turn_result.get("follow_up_question")
+        return ChatResponse(
+            session_id=session_id,
+            stage="follow_up",
+            follow_up_question=follow_up,
+            intent=turn_result["intent"],
+            extraction_method=method,
+            audio_base64=tts_service.synthesize(follow_up, req.language) if follow_up else None,
+        )
+
+    # Intent is complete -------------------------------------------------------
+    intent = turn_result["intent"]
+
+    if not req.auto_match:
+        # Let the frontend show a confirmation step first
+        summary = turn_result.get("confirmation_summary")
+        return ChatResponse(
+            session_id=session_id,
+            stage="confirm",
+            confirmation_summary=summary,
+            intent=intent,
+            extraction_method=method,
+            audio_base64=tts_service.synthesize(summary, req.language) if summary else None,
+        )
+
+    # --- Module 3: match ------------------------------------------------------
+    profile = req.profile
+    if "category" not in profile or "annual_family_income" not in profile:
+        # Profile is incomplete; ask the caller to go through /profile/manual first
+        return ChatResponse(
+            session_id=session_id,
+            stage="follow_up",
+            follow_up_question=(
+                "Please complete your profile (category and annual income) before I can match schemes."
+            ),
+            intent=intent,
+            extraction_method=method,
+        )
+
+    filter_results = filter_all_schemes(profile, intent)
+    ranked = rank_schemes(profile, intent, filter_results["eligible_schemes"])
+    match_result = generate_full_recommendation(
+        profile, intent, ranked, filter_results["ineligible_schemes"]
+    )
+
+    # Drop the session so a new conversation starts fresh next time
+    sessions.drop(session_id)
+
+    stage = "matched" if match_result.get("status") == "schemes_found" else "no_match"
+
+    if stage == "matched":
+        top = match_result["recommendations"][0]
+        spoken_text = (
+            f"Good news — {match_result['total_eligible']} scheme{'s' if match_result['total_eligible'] != 1 else ''} "
+            f"match you. The best fit is {top['scheme_name']}, up to {top['scheme_details']['loan_ceiling']} rupees "
+            f"at {top['scheme_details']['effective_rate']} percent interest."
+        )
+    else:
+        spoken_text = match_result.get("message") or "No matching scheme was found right now."
+
+    return ChatResponse(
+        session_id=session_id,
+        stage=stage,
+        confirmation_summary=turn_result.get("confirmation_summary"),
+        intent=intent,
+        extraction_method=method,
+        match_result=match_result,
+        audio_base64=tts_service.synthesize(spoken_text, req.language),
     )

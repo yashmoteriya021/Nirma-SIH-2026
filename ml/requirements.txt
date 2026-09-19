@@ -14,5 +14,8 @@ httpx>=0.27               # FastAPI TestClient
 openai>=1.0               # OpenAI, OpenRouter, Ollama (OpenAI-compatible)
 anthropic>=0.40           # Anthropic Claude
 
+# Text-to-speech (Module 2). Free, no API key (wraps Edge's neural voices).
+edge-tts>=6.1
+
 # Tests
 pytest>=7.0

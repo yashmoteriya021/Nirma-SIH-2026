@@ -33,11 +33,13 @@ export default function SchemeDetails() {
     return `₹${amount.toLocaleString('en-IN')}`;
   };
 
+  const isLoan = scheme.scheme_type === 'loan' || !scheme.scheme_type;
+
   const tabs = [
     { id: 'overview', label: t('scheme.tabs.overview') },
     { id: 'eligibility', label: t('scheme.tabs.eligibility') },
-    { id: 'loanDetails', label: t('scheme.tabs.loanDetails') },
-    { id: 'emiCalculator', label: t('scheme.tabs.emiCalculator') },
+    { id: 'loanDetails', label: isLoan ? t('scheme.tabs.loanDetails') : (lang === 'hi' ? 'विवरण' : 'Details') },
+    ...(isLoan ? [{ id: 'emiCalculator', label: t('scheme.tabs.emiCalculator') }] : []),
     { id: 'documents', label: t('scheme.tabs.documents') },
     { id: 'process', label: t('scheme.tabs.process') },
     { id: 'partners', label: t('scheme.tabs.partners') },
@@ -73,6 +75,9 @@ export default function SchemeDetails() {
           <div className="flex flex-wrap items-center gap-3 mb-3">
             <span className="px-3 py-1 bg-navy-700 rounded-full text-xs font-medium text-navy-100">
               {tData(scheme.category)}
+            </span>
+            <span className="px-3 py-1 bg-navy-700 rounded-full text-xs font-medium text-navy-100 capitalize">
+              {scheme.scheme_type || 'loan'}
             </span>
             <span className="px-3 py-1 bg-navy-700 rounded-full text-xs font-medium text-navy-100">
               {t('scheme.chips.income')}
@@ -162,10 +167,12 @@ export default function SchemeDetails() {
               </section>
             )}
 
-            {/* Loan Details */}
+            {/* Loan/Scheme Details */}
             {activeTab === 'loanDetails' && (
               <section>
-                <h2 className="text-xl font-semibold text-navy-900 mb-4">{t('scheme.tabs.loanDetails')}</h2>
+                <h2 className="text-xl font-semibold text-navy-900 mb-4">
+                  {isLoan ? t('scheme.tabs.loanDetails') : (lang === 'hi' ? 'विवरण' : 'Details')}
+                </h2>
                 <div className="bg-offwhite-0 rounded-xl border border-navy-100 overflow-hidden">
                   <table className="w-full text-sm">
                     <tbody>

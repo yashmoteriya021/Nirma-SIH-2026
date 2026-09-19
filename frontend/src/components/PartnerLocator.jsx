@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { useLang } from '../context/LanguageContext';
 import { ai, isServiceDown, ApiError } from '../lib/api';
 import partnersData from '../data/partners.json';
+import PartnerMap from './PartnerMap';
 
 /**
  * Channel Partner locator backed by the ML routing engine (Module 4):
@@ -25,6 +26,7 @@ export default function PartnerLocator({ schemeId, mlSchemeId, initialLocation =
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);      // ML response
   const [fallbackNote, setFallbackNote] = useState('');
+  const [selectedPartnerId, setSelectedPartnerId] = useState(null);
 
   const hi = lang === 'hi';
 
@@ -183,6 +185,14 @@ export default function PartnerLocator({ schemeId, mlSchemeId, initialLocation =
       {/* Ranked (ML) results */}
       {showRanked && (
         <div className="space-y-3">
+          {result.location_used && rankedPartners.length > 0 && (
+            <PartnerMap
+              userLocation={{ lat: result.location_used.latitude, lon: result.location_used.longitude }}
+              partners={rankedPartners}
+              selectedId={selectedPartnerId}
+              onSelect={setSelectedPartnerId}
+            />
+          )}
           {result.status !== 'partners_found' && (
             <div className="bg-offwhite-50 rounded-xl p-5 text-sm text-navy-700">
               <p>{result.message}</p>
@@ -197,7 +207,11 @@ export default function PartnerLocator({ schemeId, mlSchemeId, initialLocation =
           )}
 
           {rankedPartners.map((partner, idx) => (
-            <div key={partner.partner_id} className="bg-offwhite-0 rounded-xl border border-navy-100 p-5 hover:shadow-sm transition-shadow duration-200">
+            <div
+              key={partner.partner_id}
+              onClick={() => setSelectedPartnerId(partner.partner_id)}
+              className={`bg-offwhite-0 rounded-xl border p-5 hover:shadow-sm transition-shadow duration-200 cursor-pointer ${selectedPartnerId === partner.partner_id ? 'border-accent-gold shadow-sm' : 'border-navy-100'}`}
+            >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 flex-wrap">

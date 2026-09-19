@@ -321,6 +321,8 @@ def rank_partners(
                 "type": partner["type"],
                 "district": partner.get("district", ""),
                 "state": partner["state"],
+                "latitude": partner["latitude"],
+                "longitude": partner["longitude"],
                 "distance_km": round(distance, 1),
                 "fund_utilization_pct": partner["fund_utilization_pct"],
                 "npa_pct": partner["npa_pct"],

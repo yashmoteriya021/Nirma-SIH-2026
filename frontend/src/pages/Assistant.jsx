@@ -1,8 +1,76 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
-import { ai, isServiceDown } from '../lib/api';
+import { ai, calculator, isServiceDown } from '../lib/api';
+import { playBase64Audio, isTtsMuted, setTtsMuted } from '../lib/audio';
+import { useSpeechRecognition } from '../lib/speech';
 import PartnerLocator from '../components/PartnerLocator';
+
+/**
+ * Typewriter effect: animates text character by character.
+ * Only runs on first render of the given text.
+ */
+function useTypewriter(text, speed = 14) {
+  const [displayed, setDisplayed] = useState('');
+  const [done, setDone] = useState(false);
+  useEffect(() => {
+    if (!text) { setDisplayed(''); setDone(true); return; }
+    setDisplayed('');
+    setDone(false);
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) { clearInterval(id); setDone(true); }
+    }, speed);
+    return () => clearInterval(id);
+  }, [text, speed]);
+  return { displayed, done };
+}
+
+/** Renders a bot bubble with typewriter animation */
+function TypewriterBubble({ text, className = '', audio }) {
+  const { displayed, done } = useTypewriter(text);
+  return (
+    <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm whitespace-pre-line bg-navy-100 text-ink-900 rounded-tl-sm flex items-start gap-2 ${className}`}
+      style={{ animation: 'slideInLeft 0.25s ease-out' }}>
+      <span className="flex-1">
+        {displayed}
+        {!done && <span className="inline-block w-0.5 h-3.5 bg-navy-600 ml-0.5 animate-pulse align-middle" />}
+      </span>
+      {audio && (
+        <button
+          type="button"
+          onClick={() => playBase64Audio(audio)}
+          aria-label="Play audio"
+          className="shrink-0 mt-0.5 text-navy-700 hover:text-accent-gold transition-colors"
+        >
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 00-2.5-4.03v8.06A4.5 4.5 0 0016.5 12z"/></svg>
+        </button>
+      )}
+    </div>
+  );
+}
+
+/** Header mute toggle for spoken responses */
+function SpeakerToggle() {
+  const [muted, setMuted] = useState(isTtsMuted());
+  return (
+    <button
+      type="button"
+      onClick={() => { setTtsMuted(!muted); setMuted(!muted); }}
+      className="inline-flex items-center gap-1.5 text-xs text-navy-700 hover:text-accent-gold transition-colors"
+      title={muted ? 'Voice replies muted' : 'Voice replies on'}
+    >
+      {muted ? (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 14L21 10M21 14L17 10M11 5L6 9H3v6h3l5 4V5z"/></svg>
+      ) : (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5zM15.5 8.5a5 5 0 010 7"/></svg>
+      )}
+      {muted ? 'Muted' : 'Voice on'}
+    </button>
+  );
+}
 
 /**
  * AI Assistant — the ML pipeline end to end:
@@ -40,10 +108,10 @@ const EDUCATION = [
   ['professional', { en: 'Professional degree', hi: 'व्यावसायिक डिग्री' }],
 ];
 
-const inputCls = 'w-full px-4 py-3 rounded-xl border border-navy-100 bg-offwhite-0 text-ink-900 text-sm focus:border-accent-gold focus:outline-none min-h-[44px]';
+const inputCls = 'w-full px-4 py-3 rounded-xl border border-navy-100 bg-offwhite-0 text-ink-900 text-sm focus:border-accent-gold focus:outline-none min-h-[44px] transition-shadow';
 const labelCls = 'block text-sm font-medium text-ink-900 mb-1.5';
-const primaryBtn = 'px-5 py-3 bg-navy-900 text-offwhite-0 font-medium text-sm rounded-xl hover:bg-navy-700 transition-colors duration-200 min-h-[44px] disabled:opacity-50';
-const secondaryBtn = 'px-5 py-3 border border-navy-100 text-navy-900 font-medium text-sm rounded-xl hover:bg-navy-100 transition-colors duration-200 min-h-[44px]';
+const primaryBtn = 'px-5 py-3 bg-navy-900 text-offwhite-0 font-medium text-sm rounded-xl hover:bg-navy-700 active:scale-95 transition-all duration-200 min-h-[44px] disabled:opacity-50';
+const secondaryBtn = 'px-5 py-3 border border-navy-100 text-navy-900 font-medium text-sm rounded-xl hover:bg-navy-100 active:scale-95 transition-all duration-200 min-h-[44px]';
 
 const fmt = (n) => (n == null ? '—' : `₹${Number(n).toLocaleString('en-IN')}`);
 
@@ -100,16 +168,23 @@ export default function Assistant() {
   const [awaitingConfirm, setAwaitingConfirm] = useState(false);
   const [chatBusy, setChatBusy] = useState(false);
   const [lastMethod, setLastMethod] = useState('');
+  const [animatingIdx, setAnimatingIdx] = useState(-1); // index of the message currently typewriting
+  const [vocalMode, setVocalMode] = useState(false);
   const chatContainerRef = useRef(null);
+
+  const stt = useSpeechRecognition({
+    language: lang,
+    onResult: (text) => { setDraft(''); sendMessage(null, text); },
+  });
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, chatBusy]);
 
-  async function sendMessage(e) {
+  async function sendMessage(e, overrideText) {
     e?.preventDefault();
-    const text = draft.trim();
+    const text = (overrideText ?? draft).trim();
     if (!text || chatBusy) return;
     setDraft('');
     setServiceError('');
@@ -122,13 +197,19 @@ export default function Assistant() {
       if (data.complete) {
         setIntent(data.intent);
         setAwaitingConfirm(true);
-        setMessages(m => [...m, { role: 'bot', text: data.confirmation_summary || L('Shall I find matching schemes?', 'क्या मैं मिलती-जुलती योजनाएं खोजूं?') }]);
+        const newMsg = { role: 'bot', text: data.confirmation_summary || L('Shall I find matching schemes?', 'क्या मैं मिलती-जुलती योजनाएं खोजूं?'), audio: data.audio_base64 };
+        setMessages(m => { setAnimatingIdx(m.length); return [...m, newMsg]; });
+        // Confirmation needs a Yes/No tap, not a voice reply — don't re-listen.
+        playBase64Audio(data.audio_base64);
       } else {
-        setMessages(m => [...m, { role: 'bot', text: data.follow_up_question }]);
+        const newMsg = { role: 'bot', text: data.follow_up_question, audio: data.audio_base64 };
+        setMessages(m => { setAnimatingIdx(m.length); return [...m, newMsg]; });
+        playBase64Audio(data.audio_base64, vocalMode ? () => stt.start() : undefined);
       }
     } catch (err) {
       if (isServiceDown(err)) setServiceError(err.message);
-      setMessages(m => [...m, { role: 'bot', text: L('Sorry, something went wrong: ', 'क्षमा करें, कुछ गड़बड़ हुई: ') + err.message, error: true }]);
+      const newMsg = { role: 'bot', text: L('Sorry, something went wrong: ', 'क्षमा करें, कुछ गड़बड़ हुई: ') + err.message, error: true };
+      setMessages(m => { setAnimatingIdx(m.length); return [...m, newMsg]; });
     } finally {
       setChatBusy(false);
     }
@@ -145,6 +226,24 @@ export default function Assistant() {
   const [matchResult, setMatchResult] = useState(null);
   const [matchBusy, setMatchBusy] = useState(false);
   const [selectedScheme, setSelectedScheme] = useState(null);
+  const [emiResults, setEmiResults] = useState({});   // scheme_id -> result | 'loading' | error string
+  const [openEmiFor, setOpenEmiFor] = useState(null);
+
+  async function calculateEmi(rec) {
+    setOpenEmiFor(rec.scheme_id);
+    if (emiResults[rec.scheme_id] && emiResults[rec.scheme_id] !== 'error') return;
+    setEmiResults(r => ({ ...r, [rec.scheme_id]: 'loading' }));
+    try {
+      const data = await calculator.emi({
+        scheme_details: rec.scheme_details,
+        requested_loan: intent?.estimated_cost,
+        user_profile: { annual_income: profile?.annual_family_income, project_cost: intent?.estimated_cost },
+      });
+      setEmiResults(r => ({ ...r, [rec.scheme_id]: data }));
+    } catch (err) {
+      setEmiResults(r => ({ ...r, [rec.scheme_id]: err.message || 'error' }));
+    }
+  }
 
   async function confirmAndMatch() {
     setMatchBusy(true);
@@ -154,6 +253,7 @@ export default function Assistant() {
       setMatchResult(data);
       setSelectedScheme(data.recommendations?.[0] || null);
       setStep(3);
+      playBase64Audio(data.audio_base64);
     } catch (err) {
       if (isServiceDown(err)) setServiceError(err.message);
       else setMessages(m => [...m, { role: 'bot', text: err.message, error: true }]);
@@ -171,12 +271,27 @@ export default function Assistant() {
   // ── Render ───────────────────────────────────────────────────────────────
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-      <div className="mb-8">
-        <h1 className="text-3xl font-semibold text-navy-900">{L('AI Scheme Assistant', 'AI योजना सहायक')}</h1>
-        <p className="text-navy-700 mt-2 text-sm sm:text-base">
-          {L('Describe your need in your own words. We verify eligibility with published scheme rules, explain every match, and route you to a channel partner that can actually process it.',
-             'अपनी ज़रूरत अपने शब्दों में बताइए। हम योजना नियमों से पात्रता जांचते हैं, हर मिलान को समझाते हैं, और आपको ऐसे चैनल पार्टनर तक पहुंचाते हैं जो वास्तव में आवेदन प्रोसेस कर सके।')}
-        </p>
+      <div className="mb-8 flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-3xl font-semibold text-navy-900">{L('AI Scheme Assistant', 'AI योजना सहायक')}</h1>
+          <p className="text-navy-700 mt-2 text-sm sm:text-base">
+            {L('Describe your need in your own words. We verify eligibility with published scheme rules, explain every match, and route you to a channel partner that can actually process it.',
+               'अपनी ज़रूरत अपने शब्दों में बताइए। हम योजना नियमों से पात्रता जांचते हैं, हर मिलान को समझाते हैं, और आपको ऐसे चैनल पार्टनर तक पहुंचाते हैं जो वास्तव में आवेदन प्रोसेस कर सके।')}
+          </p>
+        </div>
+        <div className="flex items-center gap-4">
+          {stt.supported && (
+            <button
+              type="button"
+              onClick={() => setVocalMode(v => !v)}
+              className={`inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${vocalMode ? 'bg-accent-gold border-accent-gold text-navy-900 font-medium' : 'border-navy-100 text-navy-700 hover:bg-navy-100'}`}
+              title={L('Hands-free: speak your answers, hear the replies', 'हैंड्स-फ्री: अपने जवाब बोलें, जवाब सुनें')}
+            >
+              🎙️ {vocalMode ? L('Vocal mode: on', 'वोकल मोड: चालू') : L('Vocal mode', 'वोकल मोड')}
+            </button>
+          )}
+          <SpeakerToggle />
+        </div>
       </div>
 
       {/* Stepper */}
@@ -291,17 +406,65 @@ export default function Assistant() {
       {step === 2 && (
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-offwhite-0 rounded-xl shadow-sm border border-navy-100 flex flex-col min-h-[420px]">
-            <div ref={chatContainerRef} className="flex-1 p-5 space-y-3 overflow-y-auto max-h-[60vh]">
+            <div ref={chatContainerRef} className="flex-1 p-5 space-y-4 overflow-y-auto max-h-[60vh]">
               {messages.map((m, i) => (
-                <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm whitespace-pre-line ${
-                    m.role === 'user' ? 'bg-navy-900 text-offwhite-0' : m.error ? 'bg-red-50 text-red-800' : 'bg-navy-100 text-ink-900'
-                  }`}>
-                    {m.text}
-                  </div>
+                <div
+                  key={i}
+                  className={`flex items-end gap-2 ${
+                    m.role === 'user' ? 'justify-end' : 'justify-start'
+                  }`}
+                  style={{
+                    animation: m.role === 'user' ? 'slideInRight 0.2s ease-out' : 'slideInLeft 0.2s ease-out',
+                  }}
+                >
+                  {/* Bot avatar dot */}
+                  {m.role === 'bot' && (
+                    <div className="w-6 h-6 rounded-full bg-navy-900 flex items-center justify-center shrink-0 mb-0.5">
+                      <svg className="w-3 h-3 text-accent-gold" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                      </svg>
+                    </div>
+                  )}
+
+                  {/* Message bubble */}
+                  {m.role === 'user' ? (
+                    <div className="max-w-[80%] rounded-2xl rounded-br-sm px-4 py-3 text-sm whitespace-pre-line bg-navy-900 text-offwhite-0">
+                      {m.text}
+                    </div>
+                  ) : i === animatingIdx ? (
+                    <TypewriterBubble text={m.text} audio={m.audio} className={m.error ? '!bg-red-50 !text-red-800' : ''} />
+                  ) : (
+                    <div className={`max-w-[80%] rounded-2xl rounded-tl-sm px-4 py-3 text-sm whitespace-pre-line ${
+                      m.error ? 'bg-red-50 text-red-800' : 'bg-navy-100 text-ink-900'
+                    }`}>
+                      {m.text}
+                    </div>
+                  )}
                 </div>
               ))}
-              {chatBusy && <p className="text-xs text-navy-700">{L('Thinking…', 'सोच रहा हूं…')}</p>}
+
+              {/* Thinking indicator */}
+              {chatBusy && (
+                <div className="flex items-end gap-2" style={{ animation: 'slideInLeft 0.2s ease-out' }}>
+                  <div className="w-6 h-6 rounded-full bg-navy-900 flex items-center justify-center shrink-0">
+                    <svg className="w-3 h-3 text-accent-gold" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                  </div>
+                  <div className="bg-navy-100 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-3">
+                    <div className="flex gap-1">
+                      {[0, 1, 2].map(i => (
+                        <span
+                          key={i}
+                          className="w-2 h-2 bg-navy-500 rounded-full animate-bounce"
+                          style={{ animationDelay: `${i * 0.18}s`, animationDuration: '0.9s' }}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-xs text-navy-600 font-medium">{L('Setu is thinking…', 'Setu सोच रहा है…')}</span>
+                  </div>
+                </div>
+              )}
             </div>
 
             {awaitingConfirm ? (
@@ -312,16 +475,32 @@ export default function Assistant() {
                 <button onClick={editIntent} className={secondaryBtn}>{L('No, let me change it', 'नहीं, बदलना है')}</button>
               </div>
             ) : (
-              <form onSubmit={sendMessage} className="border-t border-navy-100 p-4 flex gap-3">
-                <input
-                  value={draft}
-                  onChange={(e) => setDraft(e.target.value)}
-                  placeholder={L('Type in Hindi, English or Hinglish…', 'हिंदी, अंग्रेज़ी या हिंग्लिश में लिखें…')}
-                  aria-label={L('Your message', 'आपका संदेश')}
-                  className={inputCls}
-                  autoFocus
-                />
-                <button type="submit" disabled={chatBusy || !draft.trim()} className={primaryBtn}>{L('Send', 'भेजें')}</button>
+              <form onSubmit={sendMessage} className="border-t border-navy-100 p-4 flex flex-col gap-2">
+                <div className="flex gap-3">
+                  <input
+                    value={draft}
+                    onChange={(e) => setDraft(e.target.value)}
+                    placeholder={stt.listening ? L('Listening…', 'सुन रहा हूं…') : L('Type in Hindi, English or Hinglish…', 'हिंदी, अंग्रेज़ी या हिंग्लिश में लिखें…')}
+                    aria-label={L('Your message', 'आपका संदेश')}
+                    className={inputCls}
+                    autoFocus
+                  />
+                  {stt.supported && (
+                    <button
+                      type="button"
+                      onClick={() => (stt.listening ? stt.stop() : stt.start())}
+                      disabled={chatBusy}
+                      aria-label={L('Speak', 'बोलें')}
+                      className={`px-4 rounded-xl border text-lg transition-colors min-h-[44px] disabled:opacity-50 ${stt.listening ? 'bg-red-50 border-red-200 animate-pulse' : 'border-navy-100 hover:bg-navy-100'}`}
+                    >
+                      🎤
+                    </button>
+                  )}
+                  <button type="submit" disabled={chatBusy || !draft.trim()} className={primaryBtn}>{L('Send', 'भेजें')}</button>
+                </div>
+                {stt.error && (
+                  <p className="text-xs text-amber-700">{L('Could not hear you — try again.', 'सुन नहीं सका — फिर से कोशिश करें।')}</p>
+                )}
               </form>
             )}
           </div>
@@ -386,6 +565,9 @@ export default function Assistant() {
                         </p>
                       </div>
                       <div className="flex gap-2 flex-wrap">
+                        <button onClick={() => calculateEmi(rec)} className={secondaryBtn}>
+                          {L('Calculate EMI', 'EMI गणना करें')}
+                        </button>
                         <button onClick={() => setSelectedScheme(rec)} className={selectedScheme?.scheme_id === rec.scheme_id ? primaryBtn : secondaryBtn}>
                           {L('Find partners', 'पार्टनर खोजें')}
                         </button>
@@ -394,6 +576,39 @@ export default function Assistant() {
                         )}
                       </div>
                     </div>
+
+                    {openEmiFor === rec.scheme_id && (
+                      <div className="mt-4 rounded-xl bg-offwhite-50 border border-navy-100 p-4 text-sm">
+                        {emiResults[rec.scheme_id] === 'loading' && <p className="text-navy-700">{L('Calculating…', 'गणना हो रही है…')}</p>}
+                        {emiResults[rec.scheme_id] && emiResults[rec.scheme_id] !== 'loading' && typeof emiResults[rec.scheme_id] === 'object' && (() => {
+                          const e = emiResults[rec.scheme_id];
+                          return (
+                            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                              <div><dt className="text-navy-700 inline">{L('Monthly EMI', 'मासिक EMI')}: </dt><dd className="inline font-semibold text-ink-900">{fmt(e.emi_result?.emi)}</dd></div>
+                              <div><dt className="text-navy-700 inline">{L('Loan amount used', 'उपयोग किया गया ऋण')}: </dt><dd className="inline text-ink-900">{fmt(e.applied_loan_amount)}</dd></div>
+                              <div><dt className="text-navy-700 inline">{L('Total interest', 'कुल ब्याज')}: </dt><dd className="inline text-ink-900">{fmt(e.emi_result?.total_interest)}</dd></div>
+                              <div><dt className="text-navy-700 inline">{L('Tenure', 'अवधि')}: </dt><dd className="inline text-ink-900">{e.tenure_months} {L('months', 'महीने')}</dd></div>
+                              {e.affordability && (
+                                <div className="sm:col-span-2">
+                                  <dt className="text-navy-700 inline">{L('Affordability', 'वहनीयता')}: </dt>
+                                  <dd className={`inline font-medium ${e.affordability.status === 'Comfortable' ? 'text-green-800' : e.affordability.status === 'High Repayment Burden' ? 'text-amber-800' : 'text-red-800'}`}>
+                                    {e.affordability.status} ({e.affordability.ratio_pct}% {L('of monthly income', 'मासिक आय का')})
+                                  </dd>
+                                </div>
+                              )}
+                              {e.reasons?.length > 0 && (
+                                <ul className="sm:col-span-2 list-disc list-inside text-navy-700 text-xs mt-1 space-y-0.5">
+                                  {e.reasons.map((r, i) => <li key={i}>{r}</li>)}
+                                </ul>
+                              )}
+                            </div>
+                          );
+                        })()}
+                        {typeof emiResults[rec.scheme_id] === 'string' && emiResults[rec.scheme_id] !== 'loading' && (
+                          <p className="text-red-700">{emiResults[rec.scheme_id]}</p>
+                        )}
+                      </div>
+                    )}
 
                     <div className="grid sm:grid-cols-3 gap-4 mt-4 text-sm">
                       <div>

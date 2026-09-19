@@ -11,7 +11,7 @@ Pre-fills from Module 1's profile anything already known.
 from typing import Any
 
 from module2_intent.offline_extractor import extract_intent_offline
-from module2_intent.llm_extractor import LLMConfig, extract_intent_llm
+from module2_intent.llm_extractor import LLMConfig, extract_intent_llm, generate_contextual_followup, generate_contextual_confirmation
 
 
 # Maximum clarification turns before falling back to explicit form
@@ -228,11 +228,19 @@ class SlotFillingSession:
     def _build_confirmation_summary(self) -> str:
         """Build a human-readable summary for user confirmation."""
         intent = self.current_intent
-        cost_str = f"₹{intent['estimated_cost']:,.0f}" if intent.get("estimated_cost") else "an amount to be determined"
+        cost_str = f"₹{intent.get('estimated_cost'):,.0f}" if intent.get("estimated_cost") else "an amount to be determined"
         project_str = intent.get("project_type") or intent.get("purpose", "your project")
         beneficiary_str = "yourself" if intent.get("beneficiary") == "self" else "your dependent"
 
-        return f"So you want {cost_str} for {project_str} (for {beneficiary_str}), correct?"
+        fallback = f"So you want {cost_str} for {project_str} (for {beneficiary_str}), correct?"
+
+        # Use LLM for a natural summary
+        return generate_contextual_confirmation(
+            intent=intent,
+            language=self.language,
+            config=self.llm_config,
+            fallback=fallback,
+        )
 
     def process_input(self, user_text: str) -> dict:
         """
@@ -262,6 +270,12 @@ class SlotFillingSession:
         # Check what's still missing
         missing = self._get_missing_slots()
         required_missing = [s for s in missing if s in REQUIRED_SLOTS]
+        
+        # Non-loan purposes don't strictly need an estimated cost
+        non_loan_purposes = {"scholarship", "skilling", "healthcare"}
+        if "estimated_cost" in required_missing and self.current_intent.get("purpose") in non_loan_purposes:
+            required_missing.remove("estimated_cost")
+
         if self._needs_student_education():
             required_missing.append("student_education_status")
             missing.append("student_education_status")
@@ -310,16 +324,32 @@ class SlotFillingSession:
         # Not complete — generate follow-up for the first missing required slot
         next_slot = required_missing[0] if required_missing else missing[0]
         self.pending_slot = next_slot
-        question = FOLLOW_UP_QUESTIONS.get(next_slot, {}).get(
+
+        # Template fallback (used when LLM is off or fails)
+        template_question = FOLLOW_UP_QUESTIONS.get(next_slot, {}).get(
             self.language, FOLLOW_UP_QUESTIONS.get(next_slot, {}).get("en", "Please provide more details.")
         )
 
-        # Add cost hint if we're asking about cost and have a project type
+        # Add cost hint to template if relevant
         cost_hint = None
         if next_slot == "estimated_cost":
             cost_hint = self._suggest_cost()
             if cost_hint:
-                question = f"{question}\n💡 Hint: {cost_hint}"
+                template_question = f"{template_question}\n\U0001f4a1 Hint: {cost_hint}"
+
+        # Use LLM to generate a warm, contextual question when enabled
+        question = generate_contextual_followup(
+            user_text=self.all_inputs[-1],
+            current_intent=self.current_intent,
+            missing_slots=[next_slot] + [s for s in missing if s != next_slot],
+            language=self.language,
+            config=self.llm_config,
+            fallback=template_question,
+        )
+
+        # Append cost hint after LLM question if available
+        if cost_hint and cost_hint not in question:
+            question = f"{question}\n\U0001f4a1 {cost_hint}"
 
         return {
             "complete": False,

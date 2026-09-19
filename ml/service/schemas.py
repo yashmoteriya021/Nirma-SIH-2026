@@ -68,6 +68,7 @@ class IntentTurnResponse(BaseModel):
     confirmation_summary: str | None = None
     cost_hint: str | None = None
     extraction_method: str
+    audio_base64: str | None = None
 
 
 # --------------------------------------------------------------------------
@@ -98,3 +99,52 @@ class HealthResponse(BaseModel):
     llm_enabled: bool
     schemes: int
     partners: int
+
+
+# --------------------------------------------------------------------------
+# Unified chat endpoint
+# --------------------------------------------------------------------------
+
+class ChatRequest(BaseModel):
+    """Single-call interface: profile + one user turn → follow-up OR full match result."""
+    text: str = Field(min_length=1, max_length=2000, description="User's free-text message")
+    profile: dict[str, Any] = Field(
+        description="Validated citizen profile from /profile/* or the Assistant form"
+    )
+    session_id: str | None = Field(default=None, description="Omit to start a new session")
+    language: Literal["en", "hi"] = "en"
+    auto_match: bool = Field(
+        default=True,
+        description="When True and intent is complete, immediately run Module 3 and return recommendations"
+    )
+
+
+class ChatResponse(BaseModel):
+    session_id: str
+    stage: Literal["follow_up", "confirm", "matched", "no_match"]
+    # Follow-up / confirmation stage
+    follow_up_question: str | None = None
+    confirmation_summary: str | None = None
+    intent: dict[str, Any] | None = None
+    extraction_method: str | None = None
+    # Match stage
+    match_result: dict[str, Any] | None = None
+    # Base64 MP3 of the spoken text for this turn (follow-up question or
+    # match/no-match summary); None when TTS isn't configured.
+    audio_base64: str | None = None
+
+
+# --------------------------------------------------------------------------
+# Text-to-speech
+# --------------------------------------------------------------------------
+
+class TTSRequest(BaseModel):
+    text: str = Field(min_length=1, max_length=2000)
+    language: Literal["en", "hi"] = "en"
+
+
+class TTSResponse(BaseModel):
+    audio_base64: str | None = Field(
+        default=None, description="Base64 MP3; None if TTS is not configured"
+    )
+    available: bool

@@ -67,4 +67,16 @@ export const ai = {
   intent: (body) => apiFetch('/api/ai/intent', { method: 'POST', body }),
   match: (profile, intent) => apiFetch('/api/ai/match', { method: 'POST', body: { profile, intent } }),
   partners: (body) => apiFetch('/api/ai/partners', { method: 'POST', body }),
+  /**
+   * Unified chat call — one round-trip per message.
+   * Returns { stage, follow_up_question?, match_result?, intent, session_id }
+   * where stage ∈ 'follow_up' | 'confirm' | 'matched' | 'no_match'.
+   */
+  chat: (body) => apiFetch('/api/ai/chat', { method: 'POST', body }),
+  tts: (body) => apiFetch('/api/ai/speech/tts', { method: 'POST', body }),
+};
+
+// ─── Financial calculator ────────────────────────────────────────────────
+export const calculator = {
+  emi: (body) => apiFetch('/api/calculator/emi', { method: 'POST', body }),
 };

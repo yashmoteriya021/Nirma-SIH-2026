@@ -19,6 +19,8 @@ Provider-agnostic. Configure via environment (or an `LLMConfig`):
 With no provider available every call falls back to the offline extractor.
 """
 
+from __future__ import annotations
+
 import json
 import os
 from dataclasses import dataclass
@@ -32,14 +34,14 @@ Your ONLY job is to extract structured information from the user's message. You 
 
 The user may write in Hindi, English, or a mix of both (Hinglish/code-mixed). Extract the following slots:
 
-1. **purpose**: One of: business_start, business_expansion, education, vehicle_livelihood, agriculture_allied, sanitation_equipment, other
-2. **project_type**: Specific description (e.g., "tailoring shop", "kirana store", "BTech Computer Science")
-3. **estimated_cost**: Numeric amount in INR. If user says "1.5 lakh", convert to 150000. If not stated, set to null.
+1. **purpose**: One of: business_start, business_expansion, education, scholarship, skilling, housing, healthcare, vehicle_livelihood, agriculture_allied, sanitation_equipment, other
+2. **project_type**: Specific description (e.g., "tailoring shop", "BTech Computer Science", "PM DAKSH training")
+3. **estimated_cost**: Numeric amount in INR. If user says "1.5 lakh", convert to 150000. If they are looking for a scholarship or skilling program without stating an amount, set to null.
 4. **cost_confidence**: "high" if user stated exact figure, "medium" if approximate/range, "low" if you're guessing
 5. **beneficiary**: "self" if for themselves, "dependent" if for son/daughter/spouse
-6. **loan_type_guess**: "micro_finance" (small ≤₹1.4L), "term_loan" (₹1.4L-₹50L), "education_loan", or "unknown"
+6. **loan_type_guess**: "micro_finance" (small ≤₹1.4L), "term_loan" (₹1.4L-₹50L), "education_loan", "grant", or "unknown"
 7. **urgency**: "immediate", "within_3_months", or "flexible"
-8. **student_education_status**: Only for education purpose — the STUDENT's highest completed level: one of below_8th, 8th_pass, 10th_pass, 12th_pass, graduate, post_graduate, professional. null if not stated.
+8. **student_education_status**: Only for education/scholarship purpose — the STUDENT's highest completed level: one of below_8th, 8th_pass, 10th_pass, 12th_pass, graduate, post_graduate, professional. null if not stated.
 
 Respond ONLY with valid JSON matching this exact structure:
 {
@@ -56,14 +58,200 @@ Respond ONLY with valid JSON matching this exact structure:
 User's message: """
 
 
+# Contextual follow-up prompt — generates warm, natural, situational questions
+_FOLLOWUP_PROMPT = """\
+You are Setu, a warm and helpful AI assistant from India that helps citizens find government welfare schemes, loans, scholarships, and skilling programs.
+
+The user is applying for a government scheme. You are gathering information through a natural conversation.
+
+USER SAID: "{user_text}"
+
+WHAT YOU ALREADY KNOW:
+{known_summary}
+
+WHAT YOU STILL NEED (ask about the FIRST item only):
+{missing_summary}
+
+INSTRUCTIONS:
+- If the user said something off-topic (greeting, question about you, unrelated topic), briefly and warmly acknowledge it in 1 sentence, then ask the needed question.
+- Generate ONE short, friendly, natural question or response (1-3 sentences max).
+- Match the user's language: if they wrote in Hindi/Hinglish, reply in Hindi/Hinglish. If English, reply in English.
+- Use "aap" (आप) for Hindi, be warm and encouraging.
+- Reference what they already told you when relevant (e.g., "Great! Since you want to start a tailoring shop, how much money do you think you'll need?")
+- NEVER use technical jargon (no "slots", "JSON", "schema", "data").
+- NEVER mention scheme names or give financial advice.
+- Return ONLY the response text. No quotes, no labels, no explanation.
+"""
+
+_MISSING_LABELS = {
+    "purpose": "what the scheme is for (business loan, scholarship, skilling, housing, etc.)",
+    "estimated_cost": "how much money they need (approximate amount in rupees). Only push for this if it's a loan.",
+    "beneficiary": "whether the scheme is for themselves or a dependent (son/daughter)",
+    "project_type": "what specific type of business, course, or project they plan",
+    "urgency": "how soon they need the funds",
+    "student_education_status": "the student's highest completed education level",
+}
+
+_KNOWN_LABELS = {
+    "purpose": lambda v: f"loan purpose: {v.replace('_', ' ')}",
+    "project_type": lambda v: f"project type: {v}",
+    "estimated_cost": lambda v: f"estimated cost: ₹{v:,.0f}",
+    "beneficiary": lambda v: f"for: {'themselves' if v == 'self' else 'a dependent'}",
+    "urgency": lambda v: f"urgency: {v.replace('_', ' ')}",
+    "student_education_status": lambda v: f"student education: {v.replace('_', ' ')}",
+}
+
+
+def generate_contextual_followup(
+    user_text: str,
+    current_intent: dict,
+    missing_slots: list[str],
+    language: str = "en",
+    config: "LLMConfig | None" = None,
+    fallback: str = "Could you provide more details?",
+) -> str:
+    """
+    Use the LLM to generate a warm, contextual follow-up question.
+    Falls back to `fallback` if the LLM is not configured or fails.
+    """
+    cfg = config or LLMConfig.from_env()
+    if not cfg.enabled or not missing_slots:
+        return fallback
+
+    # Build known summary
+    known_parts = []
+    for key, fmt in _KNOWN_LABELS.items():
+        val = current_intent.get(key)
+        if val is not None and val not in ("unknown", "other"):
+            try:
+                known_parts.append(fmt(val))
+            except Exception:
+                pass
+    known_summary = ", ".join(known_parts) if known_parts else "nothing yet"
+
+    # Only ask about the first missing slot
+    first_missing = missing_slots[0]
+    missing_summary = _MISSING_LABELS.get(first_missing, first_missing.replace("_", " "))
+
+    prompt = _FOLLOWUP_PROMPT.format(
+        user_text=user_text,
+        known_summary=known_summary,
+        missing_summary=missing_summary,
+    )
+
+    try:
+        if cfg.provider == "anthropic":
+            raw = _call_anthropic(cfg, "You are Setu, a helpful loan scheme assistant.", prompt)
+        else:
+            raw = _call_openai_compatible_text(
+                cfg,
+                "You are Setu, a helpful and warm loan scheme assistant. Reply only with the follow-up question or response, no extra text.",
+                prompt,
+            )
+        result = raw.strip().strip('"').strip("'")
+        # Some models wrap plain text in JSON — unwrap it
+        if result.startswith("{"):
+            import json as _json
+            try:
+                obj = _json.loads(result)
+                # Look for the text under common keys
+                result = (
+                    obj.get("response")
+                    or obj.get("message")
+                    or obj.get("text")
+                    or obj.get("question")
+                    or obj.get("answer")
+                    or result
+                )
+            except Exception:
+                pass
+        # Strip markdown code fences if present
+        if result.startswith("```"):
+            result = result.strip("`").lstrip("json").lstrip("text").strip()
+        return str(result).strip() if result else fallback
+    except Exception:
+        return fallback
+
+
+def generate_contextual_confirmation(
+    intent: dict[str, Any],
+    language: str,
+    config: LLMConfig,
+    fallback: str,
+) -> str:
+    """
+    Generate a natural, conversational confirmation summary for the user's intent.
+    Returns plain text in the requested language (or Hinglish if appropriate).
+    """
+    if not config.enabled:
+        return fallback
+
+    # Format what we know
+    cost = f"₹{intent.get('estimated_cost'):,.0f}" if intent.get("estimated_cost") else "an amount"
+    project = intent.get("project_type") or intent.get("purpose", "a project")
+    beneficiary = "yourself" if intent.get("beneficiary") == "self" else "your dependent"
+
+    lang_instruction = (
+        "Respond in Hindi (using Roman/English script - Hinglish)"
+        if language == "hi"
+        else "Respond in English"
+    )
+
+    prompt = f"""
+{lang_instruction}.
+You are Setu, a helpful loan scheme assistant.
+The user has finished telling you what they want. Summarize it naturally to confirm they are ready to find matching schemes.
+
+Details gathered:
+- Project/Purpose: {project}
+- Estimated Cost: {cost}
+- For: {beneficiary}
+
+Write a 1-sentence confirmation asking if this is correct. Keep it very conversational and warm.
+Example (English): So you're looking for {cost} to start {project}, is that correct?
+Example (Hinglish): Toh aapko apne {project} ke liye {cost} chahiye, sahi hai na?
+
+Do not wrap your response in quotes.
+"""
+    try:
+        if config.provider == "anthropic":
+            raw = _call_anthropic(config, "You are Setu.", prompt)
+        else:
+            raw = _call_openai_compatible_text(
+                config,
+                "You are Setu, a helpful and warm loan scheme assistant. Reply only with the confirmation text.",
+                prompt,
+            )
+        result = raw.strip().strip('"').strip("'")
+        # Strip JSON wrappers just in case
+        if result.startswith("{"):
+            import json as _json
+            try:
+                obj = _json.loads(result)
+                result = (
+                    obj.get("response")
+                    or obj.get("message")
+                    or obj.get("text")
+                    or obj.get("confirmation")
+                    or result
+                )
+            except Exception:
+                pass
+        return str(result).strip() if result else fallback
+    except Exception:
+        return fallback
+
+
+
 # Valid enum values for validation
 VALID_PURPOSES = {
-    "business_start", "business_expansion", "education",
+    "business_start", "business_expansion", "education", "scholarship", 
+    "skilling", "housing", "healthcare",
     "vehicle_livelihood", "agriculture_allied", "sanitation_equipment", "other",
 }
 VALID_CONFIDENCES = {"high", "medium", "low"}
 VALID_BENEFICIARIES = {"self", "dependent"}
-VALID_LOAN_TYPES = {"micro_finance", "term_loan", "education_loan", "unknown"}
+VALID_LOAN_TYPES = {"micro_finance", "term_loan", "education_loan", "grant", "unknown"}
 VALID_URGENCIES = {"immediate", "within_3_months", "flexible"}
 VALID_EDUCATION = {
     "below_8th", "8th_pass", "10th_pass", "12th_pass",
@@ -216,6 +404,27 @@ def _call_openai_compatible(cfg: LLMConfig, system: str, user: str) -> str:
         temperature=0.1,
         max_tokens=500,
         response_format={"type": "json_object"},
+    )
+    return response.choices[0].message.content or ""
+
+
+def _call_openai_compatible_text(cfg: LLMConfig, system: str, user: str) -> str:
+    """Plain-text variant — does NOT force json_object response format."""
+    from openai import OpenAI
+
+    kwargs: dict[str, Any] = {"api_key": cfg.api_key or "ollama"}
+    if cfg.base_url:
+        kwargs["base_url"] = cfg.base_url
+    client = OpenAI(**kwargs)
+
+    response = client.chat.completions.create(
+        model=cfg.model,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        temperature=0.7,   # slightly more expressive for follow-up questions
+        max_tokens=200,
     )
     return response.choices[0].message.content or ""
 
