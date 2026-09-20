@@ -79,6 +79,15 @@ def check_income_ceiling(profile: dict, scheme: dict) -> FilterResult:
 
 def check_project_cost_band(intent: dict, scheme: dict) -> FilterResult:
     """Check if estimated project cost fits within scheme's cost band."""
+    # Scholarships and skilling programs don't require a loan amount
+    scheme_type = scheme.get("scheme_type", "loan")
+    if scheme_type in ("scholarship", "skilling", "grant"):
+        return FilterResult(
+            passed=True,
+            rule="project_cost_band",
+            detail=f"{scheme_type.title()} scheme — project cost band check not applicable",
+        )
+
     cost = intent.get("estimated_cost")
 
     if cost is None:
@@ -111,6 +120,61 @@ def check_project_cost_band(intent: dict, scheme: dict) -> FilterResult:
                 rule="project_cost_band",
                 detail=f"Project cost ₹{cost:,.0f} exceeds scheme maximum ₹{cost_max:,.0f} by ₹{cost - cost_max:,.0f}",
             )
+
+
+def check_purpose_match(intent: dict, scheme: dict) -> FilterResult:
+    """
+    Check if the user's intended purpose matches what this scheme funds.
+    This is a soft-to-hard check: mismatches score 0 but don't hard-fail,
+    unless the scheme is ONLY for one specific type (e.g., scholarship).
+    """
+    purpose = intent.get("purpose")
+    scheme_purposes = scheme.get("purpose_types", [])
+    scheme_type = scheme.get("scheme_type", "loan")
+
+    if not purpose or not scheme_purposes:
+        return FilterResult(
+            passed=True,
+            rule="purpose_match",
+            detail="Purpose not specified or scheme has no purpose restriction — passed",
+        )
+
+    # Strict purpose-to-type matching for non-loan schemes
+    # e.g., a scholarship scheme must only match scholarship intent
+    if scheme_type == "scholarship" and purpose not in ("scholarship", "education"):
+        return FilterResult(
+            passed=False,
+            rule="purpose_match",
+            detail=f"Scholarship scheme — user purpose '{purpose}' does not qualify. Need 'scholarship' or 'education'.",
+        )
+    if scheme_type == "skilling" and purpose not in ("skilling", "education", "skill_upgrade"):
+        return FilterResult(
+            passed=False,
+            rule="purpose_match",
+            detail=f"Skilling scheme — user purpose '{purpose}' does not qualify. Need 'skilling' or 'education'.",
+        )
+
+    if purpose in scheme_purposes:
+        return FilterResult(
+            passed=True,
+            rule="purpose_match",
+            detail=f"Purpose '{purpose}' matches scheme's supported purposes {scheme_purposes}",
+        )
+
+    # For general loan schemes, allow 'other' to pass through to soft ranker
+    if scheme_type == "loan" and purpose == "other":
+        return FilterResult(
+            passed=True,
+            rule="purpose_match",
+            detail="Purpose 'other' — passed for soft ranker scoring",
+        )
+
+    # Minor mismatch — downgrade but don't hard-fail for loan schemes
+    return FilterResult(
+        passed=True,
+        rule="purpose_match",
+        detail=f"Purpose '{purpose}' not in scheme's primary purposes {scheme_purposes} — soft-ranked lower",
+    )
 
 
 def check_gender_restriction(profile: dict, scheme: dict) -> FilterResult:
@@ -253,6 +317,7 @@ def filter_scheme(profile: dict, intent: dict, scheme: dict) -> SchemeFilterResu
         check_category(profile, scheme),
         check_income_ceiling(profile, scheme),
         check_project_cost_band(intent, scheme),
+        check_purpose_match(intent, scheme),
         check_gender_restriction(profile, scheme),
         check_existing_loan(profile, scheme),
         check_education_requirement(profile, scheme, intent),
